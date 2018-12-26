@@ -38,6 +38,7 @@ More information coming soon! Please note that this project is currently **work 
 
 **Other**
 
+* [ ] Testing with Jest & Enzyme
 * [ ] Move from Prisma Cloud to own GraphQL Yoga server. (?)
 * [ ] Documentation
 * [ ] Paid support (?)
