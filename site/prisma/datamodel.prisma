@@ -1,0 +1,13 @@
+type Order {
+    id: ID! @unique
+    size: String!
+    dough: String!
+    type: String!
+    name: String!
+    phone: String!
+    time: String!
+    city: String!
+    street: String!
+    number: String!
+    notes: String
+}
