@@ -20,6 +20,7 @@ More information coming soon! Please note that this project is currently **work 
 * [ ]  Working Backend
   * [x] Creating orders
   * [ ] Sending mail or SMS
+* [ ] Payments
 
 **Order Management System**
 
