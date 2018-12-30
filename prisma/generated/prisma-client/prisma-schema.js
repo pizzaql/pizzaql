@@ -38,7 +38,6 @@ type Order {
   time: String!
   city: String!
   street: String!
-  number: String!
   notes: String
 }
 
@@ -57,7 +56,6 @@ input OrderCreateInput {
   time: String!
   city: String!
   street: String!
-  number: String!
   notes: String
 }
 
@@ -85,8 +83,6 @@ enum OrderOrderByInput {
   city_DESC
   street_ASC
   street_DESC
-  number_ASC
-  number_DESC
   notes_ASC
   notes_DESC
   createdAt_ASC
@@ -105,7 +101,6 @@ type OrderPreviousValues {
   time: String!
   city: String!
   street: String!
-  number: String!
   notes: String
 }
 
@@ -136,7 +131,6 @@ input OrderUpdateInput {
   time: String
   city: String
   street: String
-  number: String
   notes: String
 }
 
@@ -149,7 +143,6 @@ input OrderUpdateManyMutationInput {
   time: String
   city: String
   street: String
-  number: String
   notes: String
 }
 
@@ -280,20 +273,6 @@ input OrderWhereInput {
   street_not_starts_with: String
   street_ends_with: String
   street_not_ends_with: String
-  number: String
-  number_not: String
-  number_in: [String!]
-  number_not_in: [String!]
-  number_lt: String
-  number_lte: String
-  number_gt: String
-  number_gte: String
-  number_contains: String
-  number_not_contains: String
-  number_starts_with: String
-  number_not_starts_with: String
-  number_ends_with: String
-  number_not_ends_with: String
   notes: String
   notes_not: String
   notes_in: [String!]

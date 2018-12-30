@@ -1,27 +1,39 @@
 import React from 'react';
+import Router from 'next/router';
 import {createGlobalStyle} from 'styled-components';
-import {Formik, Form, Field} from 'formik';
+import './styles/styles.sass';
+import {Formik, Form, Field, ErrorMessage} from 'formik';
 import ky from 'ky';
+
+// Import components
+import Grid from '../components/Grid';
+import GridDrop from '../components/GridDrop';
 
 // Global Style
 const GlobalStyle = createGlobalStyle`
   body {
-	font-family: Montserrat, monospace;
+	font-family: Montserrat, Georgia, monospace;
+	padding-top: 100px;
+	padding-bottom: 100px;
     background: #fff;
     color: #212121;
-    padding: 1em;
-    line-height: 1.8em;
-	font-size: 15;
+	font-size: 16;
     -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeSpeed;
-    word-wrap: break-word
+    text-rendering: optimizeSpeed
+  }
+
+  h1 {
+	font-size: 30px;
+  }
+
+  footer {
+	text-align: center;
   }
 `;
 
 // Template
 export default Home => (
-	<div>
-		<h1>Order a Pizza!</h1>
+<div className="container">
 		<Formik
 			initialValues={{
 				type: '',
@@ -31,12 +43,24 @@ export default Home => (
 				phone: '',
 				city: '',
 				street: '',
-				number: '',
 				time: '',
 				notes: ''
 			}}
-			onSubmit={(values, {setSubmitting}) => {
+			validate={values => {
+				// TODO: Full validation
+        		let errors = {};
+        		if (!values.type) {
+          			errors.type = 'Required';
+        		} else if (!values.size) {
+					errors.size = 'Required';
+				} else if (!values.dough) {
+					errors.dough = 'Required';
+				}
+        return errors;
+      }}
+			onSubmit={(values, {setSubmitting, resetForm}) => {
 				setTimeout(async () => {
+					// Form a GraphQL mutation to create a new order
 					const query = `
 					mutation {
 						createOrder(
@@ -49,7 +73,6 @@ export default Home => (
 								time: "${values.time}"
 								city: "${values.city}"
 								street: "${values.street}"
-								number: "${values.number}"
 								notes: "${values.notes}"
 							}
 						) {
@@ -58,51 +81,82 @@ export default Home => (
 					}`;
 
 					try {
+						// Post a mutation to Prisma and obtain an ID
 						const id = await ky.post('https://eu1.prisma.sh/antoni-kepinski-33795f/server/dev', {json: {query}}).json();
-						alert(`Your order id is ${JSON.stringify(id.data.createOrder.id)}`);
+						const orderID = JSON.stringify(id.data.createOrder.id);
+						// Move user to the thank you page
+						Router.push({
+    						pathname: '/order',
+    						query: { id: orderID }
+  						});
 					} catch (error) {
 						console.log(error);
 					}
-
+					// Disable double-submission and reset form
 					setSubmitting(false);
-				}, 400);
+					resetForm();
+				}, 500);
 			}}
 		>
 			{({isSubmitting}) => (
-				<fieldset>
-					<legend>Form:</legend>
 					<Form>
-						<p>Type:</p>
-						<Field type="radio" name="type" value="Margharita"/> Margharita<br/>
-						<Field type="radio" name="type" value="Pepperoni"/> Pepperoni<br/>
-						<Field type="radio" name="type" value="BBQ Chicken"/> BBQ Chicken
-						<p>Size:</p>
-						<Field type="radio" name="size" value="Small"/> Small<br/>
-						<Field type="radio" name="size" value="Medium"/> Medium<br/>
-						<Field type="radio" name="size" value="Large"/> Large<br/>
-						<Field type="radio" name="size" value="Extra Large"/> Extra Large
-						<p>Dough:</p>
-						<Field type="radio" name="dough" value="Thin"/> Thin<br/>
-						<Field type="radio" name="dough" value="Thick"/> Thick<br/>
-						<p>Your name:</p>
-						<Field type="text" name="name" placeholder="John"/>
-						<p>Phone:</p>
-						<Field type="tel" name="phone" placeholder="111222333"/>
-						<p>City:</p>
-						<Field type="text" name="city" placeholder="Boston"/>
-						<p>Street & Apartment Number:</p>
-						<Field type="text" name="street" placeholder="National Street"/> <Field type="text" name="number" placeholder="12/4a"/>
-						<p>Time:</p>
-						<Field type="text" name="time" placeholder="12:43"/>
-						<p>Additional notes:</p>
-						<Field type="text" name="notes"/>
+					<div className="box">
+					<GridDrop>
+						<label>Pizza Type:</label>
+						<div className="select">
+						<Field name="type" component="select" placeholder="Pizza Type">
+							<option>Select</option>
+  							<option value="Margharita">Margharita</option>
+  							<option value="Pepperoni">Pepperoni</option>
+ 							<option value="BBQ Chicken">BBQ Chicken</option>
+						</Field>
+						<ErrorMessage name="type" component="div" />
+						</div>
+						<label>Size:</label>
+						<div className="select">
+						<Field name="size" component="select" placeholder="Size">
+							<option>Select</option>
+  							<option value="Small">Small</option>
+  							<option value="Medium">Medium</option>
+ 							<option value="Large">Large</option>
+							<option value="Extra Large">Extra Large</option>
+						</Field>
+						<ErrorMessage name="size" component="div" />
+						</div>
+						<label>Dough:</label>
+						<div className="select">
+						<Field name="dough" component="select" placeholder="Dough" >
+							<option>Select</option>
+  							<option value="Thin">Thin</option>
+  							<option value="Thick">Thick</option>
+						</Field>
+						<ErrorMessage name="dough" component="div" />
+						</div>
+						</GridDrop>
 						<br/>
-						<br/>
-						<button type="submit" disabled={isSubmitting}>Submit</button>
+						<Grid>
+						<label>Full name:</label>
+						<Field className="input" type="text" name="name" placeholder="Mark Suckerberg" required/>
+						<label>Phone:</label>
+						<Field className="input" type="tel" name="phone" placeholder="666666666" required/>
+						<label>City:</label>
+						<Field className="input" type="text" name="city" placeholder="Menlo Park" required/>
+						<label>Street & Apartment Number:</label>
+						<Field className="input" type="text" name="street" placeholder="1 Hacker Way" required/>
+						<label>Time:</label>
+						<Field className="input" type="text" name="time" placeholder="12:43" required/>
+						<label>Additional notes:</label>
+						<Field className="input" type="text" name="notes"/>
+						<button className="button is-dark" type="submit" disabled={isSubmitting}>Submit!</button>
+						</Grid>
+						</div>
 					</Form>
-				</fieldset>
 			)}
 		</Formik>
+			<footer>
+				<br/>
+				<p>Powered by PizzaQL 🍕</p>
+			</footer>
 		<GlobalStyle/>
 	</div>
 );
