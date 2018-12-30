@@ -18,14 +18,14 @@ Note: The following instructions are for developers. Setup instructions for begi
 1. Clone this repository 
 2. Enter the `site` directory
 3. Run `npm install` to install required dependencies
-4. Open the [`settings.js`](https://github.com/xxczaki/pizzaql/blob/master/site/settings.js) file using your favourite editor and change the values of `CLIENTID` and `DOMAIN` to your [Auth0's](https://auth0.com/) ones.
-5. Open the [`home.js`](https://github.com/xxczaki/pizzaql/blob/98897f42a3a744566262a3f9a3ebbcd1e9ae6dd4/site/pages/home.js#L85) file and update the URL to your own [Prisma](https://www.prisma.io/) GraphQL endpoint.
-6. Open the [`admin.js`](https://github.com/xxczaki/pizzaql/blob/98897f42a3a744566262a3f9a3ebbcd1e9ae6dd4/site/pages/admin.js#L67) file and update the URL to your own [Prisma](https://www.prisma.io/) GraphQL endpoint.
+4. Open the [`settings.js`](https://github.com/xxczaki/pizzaql/blob/master/site/settings.js) file using your favourite editor and change the values of `CLIENTID` and `DOMAIN` to your [Auth0's](https://auth0.com/) ones
+5. Open the [`home.js`](https://github.com/xxczaki/pizzaql/blob/98897f42a3a744566262a3f9a3ebbcd1e9ae6dd4/site/pages/home.js#L85) file and update the URL to your own [Prisma](https://www.prisma.io/) GraphQL endpoint
+6. Open the [`admin.js`](https://github.com/xxczaki/pizzaql/blob/98897f42a3a744566262a3f9a3ebbcd1e9ae6dd4/site/pages/admin.js#L67) file and update the URL to your own [Prisma](https://www.prisma.io/) GraphQL endpoint
 7. Now open the [`prisma.yml`](https://github.com/xxczaki/pizzaql/blob/master/prisma/prisma.yml) file located under the `prisma` folder and change the `endpoint` to your own [Prisma](https://www.prisma.io/) GraphQL endpoint
-8. In the `prisma` folder, run `prisma deploy` to deploy your API.
-9. Go back to the `site` directory and run `npm run dev` to start the application.
-10. You can access the order placement form at `localhost:3000` and the admin dashboard at `localhost:3000/admin` (you will need to login to see the list of orders).
-11. To build the application in the production mode, run `npm run build`.
+8. In the `prisma` folder, run `prisma deploy` to deploy your API
+9. Go back to the `site` directory and run `npm run dev` to start the application
+10. You can access the order placement form at `localhost:3000` and the admin dashboard at `localhost:3000/admin` (you will need to login to see the list of orders)
+11. To build the application in the production mode, run `npm run build`
 
 ## TODO
 
