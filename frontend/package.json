@@ -1,7 +1,7 @@
 {
-  "name": "pizzaql",
-  "version": "0.0.1",
-  "description": "",
+  "name": "pizzaql-frontend",
+  "version": "0.0.2",
+  "description": "Frontend for PizzaQL",
   "scripts": {
     "postinstall": "babel ./node_modules/ky/index.js --out-file ./node_modules/ky/index.js --config-file=./babel.config.js",
     "dev": "next",
@@ -35,7 +35,10 @@
     "next": "^7.0.2",
     "node-sass": "^4.11.0",
     "react": "^16.7.0",
+    "react-clipboard.js": "^2.0.2",
+    "react-countdown-now": "^2.0.2",
     "react-dom": "^16.7.0",
+    "redux": "^4.0.1",
     "styled-components": "^4.1.3"
   }
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 import Router from 'next/router';
 import {createGlobalStyle} from 'styled-components';
-import './styles/styles.sass';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import ky from 'ky';
+import './styles/styles.sass';
 
 // Import components
 import Grid from '../components/Grid';
@@ -82,7 +82,7 @@ export default Home => (
 
 					try {
 						// Post a mutation to Prisma and obtain an ID
-						const id = await ky.post('https://eu1.prisma.sh/antoni-kepinski-33795f/server/dev', {json: {query}}).json();
+						const id = await ky.post('http://localhost:4466', {json: {query}}).json();
 						const orderID = JSON.stringify(id.data.createOrder.id);
 						// Move user to the thank you page
 						Router.push({

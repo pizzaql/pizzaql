@@ -1,5 +1,5 @@
 type Order {
-    id: ID! @unique
+    id: ID! @id
     size: String!
     dough: String!
     type: String!

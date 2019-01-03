@@ -11,6 +11,28 @@ The goal of this project is to provide a modern and easy to use order management
 
 More information coming soon. Please note that this project is currently **work in progress** and you shouldn't use it in production!
 
+## Setup
+
+Note: The following instructions are for developers. Setup instructions for beginners will be provided later.
+
+### Prerequisites
+
+- [Git](https://git-scm.com/)
+- Latest [Node.js](https://nodejs.org/)
+- [Prisma CLI](https://www.prisma.io/docs/prisma-cli-and-configuration/using-the-prisma-cli-alx4/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+
+1. Clone this repository 
+2. Enter the `backend` directory
+3. Run `docker-compose up -d` and then `prisma deploy` to start the GraphQL Server
+4. Enter the `frontend` directory
+5. Run `npm install` to install required dependencies
+6. Now run `npm run dev` to start the application in the development mode
+
+- You can access the GraphQL Playground at `http://localhost:4466/`
+- You can access the order placement form at `http://localhost:3000` and the admin dashboard at `http://localhost:3000/admin` (you will need to login to see the list of orders)
+- To build the application in the production mode, just run `npm run build`
+
 ## TODO
 
 **Order Placement System**
@@ -40,7 +62,7 @@ More information coming soon. Please note that this project is currently **work 
 **Other**
 
 * [ ] Testing with Jest & Enzyme
-* [ ] Move from Prisma Cloud to own GraphQL Yoga server. (?)
+* [x] Move from Prisma Cloud to Docker.
 * [ ] Documentation
 * [ ] Paid support (?)
 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {createGlobalStyle} from 'styled-components';
 import ky from 'ky';
 import Fonts from './fonts';
@@ -64,7 +64,7 @@ class Secret extends Component {
 
   async componentDidMount() {
     // Post query to Prisma
-    const get = await ky.post('https://eu1.prisma.sh/antoni-kepinski-33795f/server/dev', {json: {query}}).json();
+    const get = await ky.post('http://localhost:4466', {json: {query}}).json();
     this.setState({ orders: get.data.orders });
     await Fonts();
   }
