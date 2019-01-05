@@ -1,4 +1,4 @@
 language: node_js
-before_script: cd frontend
+before_install: cd frontend
 node_js:
 - "node"
