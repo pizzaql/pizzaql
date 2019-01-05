@@ -1,4 +1,4 @@
 language: node_js
-script: build.sh
+before_script: cd frontend
 node_js:
 - "node"
