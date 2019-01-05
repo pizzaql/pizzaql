@@ -4,26 +4,26 @@ import fetch from 'isomorphic-unfetch';
 import * as settings from '../settings';
 
 // Get JWK from Auth0
-async function getJWK() {
+const getJWK = async () => {
 	const res = await fetch(`https://${settings.domain}/.well-known/jwks.json`);
 	const jwk = await res.json();
 	return jwk;
-}
+};
 
 // Save it to cookie
-function saveToken(jwtToken) {
+const saveToken = jwtToken => {
 	Cookie.set('user', jwt.decode(jwtToken));
 	Cookie.set('jwtToken', jwtToken);
-}
+};
 
 // Delete it
-function deleteToken() {
+const deleteToken = () => {
 	Cookie.remove('user');
 	Cookie.remove('jwtToken');
-}
+};
 
 // Check it
-async function verifyToken(token) {
+const verifyToken = async token => {
 	if (token) {
 		const decodedToken = jwt.decode(token, {complete: true});
 		const jwk = await getJWK();
@@ -40,19 +40,19 @@ async function verifyToken(token) {
 			}
 		}
 	}
-}
+};
 
 // Browser
-async function getTokenForBrowser() {
+const getTokenForBrowser = async () => {
 	const token = Cookie.getJSON('jwtToken');
 	const validToken = await verifyToken(token);
 	if (validToken) {
 		return Cookie.getJSON('user');
 	}
-}
+};
 
 // Server
-async function getTokenForServer(req) {
+const getTokenForServer = async req => {
 	if (req.headers.cookie) {
 		const jwtFromCookie = req.headers.cookie.split(';').find(c => c.trim().startsWith('jwtToken='));
 		if (!jwtFromCookie) {
@@ -65,7 +65,7 @@ async function getTokenForServer(req) {
 		}
 		return undefined;
 	}
-}
+};
 
 export {
 	saveToken,

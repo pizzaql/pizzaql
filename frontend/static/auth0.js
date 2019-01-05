@@ -4,15 +4,15 @@ import * as settings from '../settings';
 const {clientID, domain} = settings;
 
 // Authenticate to Auth0
-function webAuth(clientID, domain) {
+const webAuth = (clientID, domain) => {
 	return new auth0.WebAuth({
 		clientID,
 		domain
 	});
-}
+};
 
 // Login
-function login() {
+const login = () => {
 	const options = {
 		responseType: 'id_token',
 		redirectUri: 'http://localhost:3000/redirect',
@@ -20,15 +20,15 @@ function login() {
 	};
 
 	return webAuth(clientID, domain).authorize(options);
-}
+};
 
-function parseHash(cb) {
+const parseHash = cb => {
 	return webAuth(clientID, domain).parseHash(cb);
-}
+};
 
-function logout() {
+const logout = () => {
 	return webAuth(clientID, domain).logout();
-}
+};
 
 export {
 	login,

@@ -50,10 +50,15 @@ const Home = () => (
 				const errors = {};
 				if (!values.type) {
 					errors.type = 'Required';
-				} else if (!values.size) {
+				}
+				if (!values.size) {
 					errors.size = 'Required';
-				} else if (!values.dough) {
+				}
+				if (!values.dough) {
 					errors.dough = 'Required';
+				}
+				if (isNaN(values.phone)) {
+					errors.phone = 'Invalid Phone';
 				}
 				return errors;
 			}}
@@ -138,6 +143,7 @@ const Home = () => (
 							<Field className="input" type="text" name="name" placeholder="Mark Suckerberg" required/>
 							<label>Phone:</label>
 							<Field className="input" type="tel" name="phone" placeholder="666666666" required/>
+							<ErrorMessage name="phone"/>
 							<label>City:</label>
 							<Field className="input" type="text" name="city" placeholder="Menlo Park" required/>
 							<label>Street & Apartment Number:</label>
