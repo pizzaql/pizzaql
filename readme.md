@@ -68,6 +68,10 @@ Note: The following instructions are for developers. Setup instructions for begi
 
 (?) - unsure.
 
+## How it works?
+
+![Diagram](diagram.png)
+
 ## Built with:
 
 - [React](https://reactjs.org/)
