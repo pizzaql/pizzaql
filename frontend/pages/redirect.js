@@ -6,19 +6,19 @@ import {saveToken, verifyToken} from '../static/auth';
 // Redirect user after login
 export default class extends React.Component {
 	componentDidMount() {
-		parseHash((err, result) => {
+		parseHash(async (err, result) => {
+			await verifyToken(result.idToken).then(valid => {
+				if (valid) {
+					saveToken(result.idToken, result.accessToken);
+					Router.push('/admin');
+				} else {
+					Router.push('/');
+				}
+			});
 			if (err) {
 				console.error('Error signing in', err);
 				return;
 			}
-			verifyToken(result.idToken).then(async valid => {
-				if (valid) {
-					await saveToken(result.idToken, result.accessToken);
-					await Router.push('/admin');
-				} else {
-					await Router.push('/');
-				}
-			});
 		});
 	}
 
