@@ -2,6 +2,6 @@ const clientID = process.env.CLIENTID || 'BUUYjCiP2SYKQBB48OZRALsccmijoubx'; // 
 const domain = process.env.DOMAIN || 'pizzaql.eu.auth0.com'; // Your Auth0 Domain
 
 export {
-  clientID,
-  domain
+	clientID,
+	domain
 };

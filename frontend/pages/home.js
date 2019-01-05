@@ -32,8 +32,8 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 // Template
-export default Home => (
-<div className="container">
+const Home = () => (
+	<div className="container">
 		<Formik
 			initialValues={{
 				type: '',
@@ -47,17 +47,16 @@ export default Home => (
 				notes: ''
 			}}
 			validate={values => {
-				// TODO: Full validation
-        		let errors = {};
-        		if (!values.type) {
-          			errors.type = 'Required';
-        		} else if (!values.size) {
+				const errors = {};
+				if (!values.type) {
+					errors.type = 'Required';
+				} else if (!values.size) {
 					errors.size = 'Required';
 				} else if (!values.dough) {
 					errors.dough = 'Required';
 				}
-        return errors;
-      }}
+				return errors;
+			}}
 			onSubmit={(values, {setSubmitting, resetForm}) => {
 				setTimeout(async () => {
 					// Form a GraphQL mutation to create a new order
@@ -86,9 +85,9 @@ export default Home => (
 						const orderID = JSON.stringify(id.data.createOrder.id);
 						// Move user to the thank you page
 						Router.push({
-    						pathname: '/order',
-    						query: { id: orderID }
-  						});
+							pathname: '/order',
+							query: {id: orderID}
+						});
 					} catch (error) {
 						console.log(error);
 					}
@@ -99,64 +98,66 @@ export default Home => (
 			}}
 		>
 			{({isSubmitting}) => (
-					<Form>
+				<Form>
 					<div className="box">
-					<GridDrop>
-						<label>Pizza Type:</label>
-						<div className="select">
-						<Field name="type" component="select" placeholder="Pizza Type">
-							<option>Select</option>
-  							<option value="Margharita">Margharita</option>
-  							<option value="Pepperoni">Pepperoni</option>
- 							<option value="BBQ Chicken">BBQ Chicken</option>
-						</Field>
-						<ErrorMessage name="type" component="div" />
-						</div>
-						<label>Size:</label>
-						<div className="select">
-						<Field name="size" component="select" placeholder="Size">
-							<option>Select</option>
-  							<option value="Small">Small</option>
-  							<option value="Medium">Medium</option>
- 							<option value="Large">Large</option>
-							<option value="Extra Large">Extra Large</option>
-						</Field>
-						<ErrorMessage name="size" component="div" />
-						</div>
-						<label>Dough:</label>
-						<div className="select">
-						<Field name="dough" component="select" placeholder="Dough" >
-							<option>Select</option>
-  							<option value="Thin">Thin</option>
-  							<option value="Thick">Thick</option>
-						</Field>
-						<ErrorMessage name="dough" component="div" />
-						</div>
+						<GridDrop>
+							<label>Pizza Type:</label>
+							<div className="select">
+								<Field name="type" component="select" placeholder="Pizza Type">
+									<option>Select</option>
+									<option value="Margharita">Margharita</option>
+									<option value="Pepperoni">Pepperoni</option>
+									<option value="BBQ Chicken">BBQ Chicken</option>
+								</Field>
+								<ErrorMessage name="type" component="div"/>
+							</div>
+							<label>Size:</label>
+							<div className="select">
+								<Field name="size" component="select" placeholder="Size">
+									<option>Select</option>
+									<option value="Small">Small</option>
+									<option value="Medium">Medium</option>
+									<option value="Large">Large</option>
+									<option value="Extra Large">Extra Large</option>
+								</Field>
+								<ErrorMessage name="size" component="div"/>
+							</div>
+							<label>Dough:</label>
+							<div className="select">
+								<Field name="dough" component="select" placeholder="Dough">
+									<option>Select</option>
+									<option value="Thin">Thin</option>
+									<option value="Thick">Thick</option>
+								</Field>
+								<ErrorMessage name="dough" component="div"/>
+							</div>
 						</GridDrop>
 						<br/>
 						<Grid>
-						<label>Full name:</label>
-						<Field className="input" type="text" name="name" placeholder="Mark Suckerberg" required/>
-						<label>Phone:</label>
-						<Field className="input" type="tel" name="phone" placeholder="666666666" required/>
-						<label>City:</label>
-						<Field className="input" type="text" name="city" placeholder="Menlo Park" required/>
-						<label>Street & Apartment Number:</label>
-						<Field className="input" type="text" name="street" placeholder="1 Hacker Way" required/>
-						<label>Time:</label>
-						<Field className="input" type="text" name="time" placeholder="12:43" required/>
-						<label>Additional notes:</label>
-						<Field className="input" type="text" name="notes"/>
-						<button className="button is-dark" type="submit" disabled={isSubmitting}>Submit!</button>
+							<label>Full name:</label>
+							<Field className="input" type="text" name="name" placeholder="Mark Suckerberg" required/>
+							<label>Phone:</label>
+							<Field className="input" type="tel" name="phone" placeholder="666666666" required/>
+							<label>City:</label>
+							<Field className="input" type="text" name="city" placeholder="Menlo Park" required/>
+							<label>Street & Apartment Number:</label>
+							<Field className="input" type="text" name="street" placeholder="1 Hacker Way" required/>
+							<label>Time:</label>
+							<Field className="input" type="text" name="time" placeholder="12:43" required/>
+							<label>Additional notes:</label>
+							<Field className="input" type="text" name="notes"/>
+							<button className="button is-dark" type="submit" disabled={isSubmitting}>Submit!</button>
 						</Grid>
-						</div>
-					</Form>
+					</div>
+				</Form>
 			)}
 		</Formik>
-			<footer>
-				<br/>
-				<p>Powered by PizzaQL 🍕</p>
-			</footer>
+		<footer>
+			<br/>
+			<p>Powered by PizzaQL 🍕</p>
+		</footer>
 		<GlobalStyle/>
 	</div>
 );
+
+export default Home;

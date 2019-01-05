@@ -1,15 +1,15 @@
 import React from 'react';
 import Home from './home';
-import Fonts from './fonts';
+import fonts from './fonts';
 
 // Load fonts & main page
 class Index extends React.Component {
 	async componentDidMount() {
-		await Fonts();
+		await fonts();
 	}
 
 	render() {
-		return <Home />;
+		return <Home/>;
 	}
 }
 

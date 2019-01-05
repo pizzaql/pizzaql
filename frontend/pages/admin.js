@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {createGlobalStyle} from 'styled-components';
 import ky from 'ky';
-import Fonts from './fonts';
-import SecureTemplate from '../static/secure-template';
+import secureTemplate from '../static/secure-template';
+import fonts from './fonts';
 import './styles/styles.sass';
 
 // Global Style
@@ -54,67 +54,67 @@ query {
 }`;
 
 class Secret extends Component {
-  constructor(props) {
-    super(props);
+	constructor(props) {
+		super(props);
 
-    this.state = {
-      orders: [],
-    };
-  }
+		this.state = {
+			orders: []
+		};
+	}
 
-  async componentDidMount() {
-    // Post query to Prisma
-    const get = await ky.post('http://localhost:4466', {json: {query}}).json();
-    this.setState({ orders: get.data.orders });
-    await Fonts();
-  }
+	async componentDidMount() {
+		// Post query to Prisma
+		const get = await ky.post('http://localhost:4466', {json: {query}}).json();
+		this.setState({orders: get.data.orders});
+		await fonts();
+	}
 
-  render() {
-    const {orders} = this.state;
+	render() {
+		const {orders} = this.state;
 
-    return (
-      <div className="container">
-      <h1>Welcome to Admin Dashboard</h1>
-      
-      <p>✔️ You are logged in, click <a href="/logout">here</a> to logout.</p>
-      <br/>
-      <br/>
-    {orders.map(el =>
-      <div className="box">
-    <h2>Order id. <strong>{el.id}</strong></h2>
-    <br/>
-      <table className="table is-bordered is-striped is-narrow is-hoverable">
-      <thead>
-      <tr>
-        <th>Type</th>
-        <th>Size</th>
-        <th>Dough</th>
-        <th>Name</th>
-        <th>Phone</th>
-        <th>City</th>
-        <th>Street</th>
-        <th>Time</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>{el.type}</td>
-        <td>{el.size}</td>
-        <td>{el.dough}</td>
-        <td>{el.name}</td>
-        <td>{el.phone}</td>
-        <td>{el.city}</td>
-        <td>{el.street}</td>
-        <td>{el.time}</td>
-    </tr>
-        </tbody>
-      </table>
-      </div>
-    )}
-      <GlobalStyle/>
-    </div>
-    );
-  }
+		return (
+			<div className="container">
+				<h1>Welcome to Admin Dashboard</h1>
+
+				<p>✔️ You are logged in, click <a href="/logout">here</a> to logout.</p>
+				<br/>
+				<br/>
+				{orders.map(el => (
+					<div className="box" key={el.id}>
+						<h2>Order id. <strong>{el.id}</strong></h2>
+						<br/>
+						<table className="table is-bordered is-striped is-narrow is-hoverable">
+							<thead>
+								<tr>
+									<th>Type</th>
+									<th>Size</th>
+									<th>Dough</th>
+									<th>Name</th>
+									<th>Phone</th>
+									<th>City</th>
+									<th>Street</th>
+									<th>Time</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>{el.type}</td>
+									<td>{el.size}</td>
+									<td>{el.dough}</td>
+									<td>{el.name}</td>
+									<td>{el.phone}</td>
+									<td>{el.city}</td>
+									<td>{el.street}</td>
+									<td>{el.time}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				))}
+				<GlobalStyle/>
+			</div>
+		);
+	}
 }
 
-export default SecureTemplate(Secret);
+export default secureTemplate(Secret);

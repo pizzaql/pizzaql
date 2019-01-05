@@ -1,7 +1,7 @@
 const FontFaceObserver = require('fontfaceobserver');
 
 // Load fonts
-const Fonts = async () => {
+const fonts = async () => {
 	const link = await document.createElement('link');
 	link.href = await 'https://fonts.googleapis.com/css?family=Montserrat:400';
 	link.rel = await 'stylesheet';
@@ -19,4 +19,4 @@ const Fonts = async () => {
 	}
 };
 
-export default Fonts;
+export default fonts;

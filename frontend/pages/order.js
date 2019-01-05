@@ -2,7 +2,7 @@ import React from 'react';
 import {createGlobalStyle} from 'styled-components';
 import Clipboard from 'react-clipboard.js';
 import Countdown from 'react-countdown-now';
-import Fonts from './fonts';
+import fonts from './fonts';
 import './styles/styles.sass';
 
 // Global Style
@@ -40,69 +40,60 @@ const GlobalStyle = createGlobalStyle`
 
 const Completionist = () => <span>Your order should already arrived. If not, see instructions below.</span>;
 
-const renderer = ({ minutes, seconds, completed }) => {
-    if (completed) {
-      // Render a completed state
-      return <Completionist />;
-    } else {
-      // Render a countdown
-      return <span>{minutes}:{seconds}</span>;
-    }
-  };
+const renderer = ({minutes, seconds, completed}) => {
+	if (completed) {
+		// Render a completed state
+		return <Completionist/>;
+	}
+	// Render a countdown
+	return <span>{minutes}:{seconds}</span>;
+};
 
 class Index extends React.Component {
-    // Get order id from query
-    static async getInitialProps({query: { id }}) {
-        return {
-            id: id
-        }
-    }
+	// Get order id from query
+	static async getInitialProps({query: {id}}) {
+		return {
+			id
+		};
+	}
 
 	async componentDidMount() {
-		await Fonts();
+		await fonts();
 	}
 
 	render() {
-        const props = { 
-            data: {
-               'id': this.props.id 
-            }
-        }
-
-        // TODO: More specific check
-        if (this.props.id === '' || this.props.id === '""') {
-            return (
-                <p>Order not found!</p>
-            );
-        } else {
-		    return (
-                <div class="container">
-                        <h1>Thank you!</h1>
-                        <br/>
-                        <br/>
-                        <p>This is your order id:</p>
-                        <br/>
-                        <div className="field has-addons">
-                        <div className="control">
-                        <input className="input is-small" type="text" value={this.props.id.replace(/"/g, '')} readOnly/>
-                        </div>
-                        <Clipboard className="button is-small" data-clipboard-text={this.props.id.replace(/"/g, '')}>
-                            <img src="static/clippy.svg" width="15" height="15" alt="Copy to clipboard"/>
-                        </Clipboard>
-                        </div>
-                        <br/>
-                        <h2>
-                        <Countdown
-                            date={Date.now() + 2700000}
-                            renderer={renderer}
-                        />
-                        </h2>
-                        <br/>
-                        <p>If you won't receive your order after this time, please call us: <strong>234 567 890</strong></p>
-                        <GlobalStyle/>
-                </div>
-            );
-        }
+		if (this.props.id === '' || this.props.id === '""') {
+			return (
+				<p>Order not found!</p>
+			);
+		}
+		return (
+			<div className="container">
+				<h1>Thank you!</h1>
+				<br/>
+				<br/>
+				<p>This is your order id:</p>
+				<br/>
+				<div className="field has-addons">
+					<div className="control">
+						<input className="input is-small" type="text" value={this.props.id.replace(/"/g, '')} readOnly/>
+					</div>
+					<Clipboard className="button is-small" data-clipboard-text={this.props.id.replace(/"/g, '')}>
+						<img src="static/clippy.svg" width="15" height="15" alt="Copy to clipboard"/>
+					</Clipboard>
+				</div>
+				<br/>
+				<h2>
+					<Countdown
+						date={Date.now() + 2700000}
+						renderer={renderer}
+					/>
+				</h2>
+				<br/>
+				<p>If you won&apos;t receive your order after this time, please call us: <strong>234 567 890</strong></p>
+				<GlobalStyle/>
+			</div>
+		);
 	}
 }
 
