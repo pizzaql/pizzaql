@@ -17,7 +17,6 @@ export default class extends React.Component {
 			});
 			if (err) {
 				console.error('Error signing in', err);
-				return;
 			}
 		});
 	}
