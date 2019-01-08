@@ -30,10 +30,6 @@ const GlobalStyle = createGlobalStyle`
     word-wrap: break-word;
     width: 100%
   }
-
-  footer {
-	  text-align: center;
-  }
 `;
 
 // Query to get orders from Prisma
@@ -49,7 +45,6 @@ query {
     time
     city
     street
-    notes
   }
 }`;
 

@@ -8,5 +8,4 @@ type Order {
     time: String!
     city: String!
     street: String!
-    notes: String
 }

@@ -2,12 +2,14 @@ import React from 'react';
 import Router from 'next/router';
 import {createGlobalStyle} from 'styled-components';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
+import dayjs from 'dayjs';
 import ky from 'ky';
 import './styles/styles.sass';
 
 // Import components
 import Grid from '../components/Grid';
 import GridDrop from '../components/GridDrop';
+import GridTime from '../components/GridTime';
 
 // Global Style
 const GlobalStyle = createGlobalStyle`
@@ -57,6 +59,9 @@ const Home = () => (
 				if (!values.dough) {
 					errors.dough = 'Required';
 				}
+				if (!values.time) {
+					errors.time = 'Required';
+				}
 				if (isNaN(values.phone)) {
 					errors.phone = 'Invalid Phone';
 				}
@@ -77,7 +82,6 @@ const Home = () => (
 								time: "${values.time}"
 								city: "${values.city}"
 								street: "${values.street}"
-								notes: "${values.notes}"
 							}
 						) {
 							id
@@ -148,12 +152,29 @@ const Home = () => (
 							<Field className="input" type="text" name="city" placeholder="Menlo Park" required/>
 							<label>Street & Apartment Number:</label>
 							<Field className="input" type="text" name="street" placeholder="1 Hacker Way" required/>
-							<label>Time:</label>
-							<Field className="input" type="text" name="time" placeholder="12:43" required/>
-							<label>Additional notes:</label>
-							<Field className="input" type="text" name="notes"/>
-							<button className="button is-dark" type="submit" disabled={isSubmitting}>Submit!</button>
 						</Grid>
+						<GridTime>
+							<br/>
+							<label>Delivery time:</label>
+							<div className="select">
+								<Field name="time" component="select" placeholder="Time">
+									<option>Select</option>
+									<option value="ASAP">As fast as possible</option>
+									<option>{dayjs().startOf('hour').add(1, 'hour').format('HH:mm')}</option>
+									<option>{dayjs().startOf('hour').add(2, 'hour').format('HH:mm')}</option>
+									<option>{dayjs().startOf('hour').add(3, 'hour').format('HH:mm')}</option>
+								</Field>
+								<ErrorMessage name="time" component="div"/>
+							</div>
+							<br/>
+						</GridTime>
+						<button
+							className="button is-dark is-fullwidth"
+							type="submit"
+							disabled={isSubmitting}
+						>
+						Submit!
+						</button>
 					</div>
 				</Form>
 			)}

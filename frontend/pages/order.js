@@ -1,7 +1,6 @@
 import React from 'react';
 import {createGlobalStyle} from 'styled-components';
 import Clipboard from 'react-clipboard.js';
-import Countdown from 'react-countdown-now';
 import fonts from './fonts';
 import './styles/styles.sass';
 
@@ -38,17 +37,6 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Completionist = () => <span>Your order should already arrived. If not, see instructions below.</span>;
-
-const renderer = ({minutes, seconds, completed}) => {
-	if (completed) {
-		// Render a completed state
-		return <Completionist/>;
-	}
-	// Render a countdown
-	return <span>{minutes}:{seconds}</span>;
-};
-
 class Index extends React.Component {
 	// Get order id from query
 	static async getInitialProps({query: {id}}) {
@@ -83,12 +71,8 @@ class Index extends React.Component {
 					</Clipboard>
 				</div>
 				<br/>
-				<h2>
-					<Countdown
-						date={Date.now() + 2700000}
-						renderer={renderer}
-					/>
-				</h2>
+				<h2>You will receive your order in about 45 minutes</h2>
+				<br/>
 				<br/>
 				<p>If you won&apos;t receive your order after this time, please call us: <strong>234 567 890</strong></p>
 				<GlobalStyle/>
