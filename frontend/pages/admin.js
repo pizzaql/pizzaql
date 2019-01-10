@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import {createGlobalStyle} from 'styled-components';
 import ky from 'ky';
+import boolean from 'boolean';
 import secureTemplate from '../static/secure-template';
+import checkboxes from '../components/checkboxes';
+import Checkbox from '../components/Checkbox';
 import fonts from './fonts';
 import './styles/styles.sass';
 
@@ -53,11 +56,29 @@ class Secret extends Component {
 		super(props);
 
 		this.state = {
-			orders: []
+			orders: [],
+			checkedItems: new Map()
 		};
+
+		this.handleChange = this.handleChange.bind(this);
+	}
+
+	async handleChange(e) {
+		const i = e.target.name;
+		const c = e.target.checked;
+
+		localStorage.setItem('item', i);
+		localStorage.setItem('isChecked', c);
+
+		await this.setState(prevState => ({checkedItems: prevState.checkedItems.set(i, boolean(c))}));
 	}
 
 	async componentDidMount() {
+		const item = await localStorage.getItem('item');
+		const isChecked = await localStorage.getItem('isChecked');
+
+		await this.setState(prevState => ({checkedItems: prevState.checkedItems.set(item, boolean(isChecked))}));
+
 		// Post query to Prisma
 		const get = await ky.post('http://localhost:4466', {json: {query}}).json();
 		this.setState({orders: get.data.orders});
@@ -72,6 +93,16 @@ class Secret extends Component {
 				<h1>Welcome to Admin Dashboard</h1>
 
 				<p>✔️ You are logged in, click <a href="/logout">here</a> to logout.</p>
+				<React.Fragment>
+					{
+						checkboxes.map(item => (
+							<label key={item.key}>
+								{item.label}
+								<Checkbox name={item.name} checked={this.state.checkedItems.get(item.name)} onChange={this.handleChange}/>
+							</label>
+						))
+					}
+				</React.Fragment>
 				<br/>
 				<br/>
 				{orders.map(el => (
