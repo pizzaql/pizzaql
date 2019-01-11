@@ -28,7 +28,7 @@
  },
  "dependencies": {
   "@zeit/next-sass": "^1.0.1",
-  "auth0-js": "^9.8.2",
+  "auth0-js": "^9.9.0",
   "boolean": "^0.2.0",
   "bulma": "^0.7.2",
   "dayjs": "^1.7.8",
