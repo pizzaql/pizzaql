@@ -34,6 +34,8 @@ export default class MyDocument extends Document {
 					<meta name="og:type" content="website"/>
 					<link rel="icon" href="static/favicon.png"/>
 					<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-normalize@0.5.0/modern-normalize.min.css"/>
+					<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@blueprintjs/icons@3.5.0/lib/css/blueprint-icons.css"/>
+					<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@blueprintjs/core@3.11.0/lib/css/blueprint.css"/>
 					{this.props.styleTags}
 				</Head>
 				<body>

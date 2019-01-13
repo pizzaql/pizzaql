@@ -27,7 +27,7 @@
   "xo": "^0.23.0"
  },
  "dependencies": {
-  "@zeit/next-sass": "^1.0.1",
+  "@blueprintjs/core": "^3.11.0",
   "auth0-js": "^9.9.0",
   "boolean": "^0.2.0",
   "bulma": "^0.7.2",
@@ -39,7 +39,6 @@
   "jsonwebtoken": "^8.4.0",
   "ky": "^0.6.0",
   "next": "^7.0.2",
-  "node-sass": "^4.11.0",
   "prop-types": "^15.6.2",
   "react": "^16.7.0",
   "react-clipboard.js": "^2.0.2",

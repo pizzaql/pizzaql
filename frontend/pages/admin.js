@@ -1,32 +1,47 @@
 import React, {Component} from 'react';
 import {createGlobalStyle} from 'styled-components';
+import {Card} from '@blueprintjs/core';
 import ky from 'ky';
 import boolean from 'boolean';
 import secureTemplate from '../static/secure-template';
 import checkboxes from '../components/checkboxes';
-import Checkbox from '../components/Checkbox';
+import Check from '../components/Check';
 import fonts from './fonts';
-import './styles/styles.sass';
 
 // Global Style
 const GlobalStyle = createGlobalStyle`
   body {
 	font-family: Montserrat, Georgia, monospace;
-  text-align: center;
-  background: #fff;
-  color: #212121;
+  	text-align: center;
+  	background: #fff;
+  	color: #212121;
 	font-size: 16;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeSpeed
+  	-webkit-font-smoothing: antialiased;
+  	text-rendering: optimizeSpeed
   }
 
   h1 {
-	  font-size: 30px;
+	font-size: 30px;
   }
 
   h2 {
     font-size: 18px;
   }
+
+  .half-width {
+	margin: auto;
+	margin-bottom: 20px;
+	word-wrap: break-word;
+	width: 60%
+  }
+
+  .inline {
+	  display: flex;
+	  flex-direction: row;
+	  justify-content: space-around;
+	  text-align: right
+  }
+
 
   table {
     table-layout: fixed; 
@@ -96,20 +111,17 @@ class Secret extends Component {
 				<React.Fragment>
 					{
 						checkboxes.map(item => (
-							<label key={item.key}>
-								{item.label}
-								<Checkbox name={item.name} checked={this.state.checkedItems.get(item.name)} onChange={this.handleChange}/>
-							</label>
+							<Check key={item.key} name={item.name} label={item.label} checked={this.state.checkedItems.get(item.name)} onChange={this.handleChange}/>
 						))
 					}
 				</React.Fragment>
 				<br/>
 				<br/>
 				{orders.map(el => (
-					<div className="box" key={el.id}>
+					<Card className="half-width" key={el.id}>
 						<h2>Order id. <strong>{el.id}</strong></h2>
 						<br/>
-						<table className="table is-bordered is-striped is-narrow is-hoverable">
+						<table className="bp3-html-table .bp3-interactive .bp3-html-table-bordered">
 							<thead>
 								<tr>
 									<th>Type</th>
@@ -135,7 +147,7 @@ class Secret extends Component {
 								</tr>
 							</tbody>
 						</table>
-					</div>
+					</Card>
 				))}
 				<GlobalStyle/>
 			</div>

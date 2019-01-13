@@ -2,7 +2,6 @@ import React from 'react';
 import {createGlobalStyle} from 'styled-components';
 import Clipboard from 'react-clipboard.js';
 import fonts from './fonts';
-import './styles/styles.sass';
 
 // Global Style
 const GlobalStyle = createGlobalStyle`
@@ -16,13 +15,9 @@ const GlobalStyle = createGlobalStyle`
     text-rendering: optimizeSpeed
   }
 
-  .field {
-      width: 220px;
+  .centerify {
+	  width: 250px;
       margin: auto
-  }
-
-  .button {
-      margin: auto;
   }
 
 
@@ -62,13 +57,9 @@ class Index extends React.Component {
 				<br/>
 				<p>This is your order id:</p>
 				<br/>
-				<div className="field has-addons">
-					<div className="control">
-						<input className="input is-small" type="text" value={this.props.id.replace(/"/g, '')} readOnly/>
-					</div>
-					<Clipboard className="button is-small" data-clipboard-text={this.props.id.replace(/"/g, '')}>
-						<img src="static/clippy.svg" width="15" height="15" alt="Copy to clipboard"/>
-					</Clipboard>
+				<div className="bp3-input-group centerify">
+					<input className="bp3-input" value={this.props.id.replace(/"/g, '')} readOnly/>
+					<Clipboard className="bp3-button bp3-minimal bp3-intent-primary bp3-icon-clipboard" data-clipboard-text={this.props.id.replace(/"/g, '')}/>
 				</div>
 				<br/>
 				<h2>You will receive your order in about 45 minutes</h2>

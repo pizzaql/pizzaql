@@ -4,17 +4,14 @@ import {createGlobalStyle} from 'styled-components';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import dayjs from 'dayjs';
 import ky from 'ky';
-import './styles/styles.sass';
-
-// Import components
-import Grid from '../components/Grid';
-import GridDrop from '../components/GridDrop';
-import GridTime from '../components/GridTime';
+import {Button, Card, Label} from '@blueprintjs/core';
 
 // Global Style
 const GlobalStyle = createGlobalStyle`
   body {
 	font-family: Montserrat, Georgia, monospace;
+	margin: auto;
+	width: 60%;
 	padding-top: 100px;
 	padding-bottom: 100px;
     background: #fff;
@@ -22,6 +19,21 @@ const GlobalStyle = createGlobalStyle`
 	font-size: 16;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeSpeed
+  }
+
+  .small-width {
+	  width: 200px;
+  }
+
+  .full-width {
+	  width: 100%;
+  }
+
+  .inline {
+	  display: flex;
+	  flex-direction: row;
+	  flex-wrap:wrap;
+	  justify-content: space-around;
   }
 
   h1 {
@@ -35,7 +47,7 @@ const GlobalStyle = createGlobalStyle`
 
 // Template
 const Home = () => (
-	<div className="container">
+	<Card>
 		<Formik
 			initialValues={{
 				type: '',
@@ -108,10 +120,10 @@ const Home = () => (
 		>
 			{({isSubmitting}) => (
 				<Form>
-					<div className="box">
-						<GridDrop>
-							<label>Pizza Type:</label>
-							<div className="select">
+					<div className="inline">
+						<Label>
+							Pizza Type:
+							<div className="bp3-select small-width">
 								<Field name="type" component="select" placeholder="Pizza Type">
 									<option>Select</option>
 									<option value="Margharita">Margharita</option>
@@ -120,8 +132,10 @@ const Home = () => (
 								</Field>
 								<ErrorMessage name="type" component="div"/>
 							</div>
-							<label>Size:</label>
-							<div className="select">
+						</Label>
+						<Label>
+							Size:
+							<div className="bp3-select small-width">
 								<Field name="size" component="select" placeholder="Size">
 									<option>Select</option>
 									<option value="Small">Small</option>
@@ -131,8 +145,10 @@ const Home = () => (
 								</Field>
 								<ErrorMessage name="size" component="div"/>
 							</div>
-							<label>Dough:</label>
-							<div className="select">
+						</Label>
+						<Label>
+							Dough:
+							<div className="bp3-select small-width">
 								<Field name="dough" component="select" placeholder="Dough">
 									<option>Select</option>
 									<option value="Thin">Thin</option>
@@ -140,42 +156,50 @@ const Home = () => (
 								</Field>
 								<ErrorMessage name="dough" component="div"/>
 							</div>
-						</GridDrop>
-						<br/>
-						<Grid>
-							<label>Full name:</label>
-							<Field className="input" type="text" name="name" placeholder="Mark Suckerberg" required/>
-							<label>Phone:</label>
-							<Field className="input" type="tel" name="phone" placeholder="666666666" required/>
-							<ErrorMessage name="phone"/>
-							<label>City:</label>
-							<Field className="input" type="text" name="city" placeholder="Menlo Park" required/>
-							<label>Street & Apartment Number:</label>
-							<Field className="input" type="text" name="street" placeholder="1 Hacker Way" required/>
-						</Grid>
-						<GridTime>
-							<br/>
-							<label>Delivery time:</label>
-							<div className="select">
-								<Field name="time" component="select" placeholder="Time">
-									<option>Select</option>
-									<option value="ASAP">As fast as possible</option>
-									<option>{dayjs().startOf('hour').add(1, 'hour').format('HH:mm')}</option>
-									<option>{dayjs().startOf('hour').add(2, 'hour').format('HH:mm')}</option>
-									<option>{dayjs().startOf('hour').add(3, 'hour').format('HH:mm')}</option>
-								</Field>
-								<ErrorMessage name="time" component="div"/>
-							</div>
-							<br/>
-						</GridTime>
-						<button
-							className="button is-dark is-fullwidth"
-							type="submit"
-							disabled={isSubmitting}
-						>
-						Submit!
-						</button>
+						</Label>
 					</div>
+					<br/>
+					<br/>
+					<Label>
+							Full name:
+						<Field className="bp3-input full-width" type="text" name="name" placeholder="Mark Suckerberg" required/>
+					</Label>
+					<Label>
+							Phone:
+						<Field className="bp3-input full-width" type="tel" name="phone" placeholder="666666666" required/>
+						<ErrorMessage name="phone"/>
+					</Label>
+					<Label>
+							City:
+						<Field className="bp3-input full-width" type="text" name="city" placeholder="Menlo Park" required/>
+					</Label>
+					<Label>
+							Street & Apartment Number:
+						<Field className="bp3-input full-width" type="text" name="street" placeholder="1 Hacker Way" required/>
+					</Label>
+					<br/>
+					<Label>
+							Delivery time:
+						<div className="bp3-select small-width .modifier">
+							<Field name="time" component="select" placeholder="Time">
+								<option>Select</option>
+								<option value="ASAP">As fast as possible</option>
+								<option>{dayjs().startOf('hour').add(1, 'hour').format('HH:mm')}</option>
+								<option>{dayjs().startOf('hour').add(2, 'hour').format('HH:mm')}</option>
+								<option>{dayjs().startOf('hour').add(3, 'hour').format('HH:mm')}</option>
+							</Field>
+						</div>
+						<ErrorMessage name="time" component="div"/>
+					</Label>
+					<br/>
+					<br/>
+					<Button
+						className="full-width"
+						type="submit"
+						disabled={isSubmitting}
+					>
+						Submit!
+					</Button>
 				</Form>
 			)}
 		</Formik>
@@ -184,7 +208,7 @@ const Home = () => (
 			<p>Powered by PizzaQL 🍕</p>
 		</footer>
 		<GlobalStyle/>
-	</div>
+	</Card>
 );
 
 export default Home;
