@@ -27,8 +27,9 @@ Note: The following instructions are for developers. Setup instructions for begi
 2. Enter the `backend` directory
 3. Run `docker-compose up -d` and then `prisma deploy` to start the GraphQL Server
 4. Enter the `frontend` directory
-5. Run `npm install` to install required dependencies
-6. Now run `npm run dev` to start the application in the development mode
+5. Edit the `settings.js` file and include your Auth0's client id & domain
+6. Run `npm install` to install required dependencies
+7. Now run `npm run dev` to start the application in the development mode
 
 - You can access the GraphQL Playground at `http://localhost:4466/`
 - You can access the order placement form at `http://localhost:3000` and the admin dashboard at `http://localhost:3000/admin` (you will need to login to see the list of orders)
@@ -78,7 +79,7 @@ Note: The following instructions are for developers. Setup instructions for begi
 - [React](https://reactjs.org/)
 - [Next.js](https://nextjs.org/)
 - [styled-components](https://www.styled-components.com/)
-- [Bulma](https://bulma.io/)
+- [Blueprint](https://blueprintjs.com/)
 - [Formik](https://jaredpalmer.com/formik/)
 - [Auth0](https://auth0.com/)
 - [Prisma](https://www.prisma.io/)
