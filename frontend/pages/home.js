@@ -52,7 +52,7 @@ const OrderSchema = Yup.object().shape({
 		.min(2, 'Too Short!')
 		.max(75, 'Too Long!'),
 	phone: Yup.string()
-		.matches(/(?:(?:(?:\+|00)?48)|(?:\(\+?48\)))?(?:1[2-8]|2[2-69]|3[2-49]|4[1-68]|5\d|6[0-35-9]|[7-8][1-9]|9[145])\d{7}/, 'Invalid phone number')
+		.matches(/^.{9}$/, 'Invalid phone number')
 });
 
 // Template
@@ -188,10 +188,8 @@ const Home = () => (
 								<option value="ASAP">As fast as possible</option>
 								<option>{dayjs().startOf('hour').add(1, 'hour').format('HH:mm')}</option>
 								<option>{dayjs().startOf('hour').add(2, 'hour').format('HH:mm')}</option>
-								<option>{dayjs().startOf('hour').add(3, 'hour').format('HH:mm')}</option>
 							</Field>
 						</div>
-						<ErrorMessage name="time" component="div"/>
 					</Label>
 					<br/>
 					<br/>
