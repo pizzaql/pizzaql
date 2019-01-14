@@ -108,13 +108,13 @@ class Secret extends Component {
 				<h1>Welcome to Admin Dashboard</h1>
 
 				<p>✔️ You are logged in, click <a href="/logout">here</a> to logout.</p>
-				<React.Fragment>
+				<>
 					{
 						checkboxes.map(item => (
 							<Check key={item.key} name={item.name} label={item.label} checked={this.state.checkedItems.get(item.name)} onChange={this.handleChange}/>
 						))
 					}
-				</React.Fragment>
+				</>
 				<br/>
 				<br/>
 				{orders.map(el => (

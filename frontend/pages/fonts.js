@@ -6,7 +6,7 @@ const fonts = async () => {
 	link.href = await 'https://fonts.googleapis.com/css?family=Montserrat:400';
 	link.rel = await 'stylesheet';
 
-	document.head.appendChild(link);
+	document.head.append(link);
 
 	const roboto = await new FontFaceObserver('Montserrat');
 

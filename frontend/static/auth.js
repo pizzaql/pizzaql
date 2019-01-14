@@ -58,11 +58,13 @@ const getTokenForServer = async req => {
 		if (!jwtFromCookie) {
 			return undefined;
 		}
+
 		const token = jwtFromCookie.split('=')[1];
 		const validToken = await verifyToken(token);
 		if (validToken) {
 			return jwt.decode(token);
 		}
+
 		return undefined;
 	}
 };

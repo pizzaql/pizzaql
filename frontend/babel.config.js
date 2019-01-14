@@ -1,6 +1,8 @@
 const presets = [
 	['@babel/preset-env', {
-		targets: 'last 1 version',
+		targets: {
+			esmodules: true
+		},
 		shippedProposals: true
 	}],
 	['next/babel']

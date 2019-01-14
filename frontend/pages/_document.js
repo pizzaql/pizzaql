@@ -17,7 +17,6 @@ export default class MyDocument extends Document {
 					<meta charSet="utf-8"/>
 					<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 					<meta httpEquiv="X-UA-Compatible" content="ie=edge"/>
-					<title>PizzaQL</title>
 					<meta name="description" content="Modern Order Management & Placement System"/>
 					<meta name="image" content="https://i.imgur.com/wTAVqy5.jpg"/>
 					<meta name="theme-color" content="#212121"/>

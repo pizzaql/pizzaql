@@ -21,6 +21,7 @@ export default Page => class secureTemplate extends React.Component {
 				</div>
 			);
 		}
+
 		return (
 			<div>
 				<Page {...this.props}/>

@@ -57,6 +57,7 @@ class Index extends React.Component {
 				<p>Order not found!</p>
 			);
 		}
+
 		return (
 			<Card elevation={Elevation.FOUR}>
 				<h1>Thank you!</h1>

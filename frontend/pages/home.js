@@ -104,6 +104,7 @@ const Home = () => (
 					} catch (error) {
 						console.log(error);
 					}
+
 					// Disable double-submission and reset form
 					setSubmitting(false);
 					resetForm();
