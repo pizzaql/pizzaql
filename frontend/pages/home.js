@@ -24,18 +24,18 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .small-width {
-	  width: 200px;
+	width: 200px;
   }
 
   .full-width {
-	  width: 100%;
+	width: 100%;
   }
 
   .inline {
-	  display: flex;
-	  flex-direction: row;
-	  flex-wrap:wrap;
-	  justify-content: space-around;
+	display: flex;
+	flex-direction: row;
+	flex-wrap:wrap;
+	justify-content: space-around;
   }
 
   h1 {
@@ -119,8 +119,17 @@ const Home = () => (
 								<Field name="type" component="select" placeholder="Pizza Type">
 									<option>Select</option>
 									<option value="Margharita">Margharita</option>
+									<option value="Funghi">Funghi</option>
+									<option value="Cacciatore">Cacciatore</option>
+									<option value="Vesuvio">Vesuvio</option>
+									<option value="Milano">Milano</option>
+									<option value="Capriciosa">Capriciosa</option>
+									<option value="Prosciutto">Prosciutto</option>
+									<option value="Hawaiano">Hawaiano</option>
+									<option value="Rimini">Rimini</option>
+									<option value="Bali">Bali</option>
 									<option value="Pepperoni">Pepperoni</option>
-									<option value="BBQ Chicken">BBQ Chicken</option>
+									<option value="Torino">Torino</option>
 								</Field>
 								<ErrorMessage name="type" component="div"/>
 							</div>
