@@ -182,7 +182,7 @@ const Home = () => (
 					<br/>
 					<Label>
 							Delivery time:
-						<div className="bp3-select small-width .modifier">
+						<div className="bp3-select small-width">
 							<Field name="time" component="select" placeholder="Time">
 								<option>Select</option>
 								<option value="ASAP">As fast as possible</option>
