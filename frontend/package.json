@@ -23,6 +23,8 @@
   "enzyme-adapter-react-16": "^1.7.1",
   "eslint-config-xo-react": "^0.18.0",
   "eslint-plugin-react": "^7.12.3",
+  "jsdom": "13.1.0",
+  "jsdom-global": "3.0.2",
   "stylelint": "^9.9.0",
   "stylelint-config-recommended": "^2.1.0",
   "stylelint-config-styled-components": "^0.1.1",
