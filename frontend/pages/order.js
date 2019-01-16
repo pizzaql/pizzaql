@@ -60,7 +60,7 @@ class Index extends React.Component {
 
 		return (
 			<Card elevation={Elevation.FOUR}>
-				<h1>Thank you!</h1>
+				<h1 className="thanks">Thank you!</h1>
 				<br/>
 				<br/>
 				<p>This is your order id:</p>

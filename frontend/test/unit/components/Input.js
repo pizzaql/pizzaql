@@ -2,7 +2,7 @@ import 'jsdom-global/register';
 import test from 'ava';
 import React from 'react';
 import {mount} from 'enzyme';
-import Home from '../../pages/home';
+import Home from '../../../pages/home';
 
 test('value', async t => {
 	const component = await mount(<Home/>);
