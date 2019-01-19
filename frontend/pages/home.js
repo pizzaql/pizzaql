@@ -78,9 +78,9 @@ const Home = () => (
 					mutation {
 						createOrder(
 							data: {
+								type: "${values.type}"
 								size: "${values.size}"
 								dough: "${values.dough}"
-								type: "${values.type}"
 								name: "${values.name}"
 								phone: "${values.phone}"
 								time: "${values.time}"
