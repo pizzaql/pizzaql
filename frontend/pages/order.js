@@ -2,7 +2,6 @@ import React from 'react';
 import Link from 'next/link';
 import {createGlobalStyle} from 'styled-components';
 import {Button, Card, Elevation} from '@blueprintjs/core';
-import Clipboard from 'react-clipboard.js';
 import fonts from './fonts';
 
 // Global Style
@@ -40,6 +39,12 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 class Index extends React.Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {copySuccess: ''};
+	}
+
 	// Get order id from query
 	static async getInitialProps({query: {id}}) {
 		return {
@@ -50,6 +55,12 @@ class Index extends React.Component {
 	async componentDidMount() {
 		await fonts();
 	}
+
+	copyToClipboard = () => {
+		this.input.select();
+		document.execCommand('copy');
+		this.setState({copySuccess: 'Copied!'});
+	};
 
 	render() {
 		if (this.props.id === '' || this.props.id === '""') {
@@ -66,8 +77,10 @@ class Index extends React.Component {
 				<p>This is your order id:</p>
 				<br/>
 				<div className="bp3-input-group centerify">
-					<input className="bp3-input" value={this.props.id.replace(/"/g, '')} readOnly/>
-					<Clipboard className="bp3-button bp3-minimal bp3-intent-primary bp3-icon-clipboard" data-clipboard-text={this.props.id.replace(/"/g, '')}/>
+					{/* eslint-disable-next-line no-return-assign */}
+					<input ref={input => this.input = input} className="bp3-input" value={this.props.id.replace(/"/g, '')} readOnly/>
+					<Button className="bp3-button bp3-minimal bp3-intent-primary bp3-icon-clipboard" onClick={this.copyToClipboard}/>
+					{this.state.copySuccess}
 				</div>
 				<br/>
 				<h2>You will receive your order in about 45 minutes</h2>

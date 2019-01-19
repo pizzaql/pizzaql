@@ -3,7 +3,7 @@ const presets = [
 		targets: {
 			esmodules: true
 		},
-		shippedProposals: true
+		useBuiltIns: 'usage'
 	}],
 	['next/babel']
 ];
