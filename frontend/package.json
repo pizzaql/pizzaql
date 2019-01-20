@@ -19,7 +19,7 @@
   "@babel/cli": "^7.2.3",
   "@babel/core": "^7.2.2",
   "@babel/plugin-proposal-class-properties": "^7.2.3",
-  "ava": "^1.1.0",
+  "ava": "*",
   "babel-eslint": "^10.0.1",
   "babel-plugin-styled-components": "^1.10.0",
   "enzyme": "^3.8.0",
@@ -33,7 +33,7 @@
   "stylelint-config-recommended": "^2.1.0",
   "stylelint-config-styled-components": "^0.1.1",
   "stylelint-processor-styled-components": "^1.5.2",
-  "xo": "^0.24.0"
+  "xo": "*"
  },
  "dependencies": {
   "@babel/register": "^7.0.0",
