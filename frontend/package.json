@@ -22,7 +22,6 @@
   "ava": "^1.1.0",
   "babel-eslint": "^10.0.1",
   "babel-plugin-styled-components": "^1.10.0",
-  "concurrently": "^4.1.0",
   "enzyme": "^3.8.0",
   "enzyme-adapter-react-16": "^1.7.1",
   "eslint-config-xo-react": "^0.18.0",
@@ -34,7 +33,6 @@
   "stylelint-config-recommended": "^2.1.0",
   "stylelint-config-styled-components": "^0.1.1",
   "stylelint-processor-styled-components": "^1.5.2",
-  "supertest": "^3.4.1",
   "xo": "^0.24.0"
  },
  "dependencies": {
