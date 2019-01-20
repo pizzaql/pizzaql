@@ -52,6 +52,7 @@ const OrderSchema = Yup.object().shape({
 		.min(2, 'Too Short!')
 		.max(75, 'Too Long!'),
 	phone: Yup.string()
+		// Simple regex for checking the phone number (lenght)
 		.matches(/^.{9}$/, 'Invalid phone number')
 });
 
