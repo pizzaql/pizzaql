@@ -2,10 +2,10 @@ import 'jsdom-global/register';
 import test from 'ava';
 import React from 'react';
 import {mount} from 'enzyme';
-import Home from '../../../pages/home';
+import Index from '../../../pages';
 
 test('value', async t => {
-	const component = await mount(<Home/>);
+	const component = await mount(<Index/>);
 	t.true(
 		component.find('select').filterWhere(item => {
 			return item.prop('name') === 'type';
@@ -14,7 +14,7 @@ test('value', async t => {
 });
 
 test('placeholder', async t => {
-	const component = await mount(<Home/>);
+	const component = await mount(<Index/>);
 	t.true(
 		component.find('select').filterWhere(item => {
 			return item.prop('name') === 'type';
