@@ -24,11 +24,6 @@ const formBackgroundColor = theme('mode', {
 	dark: '#424242'
 });
 
-const formTextColor = theme('mode', {
-	light: '#212121',
-	dark: '#ffffff'
-});
-
 const textColor = theme('mode', {
 	light: '#212121',
 	dark: '#ffffff'
@@ -56,12 +51,16 @@ const GlobalStyle = createGlobalStyle`
 
   option {
 	background-color: ${formBackgroundColor};
-	color: ${formTextColor}
+	color: ${textColor}
   }
 
   .input-theme {
 	background-color: ${formBackgroundColor};
-	color: ${formTextColor}
+	color: ${textColor}
+  }
+
+  .input-theme::placeholder {
+	color: #757575;
   }
 
   .small-width {
@@ -114,7 +113,7 @@ class Index extends React.Component {
 	}
 
 	changeTheme = () => {
-		this.setState({theme: this.state.theme === 'light' ? 'dark' : 'light'});
+		this.setState(prevState => ({theme: prevState.theme === 'light' ? 'dark' : 'light'}));
 	};
 
 	render() {
@@ -268,10 +267,10 @@ class Index extends React.Component {
 							</Form>
 						)}
 					</Formik>
-					<footer>
+					<footer className={this.state.skeleton}>
 						<br/>
-						<p className={this.state.skeleton}>Powered by PizzaQL 🍕</p>
-						<Button className={this.state.skeleton} onClick={this.changeTheme}>Change mode</Button>
+						<p>Powered by PizzaQL 🍕</p>
+						<Button type="button" onClick={this.changeTheme}>Change mode</Button>
 					</footer>
 					<GlobalStyle/>
 				</Card>
