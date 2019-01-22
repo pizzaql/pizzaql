@@ -39,11 +39,11 @@ Note: The following instructions are for developers. Setup instructions for begi
 
 **Order Placement System**
 * [x]  Basic Frontend
-  * [ ] Production-ready Frontend (styles etc.)
-* [ ]  Working Backend
+  * [x] Production-ready Frontend (styles etc.)
+  * [ ] Dark mode (work in progress)
+* [x]  Working Backend
   * [x] Creating orders
-  * [ ] Sending mail or SMS (?)
-* [ ] Payments (?)
+* [ ] Better delivery time selection
 
 **Order Management System**
 
@@ -63,7 +63,7 @@ Note: The following instructions are for developers. Setup instructions for begi
 
 **Other**
 
-* [ ] Testing with Jest & Enzyme
+* [x] Testing with Ava & Enzyme
 * [x] Move from Prisma Cloud to Docker.
 * [ ] Documentation
 * [ ] Paid support (?)
