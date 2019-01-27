@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Router from 'next/router';
 import {createGlobalStyle, ThemeProvider} from 'styled-components';
 import theme from 'styled-theming';
@@ -97,46 +97,39 @@ const OrderSchema = Yup.object().shape({
 });
 
 // Load fonts & main page
-class Index extends React.Component {
-	constructor(props) {
-		super(props);
+const Index = () => {
+	const [theme, setTheme] = useState('light');
+	const [skeleton, setSkeleton] = useState('bp3-skeleton');
 
-		this.state = {
-			theme: 'light',
-			skeleton: 'bp3-skeleton'
-		};
-	}
-
-	async componentDidMount() {
+	useEffect(async () => {
 		await fonts();
-		this.setState({skeleton: ''});
-	}
+		setSkeleton('');
+	});
 
-	changeTheme = () => {
-		this.setState(prevState => ({theme: prevState.theme === 'light' ? 'dark' : 'light'}));
+	const changeTheme = () => {
+		setTheme(theme === 'light' ? 'dark' : 'light');
 	};
 
-	render() {
-		return (
-			<ThemeProvider theme={{mode: this.state.theme}}>
-				<Card className="card-theme" elevation={Elevation.FOUR}>
-					<Formik
-						initialValues={{
-							type: '',
-							size: '',
-							dough: '',
-							name: '',
-							phone: '',
-							city: '',
-							street: '',
-							time: '',
-							notes: ''
-						}}
-						validationSchema={OrderSchema}
-						onSubmit={(values, {setSubmitting, resetForm}) => {
-							setTimeout(async () => {
+	return (
+		<ThemeProvider theme={{mode: theme}}>
+			<Card className="card-theme" elevation={Elevation.FOUR}>
+				<Formik
+					initialValues={{
+						type: '',
+						size: '',
+						dough: '',
+						name: '',
+						phone: '',
+						city: '',
+						street: '',
+						time: '',
+						notes: ''
+					}}
+					validationSchema={OrderSchema}
+					onSubmit={(values, {setSubmitting, resetForm}) => {
+						setTimeout(async () => {
 							// Form a GraphQL mutation to create a new order
-								const query = `
+							const query = `
 							mutation {
 								createOrder(
 									data: {
@@ -154,129 +147,128 @@ class Index extends React.Component {
 								}
 							}`;
 
-								try {
+							try {
 								// Post a mutation to Prisma and obtain an ID
-									const id = await ky.post('http://localhost:4466', {json: {query}}).json();
-									const orderID = JSON.stringify(id.data.createOrder.id);
-									// Move user to the thank you page
-									Router.push({
-										pathname: '/order',
-										query: {id: orderID}
-									});
-								} catch (error) {
-									console.log(error);
-								}
+								const id = await ky.post('http://localhost:4466', {json: {query}}).json();
+								const orderID = JSON.stringify(id.data.createOrder.id);
+								// Move user to the thank you page
+								Router.push({
+									pathname: '/order',
+									query: {id: orderID}
+								});
+							} catch (error) {
+								console.log(error);
+							}
 
-								// Disable double-submission and reset form
-								setSubmitting(false);
-								resetForm();
-							}, 500);
-						}}
-					>
-						{({isSubmitting}) => (
-							<Form>
-								<div className="inline">
-									<Label className={this.state.skeleton}>
+							// Disable double-submission and reset form
+							setSubmitting(false);
+							resetForm();
+						}, 500);
+					}}
+				>
+					{({isSubmitting}) => (
+						<Form>
+							<div className="inline">
+								<Label className={skeleton}>
 									Pizza Type:
-										<div className="bp3-select small-width">
-											<Field name="type" component="select" placeholder="Pizza Type">
-												<option>Select</option>
-												<option value="Margharita">Margharita</option>
-												<option value="Funghi">Funghi</option>
-												<option value="Cacciatore">Cacciatore</option>
-												<option value="Vesuvio">Vesuvio</option>
-												<option value="Milano">Milano</option>
-												<option value="Capriciosa">Capriciosa</option>
-												<option value="Prosciutto">Prosciutto</option>
-												<option value="Hawaiano">Hawaiano</option>
-												<option value="Rimini">Rimini</option>
-												<option value="Bali">Bali</option>
-												<option value="Pepperoni">Pepperoni</option>
-												<option value="Torino">Torino</option>
-											</Field>
-											<ErrorMessage name="type" component="div"/>
-										</div>
-									</Label>
-									<Label className={this.state.skeleton}>
-									Size:
-										<div className="bp3-select small-width">
-											<Field name="size" component="select" placeholder="Size">
-												<option>Select</option>
-												<option value="Small">Small</option>
-												<option value="Medium">Medium</option>
-												<option value="Large">Large</option>
-												<option value="Extra Large">Extra Large</option>
-											</Field>
-											<ErrorMessage name="size" component="div"/>
-										</div>
-									</Label>
-									<Label className={this.state.skeleton}>
-									Dough:
-										<div className="bp3-select small-width">
-											<Field name="dough" component="select" placeholder="Dough">
-												<option>Select</option>
-												<option value="Thin">Thin</option>
-												<option value="Thick">Thick</option>
-											</Field>
-											<ErrorMessage name="dough" component="div"/>
-										</div>
-									</Label>
-								</div>
-								<br/>
-								<br/>
-								<Label className={this.state.skeleton}>
-									Full name:
-									<Field className="bp3-input input-theme full-width" type="text" name="name" placeholder="Mark Suckerberg" required/>
-								</Label>
-								<Label className={this.state.skeleton}>
-									Phone:
-									<Field className="bp3-input input-theme full-width" type="tel" name="phone" placeholder="666666666" required/>
-									<ErrorMessage name="phone"/>
-								</Label>
-								<Label className={this.state.skeleton}>
-									City:
-									<Field className="bp3-input input-theme full-width" type="text" name="city" placeholder="Menlo Park" required/>
-								</Label>
-								<Label className={this.state.skeleton}>
-									Street & Apartment Number:
-									<Field className="bp3-input input-theme full-width" type="text" name="street" placeholder="1 Hacker Way" required/>
-								</Label>
-								<br/>
-								<Label className={this.state.skeleton}>
-									Delivery time:
 									<div className="bp3-select small-width">
-										<Field name="time" component="select" placeholder="Time">
+										<Field name="type" component="select" placeholder="Pizza Type">
 											<option>Select</option>
-											<option value="ASAP">As fast as possible</option>
-											<option>{dayjs().startOf('hour').add(1, 'hour').format('HH:mm')}</option>
-											<option>{dayjs().startOf('hour').add(2, 'hour').format('HH:mm')}</option>
+											<option value="Margharita">Margharita</option>
+											<option value="Funghi">Funghi</option>
+											<option value="Cacciatore">Cacciatore</option>
+											<option value="Vesuvio">Vesuvio</option>
+											<option value="Milano">Milano</option>
+											<option value="Capriciosa">Capriciosa</option>
+											<option value="Prosciutto">Prosciutto</option>
+											<option value="Hawaiano">Hawaiano</option>
+											<option value="Rimini">Rimini</option>
+											<option value="Bali">Bali</option>
+											<option value="Pepperoni">Pepperoni</option>
+											<option value="Torino">Torino</option>
 										</Field>
+										<ErrorMessage name="type" component="div"/>
 									</div>
 								</Label>
-								<br/>
-								<br/>
-								<div className={this.state.skeleton}>
-									<Button
-										className="full-width"
-										type="submit"
-										disabled={isSubmitting}
-									>
-								Submit!
-									</Button>
+								<Label className={skeleton}>
+									Size:
+									<div className="bp3-select small-width">
+										<Field name="size" component="select" placeholder="Size">
+											<option>Select</option>
+											<option value="Small">Small</option>
+											<option value="Medium">Medium</option>
+											<option value="Large">Large</option>
+											<option value="Extra Large">Extra Large</option>
+										</Field>
+										<ErrorMessage name="size" component="div"/>
+									</div>
+								</Label>
+								<Label className={skeleton}>
+									Dough:
+									<div className="bp3-select small-width">
+										<Field name="dough" component="select" placeholder="Dough">
+											<option>Select</option>
+											<option value="Thin">Thin</option>
+											<option value="Thick">Thick</option>
+										</Field>
+										<ErrorMessage name="dough" component="div"/>
+									</div>
+								</Label>
+							</div>
+							<br/>
+							<br/>
+							<Label className={skeleton}>
+									Full name:
+								<Field className="bp3-input input-theme full-width" type="text" name="name" placeholder="Mark Suckerberg" required/>
+							</Label>
+							<Label className={skeleton}>
+									Phone:
+								<Field className="bp3-input input-theme full-width" type="tel" name="phone" placeholder="666666666" required/>
+								<ErrorMessage name="phone"/>
+							</Label>
+							<Label className={skeleton}>
+									City:
+								<Field className="bp3-input input-theme full-width" type="text" name="city" placeholder="Menlo Park" required/>
+							</Label>
+							<Label className={skeleton}>
+									Street & Apartment Number:
+								<Field className="bp3-input input-theme full-width" type="text" name="street" placeholder="1 Hacker Way" required/>
+							</Label>
+							<br/>
+							<Label className={skeleton}>
+									Delivery time:
+								<div className="bp3-select small-width">
+									<Field name="time" component="select" placeholder="Time">
+										<option>Select</option>
+										<option value="ASAP">As fast as possible</option>
+										<option>{dayjs().startOf('hour').add(1, 'hour').format('HH:mm')}</option>
+										<option>{dayjs().startOf('hour').add(2, 'hour').format('HH:mm')}</option>
+									</Field>
 								</div>
-							</Form>
-						)}
-					</Formik>
-					<footer className={this.state.skeleton}>
-						<br/>
-						<p>Powered by PizzaQL 🍕</p>
-						<Button type="button" onClick={this.changeTheme}>Change mode</Button>
-					</footer>
-					<GlobalStyle/>
-				</Card>
-			</ThemeProvider>
-		);
-	}
-}
+							</Label>
+							<br/>
+							<br/>
+							<div className={skeleton}>
+								<Button
+									className="full-width"
+									type="submit"
+									disabled={isSubmitting}
+								>
+								Submit!
+								</Button>
+							</div>
+						</Form>
+					)}
+				</Formik>
+				<footer className={skeleton}>
+					<br/>
+					<p>Powered by PizzaQL 🍕</p>
+					<Button type="button" onClick={changeTheme}>Change mode</Button>
+				</footer>
+				<GlobalStyle/>
+			</Card>
+		</ThemeProvider>
+	);
+};
 
 export default Index;

@@ -1,16 +1,14 @@
-import React from 'react';
+import {useEffect} from 'react';
 import {login} from '../static/auth0';
 import template from '../static/template';
 
 // Login
-class Login extends React.Component {
-	componentDidMount() {
+const Login = () => {
+	useEffect(() => {
 		login();
-	}
+	});
 
-	render() {
-		return null;
-	}
-}
+	return null;
+};
 
 export default template(Login);
