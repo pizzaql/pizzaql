@@ -1,5 +1,4 @@
 language: node_js
 before_install: cd frontend
-script: npm run lint && npm run test-unit
 node_js:
 - "node"
