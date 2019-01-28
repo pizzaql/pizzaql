@@ -5,7 +5,7 @@ import {deleteToken} from '../static/auth';
 
 // Logout
 (() => {
-	useEffect(async () => {
+	useEffect(() => {
 		deleteToken();
 		logout();
 		Router.push('/');

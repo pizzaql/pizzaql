@@ -7,10 +7,7 @@
   "dev": "next",
   "build": "next build",
   "start": "next start",
-  "lint": "xo && stylelint './pages/**/*.js'",
-  "test-unit": "ava test/unit",
-  "test-ui": "ava test/ui",
-  "test": "npm run lint && npm run test-unit && npm run test-ui"
+  "test": "xo && stylelint './pages/**/*.js' && ava"
  },
  "main": "pages/index.js",
  "author": "Antoni Kepinski <a@kepinski.me> (https://kepinski.me)",
@@ -28,7 +25,6 @@
   "eslint-plugin-react": "^7.12.4",
   "jsdom": "13.2.0",
   "jsdom-global": "3.0.2",
-  "puppeteer": "^1.11.0",
   "stylelint": "^9.10.1",
   "stylelint-config-recommended": "^2.1.0",
   "stylelint-config-styled-components": "^0.1.1",

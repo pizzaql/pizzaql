@@ -66,11 +66,15 @@ query {
 const Secret = () => {
 	const [orders, setOrders] = useState([]);
 
-	useEffect(async () => {
+	const getOrders = async () => {
 		// Post query to Prisma
 		const get = await ky.post('http://localhost:4466', {json: {query}}).json();
-		setOrders(get.data.orders);
-		await fonts();
+		return get.data.orders;
+	};
+
+	useEffect(() => {
+		setOrders(getOrders());
+		fonts();
 	});
 
 	return (

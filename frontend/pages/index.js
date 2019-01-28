@@ -101,8 +101,8 @@ const Index = () => {
 	const [theme, setTheme] = useState('light');
 	const [skeleton, setSkeleton] = useState('bp3-skeleton');
 
-	useEffect(async () => {
-		await fonts();
+	useEffect(() => {
+		fonts();
 		setSkeleton('');
 	});
 
