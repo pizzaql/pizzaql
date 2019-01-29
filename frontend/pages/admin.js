@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {createGlobalStyle} from 'styled-components';
-import {Card} from '@blueprintjs/core';
+import {Card, Spinner} from '@blueprintjs/core';
 import ky from 'ky';
 import secureTemplate from '../static/secure-template';
 import fonts from './fonts';
@@ -65,6 +65,7 @@ query {
 
 const Secret = () => {
 	const [orders, setOrders] = useState([]);
+	const [spinner, setSpinner] = useState(<Spinner/>);
 
 	const getOrders = async () => {
 		// Post query to Prisma
@@ -75,7 +76,8 @@ const Secret = () => {
 	useEffect(() => {
 		fonts();
 		getOrders();
-	});
+		setSpinner('');
+	}, []);
 
 	return (
 		<div className="container">
@@ -84,6 +86,7 @@ const Secret = () => {
 			<p>✔️ You are logged in, click <a href="/logout">here</a> to logout.</p>
 			<br/>
 			<br/>
+			{spinner}
 			{orders.map(el => (
 				<Card className="half-width" key={el.id}>
 					<h2>Order id. <strong>{el.id}</strong></h2>

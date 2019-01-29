@@ -49,11 +49,6 @@ const GlobalStyle = createGlobalStyle`
 	background-color: ${cardBackgroundColor};
   }
 
-  option {
-	background-color: ${formBackgroundColor};
-	color: ${textColor}
-  }
-
   .input-theme {
 	background-color: ${formBackgroundColor};
 	color: ${textColor}
@@ -80,6 +75,11 @@ const GlobalStyle = createGlobalStyle`
 
   h1 {
 	font-size: 30px;
+  }
+
+  option {
+	background-color: ${formBackgroundColor};
+	color: ${textColor}
   }
 
   footer {
@@ -235,7 +235,7 @@ const Index = () => {
 								<FastField className="bp3-input input-theme full-width" type="text" name="street" placeholder="1 Hacker Way" required/>
 							</Label>
 							<br/>
-							<Label className={skeleton}>
+							<Label className={skeleton + ' small-width'}>
 									Delivery time:
 								<div className="bp3-select small-width">
 									<FastField name="time" component="select" placeholder="Time">
@@ -252,6 +252,7 @@ const Index = () => {
 								<Button
 									className="full-width"
 									type="submit"
+									loading={isSubmitting}
 									disabled={isSubmitting}
 								>
 								Submit!
