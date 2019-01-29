@@ -8,17 +8,17 @@ import fonts from './fonts';
 // Global Style
 const GlobalStyle = createGlobalStyle`
   body {
-	font-family: Montserrat, Georgia, monospace;
+		font-family: Montserrat, Georgia, monospace;
   	text-align: center;
   	background: #fff;
   	color: #212121;
-	font-size: 16;
+		font-size: 16;
   	-webkit-font-smoothing: antialiased;
   	text-rendering: optimizeSpeed
   }
 
   h1 {
-	font-size: 30px;
+		font-size: 30px;
   }
 
   h2 {
@@ -26,10 +26,10 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .half-width {
-	margin: auto;
-	margin-bottom: 20px;
-	word-wrap: break-word;
-	width: 60%
+		margin: auto;
+		margin-bottom: 20px;
+		word-wrap: break-word;
+		width: 60%
   }
 
   .inline {
@@ -69,12 +69,12 @@ const Secret = () => {
 	const getOrders = async () => {
 		// Post query to Prisma
 		const get = await ky.post('http://localhost:4466', {json: {query}}).json();
-		return get.data.orders;
+		setOrders(get.data.orders);
 	};
 
 	useEffect(() => {
-		setOrders(getOrders());
 		fonts();
+		getOrders();
 	});
 
 	return (

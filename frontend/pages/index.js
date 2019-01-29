@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Router from 'next/router';
 import {createGlobalStyle, ThemeProvider} from 'styled-components';
 import theme from 'styled-theming';
-import {Formik, Form, Field, ErrorMessage} from 'formik';
+import {Formik, Form, FastField, ErrorMessage} from 'formik';
 import dayjs from 'dayjs';
 import ky from 'ky';
 import {Button, Card, Elevation, Label} from '@blueprintjs/core';
@@ -172,7 +172,7 @@ const Index = () => {
 								<Label className={skeleton}>
 									Pizza Type:
 									<div className="bp3-select small-width">
-										<Field name="type" component="select" placeholder="Pizza Type">
+										<FastField name="type" component="select" placeholder="Pizza Type">
 											<option>Select</option>
 											<option value="Margharita">Margharita</option>
 											<option value="Funghi">Funghi</option>
@@ -186,31 +186,31 @@ const Index = () => {
 											<option value="Bali">Bali</option>
 											<option value="Pepperoni">Pepperoni</option>
 											<option value="Torino">Torino</option>
-										</Field>
+										</FastField>
 										<ErrorMessage name="type" component="div"/>
 									</div>
 								</Label>
 								<Label className={skeleton}>
 									Size:
 									<div className="bp3-select small-width">
-										<Field name="size" component="select" placeholder="Size">
+										<FastField name="size" component="select" placeholder="Size">
 											<option>Select</option>
 											<option value="Small">Small</option>
 											<option value="Medium">Medium</option>
 											<option value="Large">Large</option>
 											<option value="Extra Large">Extra Large</option>
-										</Field>
+										</FastField>
 										<ErrorMessage name="size" component="div"/>
 									</div>
 								</Label>
 								<Label className={skeleton}>
 									Dough:
 									<div className="bp3-select small-width">
-										<Field name="dough" component="select" placeholder="Dough">
+										<FastField name="dough" component="select" placeholder="Dough">
 											<option>Select</option>
 											<option value="Thin">Thin</option>
 											<option value="Thick">Thick</option>
-										</Field>
+										</FastField>
 										<ErrorMessage name="dough" component="div"/>
 									</div>
 								</Label>
@@ -219,31 +219,31 @@ const Index = () => {
 							<br/>
 							<Label className={skeleton}>
 									Full name:
-								<Field className="bp3-input input-theme full-width" type="text" name="name" placeholder="Mark Suckerberg" required/>
+								<FastField className="bp3-input input-theme full-width" type="text" name="name" placeholder="Mark Suckerberg" required/>
 							</Label>
 							<Label className={skeleton}>
 									Phone:
-								<Field className="bp3-input input-theme full-width" type="tel" name="phone" placeholder="666666666" required/>
+								<FastField className="bp3-input input-theme full-width" type="tel" name="phone" placeholder="666666666" required/>
 								<ErrorMessage name="phone"/>
 							</Label>
 							<Label className={skeleton}>
 									City:
-								<Field className="bp3-input input-theme full-width" type="text" name="city" placeholder="Menlo Park" required/>
+								<FastField className="bp3-input input-theme full-width" type="text" name="city" placeholder="Menlo Park" required/>
 							</Label>
 							<Label className={skeleton}>
 									Street & Apartment Number:
-								<Field className="bp3-input input-theme full-width" type="text" name="street" placeholder="1 Hacker Way" required/>
+								<FastField className="bp3-input input-theme full-width" type="text" name="street" placeholder="1 Hacker Way" required/>
 							</Label>
 							<br/>
 							<Label className={skeleton}>
 									Delivery time:
 								<div className="bp3-select small-width">
-									<Field name="time" component="select" placeholder="Time">
+									<FastField name="time" component="select" placeholder="Time">
 										<option>Select</option>
 										<option value="ASAP">As fast as possible</option>
 										<option>{dayjs().startOf('hour').add(1, 'hour').format('HH:mm')}</option>
 										<option>{dayjs().startOf('hour').add(2, 'hour').format('HH:mm')}</option>
-									</Field>
+									</FastField>
 								</div>
 							</Label>
 							<br/>
