@@ -104,7 +104,7 @@ const Index = () => {
 	useEffect(() => {
 		fonts();
 		setSkeleton('');
-	});
+	}, []);
 
 	const changeTheme = () => {
 		setTheme(theme === 'light' ? 'dark' : 'light');
