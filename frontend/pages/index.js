@@ -202,7 +202,7 @@ const Index = () => {
 								<FastField className="bp3-input input-theme full-width" type="text" name="city" placeholder="Menlo Park" required/>
 							</Label>
 							<Label className={skeleton}>
-									Street & Apartment Number:
+									Address:
 								<FastField className="bp3-input input-theme full-width" type="text" name="street" placeholder="1 Hacker Way" required/>
 							</Label>
 							<br/>
