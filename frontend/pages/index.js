@@ -72,6 +72,7 @@ const Index = () => {
 	const [skeleton, setSkeleton] = useState('bp3-skeleton');
 
 	useEffect(() => {
+		// Load fonts & remove skeleton
 		fonts();
 		setSkeleton('');
 	}, []);
