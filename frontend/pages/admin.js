@@ -67,17 +67,22 @@ const Secret = () => {
 	const [orders, setOrders] = useState([]);
 	const [spinner, setSpinner] = useState(<Spinner/>);
 
-	const getOrders = async () => {
+	const getOrders = () => {
 		// Post query to Prisma
-		const get = await ky.post('http://localhost:4466', {json: {query}}).json();
-		setOrders(get.data.orders);
+		setTimeout(async () => {
+			const get = await ky.post('http://localhost:4466', {json: {query}}).json();
+			setOrders(get.data.orders);
+		}, 3000);
 	};
 
 	useEffect(() => {
 		fonts();
-		getOrders();
 		setSpinner('');
 	}, []);
+
+	useEffect(() => {
+		getOrders();
+	});
 
 	return (
 		<div className="container">

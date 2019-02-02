@@ -48,9 +48,9 @@ Note: The following instructions are for developers. Setup instructions for begi
 **Order Management System**
 
 * [x] Login
-  * [x] Full security
+  * [x] Full security with Auth0
 * [x]  Basic Frontend
-  * [ ] Listening for orders (instead of manual page reloading)
+  * [x] Listening for orders (instead of manual page reloading)
   * [ ] Ability to mark orders as completed
   * [ ] Production-ready Frontend (styles etc.)
 * [x]  Working Backend
