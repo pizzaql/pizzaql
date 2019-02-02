@@ -67,8 +67,9 @@ const Secret = () => {
 	const [orders, setOrders] = useState([]);
 	const [spinner, setSpinner] = useState(<Spinner/>);
 
+	// Get all orders
 	const getOrders = () => {
-		// Post query to Prisma
+		// To avoid performance issues, execute this every 3 seconds
 		setTimeout(async () => {
 			const get = await ky.post('http://localhost:4466', {json: {query}}).json();
 			setOrders(get.data.orders);
@@ -92,7 +93,7 @@ const Secret = () => {
 			<br/>
 			<br/>
 			{spinner}
-			{orders.map(el => (
+			{orders.reverse().map(el => (
 				<Card className="half-width" key={el.id}>
 					<h2>Order id. <strong>{el.id}</strong></h2>
 					<br/>
