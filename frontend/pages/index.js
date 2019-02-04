@@ -4,7 +4,7 @@ import {createGlobalStyle, ThemeProvider} from 'styled-components';
 import theme from 'styled-theming';
 import {Formik, Form, FastField, ErrorMessage} from 'formik';
 import dayjs from 'dayjs';
-import ky from 'ky';
+import {request} from 'graphql-request';
 import {Button, Card, Elevation, Label} from '@blueprintjs/core';
 import * as Yup from 'yup';
 import fonts from './fonts';
@@ -118,19 +118,17 @@ const Index = () => {
 									id
 								}
 							}`;
-
-							try {
 								// Post a mutation to Prisma and obtain an ID
-								const id = await ky.post('http://localhost:4466', {json: {query}}).json();
-								const orderID = JSON.stringify(id.data.createOrder.id);
+							await request('http://localhost:4466', query).then(data => {
+								const orderID = JSON.stringify(data.createOrder.id);
 								// Move user to the thank you page
 								Router.push({
 									pathname: '/order',
 									query: {id: orderID}
 								});
-							} catch (error) {
+							}).catch(error => {
 								console.log(error);
-							}
+							});
 
 							// Disable double-submission and reset form
 							setSubmitting(false);

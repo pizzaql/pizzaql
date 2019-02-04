@@ -1,7 +1,8 @@
+import {setTimeout} from 'timers';
 import React, {useState, useEffect} from 'react';
 import {createGlobalStyle} from 'styled-components';
-import {Card, Spinner} from '@blueprintjs/core';
-import ky from 'ky';
+import {Button, Card, Position, Toaster, Spinner} from '@blueprintjs/core';
+import {request} from 'graphql-request';
 import secureTemplate from '../static/secure-template';
 import fonts from './fonts';
 
@@ -47,33 +48,59 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-// Query to get orders from Prisma
-const query = `
-query {
-  orders {
-    id
-    size
-    dough
-    type
-    name
-    phone
-    time
-    city
-    street
-  }
-}`;
-
 const Secret = () => {
 	const [orders, setOrders] = useState([]);
 	const [spinner, setSpinner] = useState(<Spinner/>);
 
 	// Get all orders
 	const getOrders = () => {
-		// To avoid performance issues, execute this every 3 seconds
 		setTimeout(async () => {
-			const get = await ky.post('http://localhost:4466', {json: {query}}).json();
-			setOrders(get.data.orders);
+			// Query to get orders from Prisma
+			const query = `
+						query {
+							  orders {
+								id
+								size
+								dough
+								type
+								name
+								phone
+								time
+								city
+								street
+							  }
+					}`;
+
+			await request('http://localhost:4466', query).then(data => {
+				setOrders(data.orders);
+			}).catch(error => {
+				console.log(error);
+			});
 		}, 3000);
+	};
+
+	const completeOrder = e => {
+		const id = e.currentTarget.attributes['data-order-id'].value;
+
+		e.loading = true;
+
+		// Mutation to delete an order
+		const query = `
+		mutation {
+			deleteOrder(where: { id: "${id}" }) {
+			  id
+			}
+		  }`;
+
+		request('http://localhost:4466', query).then(async () => {
+			const AppToaster = await Toaster.create({
+				position: Position.BOTTOM_RIGHT
+			});
+
+			AppToaster.show({message: 'Order deleted!'});
+		}).catch(error => {
+			console.log(error);
+		});
 	};
 
 	useEffect(() => {
@@ -123,6 +150,7 @@ const Secret = () => {
 							</tr>
 						</tbody>
 					</table>
+					<Button icon="trash" data-order-id={el.id} onClick={completeOrder}>Delete</Button>
 				</Card>
 			))}
 			<GlobalStyle/>

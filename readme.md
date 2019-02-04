@@ -40,7 +40,7 @@ Note: The following instructions are for developers. Setup instructions for begi
 **Order Placement System**
 * [x]  Basic Frontend
   * [x] Production-ready Frontend (styles etc.)
-  * [ ] Dark mode (work in progress)
+  * [ ] Dark mode (work in progress, partially implemented)
 * [x]  Working Backend
   * [x] Creating orders
 * [ ] Better delivery time selection
@@ -51,7 +51,7 @@ Note: The following instructions are for developers. Setup instructions for begi
   * [x] Full security with Auth0
 * [x]  Basic Frontend
   * [x] Listening for orders (instead of manual page reloading)
-  * [ ] Ability to mark orders as completed
+  * [x] Ability to delete orders
   * [ ] Production-ready Frontend (styles etc.)
 * [x]  Working Backend
 
