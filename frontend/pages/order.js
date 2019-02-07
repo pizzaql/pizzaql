@@ -2,7 +2,6 @@ import React from 'react';
 import Link from 'next/link';
 import {createGlobalStyle} from 'styled-components';
 import {Button, Card, Elevation} from '@blueprintjs/core';
-import fonts from './fonts';
 
 // Global Style
 const GlobalStyle = createGlobalStyle`
@@ -50,10 +49,6 @@ class Index extends React.Component {
 		return {
 			id
 		};
-	}
-
-	async componentDidMount() {
-		await fonts();
 	}
 
 	copyToClipboard = () => {

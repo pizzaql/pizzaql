@@ -7,7 +7,6 @@ import dayjs from 'dayjs';
 import {request} from 'graphql-request';
 import {Button, Card, Elevation, Label} from '@blueprintjs/core';
 import * as Yup from 'yup';
-import fonts from './fonts';
 
 const background = theme('mode', {
 	light: '#ffffff',
@@ -73,7 +72,6 @@ const Index = () => {
 
 	useEffect(() => {
 		// Load fonts & remove skeleton
-		fonts();
 		setSkeleton('');
 	}, []);
 

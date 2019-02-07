@@ -35,6 +35,17 @@ export default class MyDocument extends Document {
 					<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-normalize@0.5.0/modern-normalize.min.css"/>
 					<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@blueprintjs/icons@3.5.0/lib/css/blueprint-icons.css"/>
 					<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@blueprintjs/core@3.11.0/lib/css/blueprint.css"/>
+					{/* eslint-disable react/no-danger */}
+					<style dangerouslySetInnerHTML={{__html: `
+						@font-face {
+							font-family: 'Montserrat';
+							font-weight: 400;
+							font-display: swap;
+							src: url('/static/Montserrat-Regular.woff2') format('woff2');
+						}
+						}
+					`}}/>
+					{/* eslint-enable react/no-danger */}
 					{this.props.styleTags}
 				</Head>
 				<body>

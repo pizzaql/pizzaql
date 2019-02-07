@@ -4,7 +4,6 @@ import {createGlobalStyle} from 'styled-components';
 import {Button, Card, Position, Toaster, Spinner} from '@blueprintjs/core';
 import {request} from 'graphql-request';
 import secureTemplate from '../static/secure-template';
-import fonts from './fonts';
 
 // Global Style
 const GlobalStyle = createGlobalStyle`
@@ -111,7 +110,6 @@ const Secret = () => {
 	};
 
 	useEffect(() => {
-		fonts();
 		setSpinner('');
 	}, []);
 
