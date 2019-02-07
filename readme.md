@@ -51,6 +51,7 @@ Note: The following instructions are for developers. Setup instructions for begi
   * [x] Full security with Auth0
 * [x]  Basic Frontend
   * [x] Listening for orders (instead of manual page reloading)
+    * [ ] Rewrite to GraphQL Subscriptions
   * [x] Ability to delete orders
   * [ ] Production-ready Frontend (styles etc.)
 * [x]  Working Backend
