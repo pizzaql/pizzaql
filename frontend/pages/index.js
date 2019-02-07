@@ -62,8 +62,8 @@ const OrderSchema = Yup.object().shape({
 		.min(2, 'Too Short!')
 		.max(75, 'Too Long!'),
 	phone: Yup.string()
-		// Simple regex for checking the phone number (only by lenght)
-		.matches(/^.{9}$/, 'Invalid phone number')
+		// Simple regex for checking the phone number
+		.matches(/^\d{9}$/, 'Invalid phone number')
 });
 
 // Load fonts & main page
@@ -118,7 +118,8 @@ const Index = () => {
 									id
 								}
 							}`;
-								// Post a mutation to Prisma and obtain an ID
+							await setSubmitting(false);
+							// Post a mutation to Prisma and obtain an ID
 							await request('http://localhost:4466', query).then(data => {
 								const orderID = JSON.stringify(data.createOrder.id);
 								// Move user to the thank you page
@@ -129,9 +130,6 @@ const Index = () => {
 							}).catch(error => {
 								console.log(error);
 							});
-
-							// Disable double-submission and reset form
-							setSubmitting(false);
 							resetForm();
 						}, 500);
 					}}

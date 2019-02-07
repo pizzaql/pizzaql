@@ -76,7 +76,7 @@ const Secret = () => {
 			}).catch(error => {
 				console.log(error);
 			});
-		}, 3000);
+		}, 2000);
 	};
 
 	const completeOrder = e => {
@@ -97,7 +97,14 @@ const Secret = () => {
 				position: Position.BOTTOM_RIGHT
 			});
 
-			AppToaster.show({message: 'Order deleted!'});
+			setTimeout(() => {
+				AppToaster.show({
+					message: 'Order deleted!',
+					intent: 'danger',
+					icon: 'trash',
+					timeout: 3000
+				});
+			}, 1000);
 		}).catch(error => {
 			console.log(error);
 		});
