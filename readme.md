@@ -40,10 +40,11 @@ Note: The following instructions are for developers. Setup instructions for begi
 **Order Placement System**
 * [x]  Basic Frontend
   * [x] Production-ready Frontend (styles etc.)
-  * [ ] Dark mode (work in progress, partially implemented)
+  * [x] Dark mode
 * [x]  Working Backend
   * [x] Creating orders
-* [ ] Better delivery time selection
+* [x] Better delivery time selection
+* [ ] Lock order placement system between specific hours
 
 **Order Management System**
 
@@ -51,7 +52,7 @@ Note: The following instructions are for developers. Setup instructions for begi
   * [x] Full security with Auth0
 * [x]  Basic Frontend
   * [x] Listening for orders (instead of manual page reloading)
-    * [ ] Rewrite to GraphQL Subscriptions
+    * [ ] Rewrite to GraphQL Subscriptions (work in progress, requires custom resolver)
   * [x] Ability to delete orders
   * [ ] Production-ready Frontend (styles etc.)
 * [x]  Working Backend
