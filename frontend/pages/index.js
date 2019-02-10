@@ -98,8 +98,7 @@ const Index = () => {
 						phone: '',
 						city: '',
 						street: '',
-						time: '',
-						notes: ''
+						time: ''
 					}}
 					validationSchema={OrderSchema}
 					onSubmit={(values, {setSubmitting, resetForm}) => {
@@ -213,8 +212,8 @@ const Index = () => {
 									<FastField name="time" component="select" placeholder="Time">
 										<option>Select</option>
 										<option value="ASAP">As fast as possible</option>
-										<option>{dayjs().startOf('minutes').add(1, 'hour').format('HH:mm')}</option>
 										<option>{dayjs().startOf('minutes').add(2, 'hour').format('HH:mm')}</option>
+										<option>{dayjs().startOf('minutes').add(3, 'hour').format('HH:mm')}</option>
 									</FastField>
 								</div>
 							</Label>
