@@ -71,7 +71,7 @@ const Index = () => {
 
 	const loadingSequence = async () => {
 		document.body.className = (await localStorage.getItem('bodyTheme') || 'bp3-body');
-		await setTheme(await localStorage.getItem('theme') || 'light');
+		setTheme(await localStorage.getItem('theme') || 'light');
 		setSkeleton('');
 	};
 
