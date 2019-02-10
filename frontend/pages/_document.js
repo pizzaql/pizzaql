@@ -32,16 +32,20 @@ export default class MyDocument extends Document {
 					<meta name="og:site_name" content="PizzaQL"/>
 					<meta name="og:type" content="website"/>
 					<link rel="icon" href="static/favicon.png"/>
-					<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modern-normalize@0.5.0/modern-normalize.min.css"/>
+					<link rel="preload" href="https://cdn.jsdelivr.net/npm/modern-normalize@0.5.0/modern-normalize.min.css" as="style" onLoad="this.rel='stylesheet'"/>
 					<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@blueprintjs/icons@3.5.0/lib/css/blueprint-icons.css"/>
 					<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@blueprintjs/core@3.11.0/lib/css/blueprint.css"/>
 					{/* eslint-disable react/no-danger */}
 					<style dangerouslySetInnerHTML={{__html: `
 						@font-face {
 							font-family: 'Montserrat';
+							font-style: normal;
 							font-weight: 400;
 							font-display: swap;
-							src: url('/static/Montserrat-Regular.woff2') format('woff2');
+							src: local('Montserrat Regular'), local('Montserrat-Regular'),
+								url('static/fonts/montserrat-v12-latin-ext-regular.woff2') format('woff2'),
+								url('static/fonts/montserrat-v12-latin-ext-regular.woff') format('woff');
+							}
 						}
 						}
 					`}}/>
