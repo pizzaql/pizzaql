@@ -5,7 +5,7 @@ import theme from 'styled-theming';
 import {Formik, Form, FastField, ErrorMessage} from 'formik';
 import dayjs from 'dayjs';
 import {request} from 'graphql-request';
-import {Button, Card, Elevation, Label} from '@blueprintjs/core';
+import {Button, Card, Elevation, Label, Switch} from '@blueprintjs/core';
 import * as Yup from 'yup';
 
 const background = theme('mode', {
@@ -35,6 +35,13 @@ body {
 
 .small-width {
 	width: 200px;
+}
+
+.switch {
+	width: 125px;
+	text-align: center;
+	margin: auto;
+	outline: none;
 }
 
 .full-width {
@@ -236,7 +243,7 @@ const Index = () => {
 				<footer className={skeleton}>
 					<br/>
 					<p>Powered by PizzaQL 🍕</p>
-					<Button type="button" onClick={changeTheme}>Change mode</Button>
+					<Switch className="switch" checked={!(theme === 'light' || undefined)} label="Dark Mode" onChange={changeTheme}/>
 				</footer>
 				<GlobalStyle/>
 			</Card>
