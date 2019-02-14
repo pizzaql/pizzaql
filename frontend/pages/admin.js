@@ -31,10 +31,10 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .inline {
-	  display: flex;
-	  flex-direction: row;
-	  justify-content: space-around;
-	  text-align: right
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		text-align: right
   }
 
   table {
