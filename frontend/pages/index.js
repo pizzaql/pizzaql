@@ -96,7 +96,7 @@ const Index = () => {
 
 	return (
 		<ThemeProvider theme={{mode: theme}}>
-			<Card className="card-theme" elevation={Elevation.FOUR}>
+			<Card elevation={Elevation.FOUR}>
 				<Formik
 					initialValues={{
 						type: '',
