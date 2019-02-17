@@ -1,4 +1,18 @@
 language: node_js
-before_install: cd frontend
 node_js:
 - "node"
+before_install: cd frontend
+cache:
+  directories:
+    - ~/.npm
+    - ~/.cache
+  override:
+    - npm ci
+    - npm run cy:verify
+defaults: &defaults
+  script:
+    - $(npm bin)/print-env TRAVIS
+    - npm test &
+    - npm run dev -- --silent &
+    - npm run cy:run -- --parallel --group $STAGE_NAME
+    - kill $(jobs -p) || true
