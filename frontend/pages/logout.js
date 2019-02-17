@@ -10,7 +10,7 @@ const Logout = () => {
 		deleteToken();
 		logout();
 		Router.push('/');
-	});
+	}, []);
 
 	return null;
 };
