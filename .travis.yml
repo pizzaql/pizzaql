@@ -6,7 +6,7 @@ node_js:
 before_install: cd frontend
 
 before_script:
-  - npm test && npm run dev -- --silent &
+  - npm test && npm run dev &
 
 script:
   - npm run cy:run
