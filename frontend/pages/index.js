@@ -1,12 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import Router from 'next/router';
 import {createGlobalStyle, ThemeProvider} from 'styled-components';
 import theme from 'styled-theming';
-import {Formik, Form, FastField, ErrorMessage} from 'formik';
-import dayjs from 'dayjs';
-import {request} from 'graphql-request';
-import {Button, Card, Elevation, Label, Switch} from '@blueprintjs/core';
-import * as Yup from 'yup';
+import {Card, Elevation, Switch} from '@blueprintjs/core';
+
+// Import components
+import OrderPlacementForm from '../components/form/order-placement-form';
 
 const background = theme('mode', {
 	light: '#ffffff',
@@ -29,14 +27,6 @@ body {
 	text-rendering: optimizeSpeed;
 }
 
-.input-theme::placeholder {
-	color: #757575;
-}
-
-.small-width {
-	width: 200px;
-}
-
 .switch {
 	width: 125px;
 	text-align: center;
@@ -44,33 +34,10 @@ body {
 	outline: none;
 }
 
-.full-width {
-	width: 100%;
-}
-
-.inline {
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: space-around;
-}
-
-h1 {
-	font-size: 30px;
-}
-
 footer {
 	text-align: center;
 }
 `;
-
-const OrderSchema = Yup.object().shape({
-	name: Yup.string()
-		.min(2, 'Too Short!')
-		.max(75, 'Too Long!'),
-	phone: Yup.string()
-		// Simple regex for checking the phone number
-		.matches(/^\d{9}$/, 'Invalid phone number')
-});
 
 // Load fonts & main page
 const Index = () => {
@@ -97,149 +64,7 @@ const Index = () => {
 	return (
 		<ThemeProvider theme={{mode: theme}}>
 			<Card elevation={Elevation.FOUR}>
-				<Formik
-					initialValues={{
-						type: '',
-						size: '',
-						dough: '',
-						name: '',
-						phone: '',
-						city: '',
-						street: '',
-						time: ''
-					}}
-					validationSchema={OrderSchema}
-					onSubmit={(values, {setSubmitting, resetForm}) => {
-						setTimeout(async () => {
-							// Form a GraphQL mutation to create a new order
-							const query = `
-							mutation {
-								createOrder(
-									data: {
-										type: "${values.type}"
-										size: "${values.size}"
-										dough: "${values.dough}"
-										name: "${values.name}"
-										phone: "${values.phone}"
-										time: "${values.time}"
-										city: "${values.city}"
-										street: "${values.street}"
-									}
-								) {
-									id
-								}
-							}`;
-							await setSubmitting(false);
-							// Post a mutation to Prisma and obtain an ID
-							await request('http://localhost:4466', query).then(data => {
-								const orderID = JSON.stringify(data.createOrder.id);
-								// Move user to the thank you page
-								Router.push({
-									pathname: '/order',
-									query: {id: orderID}
-								});
-							}).catch(error => {
-								console.log(error);
-							});
-							resetForm();
-						}, 500);
-					}}
-				>
-					{({isSubmitting}) => (
-						<Form>
-							<div className="inline">
-								<Label className={skeleton}>
-									Pizza Type:
-									<div className="bp3-select small-width">
-										<FastField name="type" component="select" placeholder="Pizza Type">
-											<option>Select</option>
-											<option value="Margharita">Margharita</option>
-											<option value="Funghi">Funghi</option>
-											<option value="Cacciatore">Cacciatore</option>
-											<option value="Vesuvio">Vesuvio</option>
-											<option value="Milano">Milano</option>
-											<option value="Capriciosa">Capriciosa</option>
-											<option value="Prosciutto">Prosciutto</option>
-											<option value="Hawaiano">Hawaiano</option>
-											<option value="Rimini">Rimini</option>
-											<option value="Bali">Bali</option>
-											<option value="Pepperoni">Pepperoni</option>
-											<option value="Torino">Torino</option>
-										</FastField>
-										<ErrorMessage name="type" component="div"/>
-									</div>
-								</Label>
-								<Label className={skeleton}>
-									Size:
-									<div className="bp3-select small-width">
-										<FastField name="size" component="select" placeholder="Size">
-											<option>Select</option>
-											<option value="Small">Small</option>
-											<option value="Medium">Medium</option>
-											<option value="Large">Large</option>
-											<option value="Extra Large">Extra Large</option>
-										</FastField>
-										<ErrorMessage name="size" component="div"/>
-									</div>
-								</Label>
-								<Label className={skeleton}>
-									Dough:
-									<div className="bp3-select small-width">
-										<FastField name="dough" component="select" placeholder="Dough">
-											<option>Select</option>
-											<option value="Thin">Thin</option>
-											<option value="Thick">Thick</option>
-										</FastField>
-										<ErrorMessage name="dough" component="div"/>
-									</div>
-								</Label>
-							</div>
-							<br/>
-							<br/>
-							<Label className={skeleton}>
-									Full name:
-								<FastField className="bp3-input input-theme full-width" type="text" name="name" placeholder="Mark Suckerberg" required/>
-							</Label>
-							<Label className={skeleton}>
-									Phone:
-								<FastField className="bp3-input input-theme full-width" type="tel" name="phone" placeholder="666666666" required/>
-								<ErrorMessage name="phone"/>
-							</Label>
-							<Label className={skeleton}>
-									City:
-								<FastField className="bp3-input input-theme full-width" type="text" name="city" placeholder="Menlo Park" required/>
-							</Label>
-							<Label className={skeleton}>
-									Address:
-								<FastField className="bp3-input input-theme full-width" type="text" name="street" placeholder="1 Hacker Way" required/>
-							</Label>
-							<br/>
-							<Label className={skeleton + ' small-width'}>
-									Delivery time:
-								<div className="bp3-select small-width">
-									<FastField name="time" component="select" placeholder="Time">
-										<option>Select</option>
-										<option value="ASAP">As fast as possible</option>
-										<option>{dayjs().startOf('minutes').add(2, 'hour').format('HH:mm')}</option>
-										<option>{dayjs().startOf('minutes').add(3, 'hour').format('HH:mm')}</option>
-									</FastField>
-								</div>
-							</Label>
-							<br/>
-							<br/>
-							<div className={skeleton}>
-								<Button
-									className="full-width"
-									type="submit"
-									loading={isSubmitting}
-									disabled={isSubmitting}
-								>
-								Submit!
-								</Button>
-							</div>
-						</Form>
-					)}
-				</Formik>
+				<OrderPlacementForm/>
 				<footer className={skeleton}>
 					<br/>
 					<p>Powered by PizzaQL 🍕</p>
