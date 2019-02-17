@@ -12,7 +12,6 @@ cache:
 defaults: &defaults
   script:
     - $(npm bin)/print-env TRAVIS
-    - npm test &
     - npm run dev -- --silent &
     - npm run cy:run -- --parallel --group $STAGE_NAME
     - kill $(jobs -p) || true
