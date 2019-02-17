@@ -6,7 +6,9 @@
   "dev": "next",
   "build": "next build",
   "start": "next start",
-  "test": "xo && stylelint './pages/**/*.js' && ava"
+  "test": "xo && stylelint './pages/**/*.js'",
+  "cy:open": "cypress open",
+  "cy:run": "cypress run"
  },
  "main": "pages/index.js",
  "author": "Antoni Kepinski <a@kepinski.me> (https://kepinski.me)",
@@ -14,15 +16,11 @@
  "devDependencies": {
   "@babel/core": "^7.3.3",
   "@babel/plugin-proposal-class-properties": "^7.3.3",
-  "ava": "*",
   "babel-eslint": "^10.0.1",
   "babel-plugin-styled-components": "^1.10.0",
-  "enzyme": "^3.8.0",
-  "enzyme-adapter-react-16": "^1.9.1",
+  "cypress": "^3.1.5",
   "eslint-config-xo-react": "^0.18.0",
   "eslint-plugin-react": "^7.12.4",
-  "jsdom": "13.2.0",
-  "jsdom-global": "3.0.2",
   "stylelint": "^9.10.1",
   "stylelint-config-recommended": "^2.1.0",
   "stylelint-config-styled-components": "^0.1.1",
@@ -30,7 +28,6 @@
   "xo": "*"
  },
  "dependencies": {
-  "@babel/register": "^7.0.0",
   "@blueprintjs/core": "^3.13.0",
   "@zeit/next-css": "^1.0.1",
   "auth0-js": "^9.10.0",
@@ -56,6 +53,12 @@
    "node",
    "browser"
   ],
+  "globals": [
+      "describe",
+      "it",
+      "cy",
+      "expect"
+  ],
   "extends": "xo-react",
   "settings": {
    "react": {
@@ -69,11 +72,5 @@
    "react/jsx-sort-props": "off",
    "react/prop-types": "off"
   }
- },
- "ava": {
-  "require": [
-   "@babel/register",
-   "./test/_index"
-  ]
  }
 }
