@@ -57,7 +57,8 @@
       "describe",
       "it",
       "cy",
-      "expect"
+      "expect",
+      "beforeEach"
   ],
   "extends": "xo-react",
   "settings": {
