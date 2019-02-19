@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Router from 'next/router';
 import {Formik, Form} from 'formik';
+import {Persist} from 'formik-persist';
 import {request} from 'graphql-request';
 import * as Yup from 'yup';
 
@@ -23,10 +24,12 @@ const OrderSchema = Yup.object().shape({
 		.required('Required!'),
 	name: Yup.string()
 		.min(2, 'Too Short!')
-		.max(75, 'Too Long!'),
+		.max(75, 'Too Long!')
+		// Regex for checking full name, https://stackoverflow.com/a/45871742
+		.matches(/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/, 'Invalid name!'),
 	phone: Yup.string()
-		// Simple regex for checking the phone number
-		.matches(/^\d{9}$/, 'Invalid phone number')
+		// Regular expression for checking Polish phone numbers, https://github.com/skotniczny/phonePL
+		.matches(/^(?:(?:(?:\+|00)?48)|(?:\(\+?48\)))?(?:1[2-8]|2[2-69]|3[2-49]|4[1-68]|5\d|6[0-35-9]|[7-8][1-9]|9[145])\d{7}$/, 'Invalid phone number!')
 });
 
 const OrderPlacementForm = () => {
@@ -81,6 +84,8 @@ const OrderPlacementForm = () => {
 					}).catch(error => {
 						console.log(error);
 					});
+					// Call resetForm twice to delete values from localstorage, https://github.com/jaredpalmer/formik-persist/issues/16
+					resetForm();
 					resetForm();
 				}, 500);
 			}}
@@ -103,6 +108,7 @@ const OrderPlacementForm = () => {
 					<br/>
 					<br/>
 					<Submit className={skeleton} loading={isSubmitting} disabled={isSubmitting}/>
+					<Persist name="order-placement-form"/>
 				</Form>
 			)}
 		</Formik>
