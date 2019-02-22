@@ -6,42 +6,42 @@ import secureTemplate from '../static/secure-template';
 
 // Global Style
 const GlobalStyle = createGlobalStyle`
-  body {
-		font-family: Montserrat, Georgia, monospace;
-  	text-align: center;
-  	background: #fff;
-		font-size: 16;
-  	-webkit-font-smoothing: antialiased;
-  	text-rendering: optimizeSpeed
-  }
+body {
+    font-family: Montserrat, Georgia, monospace;
+    text-align: center;
+    background: #fff;
+    font-size: 16;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeSpeed 
+}
 
-  h1 {
-		font-size: 30px;
-  }
+h1 {
+    font-size: 30px;
+}
 
-  h2 {
+h2 {
     font-size: 18px;
-  }
+}
 
-  .half-width {
-		margin: auto;
-		margin-bottom: 20px;
-		word-wrap: break-word;
-		width: 60%
-  }
-
-  .inline {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-around;
-		text-align: right
-  }
-
-  table {
-    table-layout: fixed; 
+.half-width {
+    margin: auto;
+    margin-bottom: 20px;
     word-wrap: break-word;
-    width: 100%
-  }
+    width: 60% 
+}
+
+.inline {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: right 
+}
+
+table {
+    table-layout: fixed;
+    word-wrap: break-word;
+    width: 100% 
+}
 `;
 
 const Secret = () => {
