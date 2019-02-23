@@ -1,5 +1,5 @@
 describe('Head', () => {
-	beforeEach(() => {
+	before(() => {
 		cy.visit('http://localhost:3000');
 	});
 

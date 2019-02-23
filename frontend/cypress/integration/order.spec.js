@@ -1,5 +1,5 @@
 describe('Thank you page', () => {
-	beforeEach(() => {
+	before(() => {
 		cy.visit('http://localhost:3000/order?id="123123123"');
     });
     
