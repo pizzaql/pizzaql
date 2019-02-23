@@ -44,9 +44,9 @@ const Index = () => {
 	const [theme, setTheme] = useState('light');
 	const [skeleton, setSkeleton] = useState('bp3-skeleton');
 
-	const loadingSequence = async () => {
-		document.body.className = (await localStorage.getItem('bodyTheme') || 'bp3-body');
-		setTheme(await localStorage.getItem('theme') || 'light');
+	const loadingSequence = () => {
+		document.body.className = (localStorage.getItem('bodyTheme') || 'bp3-body');
+		setTheme(localStorage.getItem('theme') || 'light');
 		setSkeleton('');
 	};
 
