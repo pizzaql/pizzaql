@@ -61,6 +61,7 @@
    "expect",
    "beforeEach"
   ],
+  "ignores": "cypress",
   "extends": "xo-react",
   "settings": {
    "react": {
