@@ -1,8 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {createGlobalStyle} from 'styled-components';
+import 'core-js/modules/es6.regexp.to-string';
+
 import {Button, Card, Position, Toaster, Spinner} from '@blueprintjs/core';
-import {request} from 'graphql-request';
+import gql from 'graphql-tag';
+import {ApolloProvider, Query, Mutation} from 'react-apollo';
+import ApolloClient from 'apollo-boost';
 import secureTemplate from '../static/secure-template';
+
+const client = new ApolloClient({
+	uri: 'http://localhost:4466'
+});
 
 // Global Style
 const GlobalStyle = createGlobalStyle`
@@ -44,119 +52,140 @@ table {
 }
 `;
 
+const GET_ORDERS = gql`
+query {
+		orders {
+		id
+		size
+		dough
+		type
+		name
+		phone
+		time
+		city
+		street
+		}
+}
+`;
+
+const DELETE_ORDER = gql`
+  mutation DeleteOrder($id: ID!) {
+    deleteOrder(where: {id: $id}) {
+      id
+    }
+  }
+`;
+
 const Secret = () => {
-	const [orders, setOrders] = useState([]);
-	const [spinner, setSpinner] = useState(<Spinner/>);
+	const completeOrder = async () => {
+		const AppToaster = await Toaster.create({
+			position: Position.BOTTOM_RIGHT
+		});
 
-	// Get all orders
-	const getOrders = () => {
-		setTimeout(async () => {
-			// Query to get orders from Prisma
-			const query = `
-						query {
-							  orders {
-								id
-								size
-								dough
-								type
-								name
-								phone
-								time
-								city
-								street
-							  }
-					}`;
-
-			await request('http://localhost:4466', query).then(data => {
-				setOrders(data.orders);
-			}).catch(error => {
-				console.log(error);
-			});
-		}, 2000);
-	};
-
-	const completeOrder = e => {
-		const id = e.currentTarget.attributes['data-order-id'].value;
-
-		e.loading = true;
-
-		// Mutation to delete an order
-		const query = `
-		mutation {
-			deleteOrder(where: { id: "${id}" }) {
-			  id
-			}
-		  }`;
-
-		request('http://localhost:4466', query).then(async () => {
-			const AppToaster = await Toaster.create({
-				position: Position.BOTTOM_RIGHT
-			});
-
-			setTimeout(() => {
-				AppToaster.show({
-					message: 'Order deleted!',
-					intent: 'danger',
-					icon: 'trash',
-					timeout: 3000
-				});
-			}, 1000);
-		}).catch(error => {
-			console.log(error);
+		AppToaster.show({
+			message: 'Order deleted!',
+			intent: 'danger',
+			icon: 'trash',
+			timeout: 3000
 		});
 	};
 
-	useEffect(() => {
-		setSpinner('');
-	}, []);
-
-	useEffect(() => {
-		getOrders();
-	});
-
 	return (
-		<div className="container">
-			<h1>Welcome to Admin Dashboard</h1>
+		<ApolloProvider client={client}>
+			<div className="container">
+				<h1>Welcome to Admin Dashboard</h1>
 
-			<p>✔️ You are logged in, click <a href="/logout">here</a> to logout.</p>
-			<br/>
-			<br/>
-			{spinner}
-			{orders.reverse().map(el => (
-				<Card className="half-width" key={el.id}>
-					<h2>Order id. <strong>{el.id}</strong></h2>
-					<br/>
-					<table className="bp3-html-table .bp3-interactive .bp3-html-table-bordered">
-						<thead>
-							<tr>
-								<th>Type</th>
-								<th>Size</th>
-								<th>Dough</th>
-								<th>Name</th>
-								<th>Phone</th>
-								<th>City</th>
-								<th>Street</th>
-								<th>Time</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>{el.type}</td>
-								<td>{el.size}</td>
-								<td>{el.dough}</td>
-								<td>{el.name}</td>
-								<td>{el.phone}</td>
-								<td>{el.city}</td>
-								<td>{el.street}</td>
-								<td>{el.time}</td>
-							</tr>
-						</tbody>
-					</table>
-					<Button icon="trash" data-order-id={el.id} onClick={completeOrder}>Delete</Button>
-				</Card>
-			))}
-			<GlobalStyle/>
-		</div>
+				<p>✔️ You are logged in, click <a href="/logout">here</a> to logout.</p>
+				<br/>
+				<br/>
+				<Query query={GET_ORDERS}>
+					{({loading, error, data}) => {
+						if (loading) {
+							return <Spinner/>;
+						}
+
+						if (error) {
+							return <p>{error.toString()}</p>;
+						}
+
+						/* eslint-disable no-prototype-builtins */
+						function isEmpty(obj) {
+							for (const key in obj) {
+								if (obj.hasOwnProperty(key)) {
+									return false;
+								}
+							}
+
+							return true;
+						}
+						/* eslint-enable no-prototype-builtins */
+
+						if (isEmpty(data.orders)) {
+							return <p>No orders found!</p>;
+						}
+
+						return (
+							<div>
+								{data.orders.reverse().map(el => (
+									<Card className="half-width" key={el.id}>
+										<h2>Order id. <strong>{el.id}</strong></h2>
+										<br/>
+										<table className="bp3-html-table .bp3-interactive .bp3-html-table-bordered">
+											<thead>
+												<tr>
+													<th>Type</th>
+													<th>Size</th>
+													<th>Dough</th>
+													<th>Name</th>
+													<th>Phone</th>
+													<th>City</th>
+													<th>Street</th>
+													<th>Time</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>{el.type}</td>
+													<td>{el.size}</td>
+													<td>{el.dough}</td>
+													<td>{el.name}</td>
+													<td>{el.phone}</td>
+													<td>{el.city}</td>
+													<td>{el.street}</td>
+													<td>{el.time}</td>
+												</tr>
+											</tbody>
+										</table>
+										<Mutation
+											mutation={DELETE_ORDER}
+										>
+											{(deleteOrder, {loading, error}) => (
+												<div>
+													<Button
+														icon="trash"
+														data-order-id={el.id}
+														onClick={e => {
+															const orderID = e.currentTarget.attributes['data-order-id'].value;
+															deleteOrder({variables: {id: orderID}});
+															completeOrder();
+														}}
+													>
+												Delete
+													</Button>
+													{loading && <p>Loading...</p>}
+													{error && <p>Error :( Please try again</p>}
+												</div>
+											)}
+										</Mutation>
+									</Card>
+								))}
+							</div>
+						);
+					}}
+				</Query>
+				<GlobalStyle/>
+			</div>
+		</ApolloProvider>
 	);
 };
 
