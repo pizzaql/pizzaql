@@ -52,7 +52,7 @@ Note: The following instructions are for developers. Setup instructions for begi
 * [x] Login
   * [x] Full security with Auth0
 * [x]  Basic Frontend
-  * [x] Listening for orders (instead of manual page reloading)
+  * [x] Listing orders
     * [ ] Rewrite to GraphQL Subscriptions (work in progress, requires custom resolver)
   * [x] Ability to delete orders
   * [ ] Production-ready Frontend (styles etc.)
