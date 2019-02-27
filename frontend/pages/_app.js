@@ -1,11 +1,13 @@
 import App, {Container} from 'next/app';
 import Head from 'next/head';
 import React from 'react';
+import {ApolloProvider} from 'react-apollo';
+import withApolloClient from '../lib/with-apollo-client';
 
 import '../node_modules/modern-normalize/modern-normalize.css';
 import '../node_modules/@blueprintjs/core/lib/css/blueprint.css';
 
-export default class MyApp extends App {
+class MyApp extends App {
 	static async getInitialProps({Component, ctx}) {
 		let pageProps = {};
 
@@ -17,14 +19,18 @@ export default class MyApp extends App {
 	}
 
 	render() {
-		const {Component, pageProps} = this.props;
+		const {Component, pageProps, apolloClient} = this.props;
 		return (
 			<Container>
-				<Head>
-					<title>PizzaQL</title>
-				</Head>
-				<Component {...pageProps}/>
+				<ApolloProvider client={apolloClient}>
+					<Head>
+						<title>PizzaQL</title>
+					</Head>
+					<Component {...pageProps}/>
+				</ApolloProvider>
 			</Container>
 		);
 	}
 }
+
+export default withApolloClient(MyApp);
