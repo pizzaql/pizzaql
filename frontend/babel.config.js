@@ -10,9 +10,9 @@ const presets = [
 
 const plugins = [
 	['babel-plugin-styled-components', {
+		ssr: true,
 		minify: true,
-		pure: true,
-		ssr: true
+		pure: true
 	}],
 	['@babel/plugin-proposal-class-properties']
 ];
