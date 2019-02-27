@@ -22,7 +22,6 @@ body {
 	padding-top: 100px;
 	padding-bottom: 100px;
 	color: #212121;
-	font-size: 16;
 	-webkit-font-smoothing: antialiased;
 	text-rendering: optimizeSpeed;
 }
