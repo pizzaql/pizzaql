@@ -12,9 +12,7 @@ const plugins = [
 	['babel-plugin-styled-components', {
 		minify: true,
 		pure: true,
-		ssr: true,
-		displayName: true,
-		preprocess: false
+		ssr: true
 	}],
 	['@babel/plugin-proposal-class-properties']
 ];
