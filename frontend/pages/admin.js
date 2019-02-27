@@ -1,8 +1,9 @@
-import React from 'react';
-import {createGlobalStyle} from 'styled-components';
+import React, {useState, useEffect} from 'react';
+import {createGlobalStyle, ThemeProvider} from 'styled-components';
+import theme from 'styled-theming';
 import 'core-js/modules/es6.regexp.to-string';
 
-import {Button, Card, Position, Toaster, Spinner} from '@blueprintjs/core';
+import {Button, Callout, Icon, Position, Toaster, Spinner, Switch} from '@blueprintjs/core';
 import gql from 'graphql-tag';
 import {ApolloProvider, Query, Mutation} from 'react-apollo';
 import ApolloClient from 'apollo-boost';
@@ -12,30 +13,30 @@ const client = new ApolloClient({
 	uri: 'http://localhost:4466'
 });
 
+const background = theme('mode', {
+	light: '#ffffff',
+	dark: '#202B33'
+});
+
 // Global Style
 const GlobalStyle = createGlobalStyle`
 body {
     font-family: Montserrat, Georgia, monospace;
-    text-align: center;
-    background: #fff;
-    font-size: 16;
+    background: ${background};
+		width: 100%;
+		margin: 0 auto 30px;
+    max-width: 60em;
+		padding-top: 20px;
+		padding-left: 40px;
+		padding-right: 40px;
+		word-wrap: break-word;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeSpeed 
 }
 
-h1 {
-    font-size: 30px;
-}
-
-h2 {
-    font-size: 18px;
-}
-
 .half-width {
-    margin: auto;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     word-wrap: break-word;
-    width: 60% 
 }
 
 .inline {
@@ -43,12 +44,6 @@ h2 {
     flex-direction: row;
     justify-content: space-around;
     text-align: right 
-}
-
-table {
-    table-layout: fixed;
-    word-wrap: break-word;
-    width: 100% 
 }
 `;
 
@@ -77,6 +72,24 @@ const DELETE_ORDER = gql`
 `;
 
 const Secret = () => {
+	const [theme, setTheme] = useState('light');
+
+	const loadingSequence = () => {
+		document.body.className = (localStorage.getItem('adminBodyTheme') || 'bp3-body');
+		setTheme(localStorage.getItem('adminTheme') || 'light');
+	};
+
+	useEffect(() => {
+		loadingSequence();
+	}, []);
+
+	const changeTheme = async () => {
+		await localStorage.setItem('adminTheme', theme === 'light' || undefined ? 'dark' : 'light');
+		await localStorage.setItem('adminBodyTheme', theme === 'light' || undefined ? 'bp3-dark' : 'bp3-body');
+		document.body.className = (localStorage.getItem('adminBodyTheme'));
+		setTheme(localStorage.getItem('adminTheme'));
+	};
+
 	const completeOrder = async () => {
 		const AppToaster = await Toaster.create({
 			position: Position.BOTTOM_RIGHT
@@ -91,101 +104,89 @@ const Secret = () => {
 	};
 
 	return (
-		<ApolloProvider client={client}>
-			<div className="container">
-				<h1>Welcome to Admin Dashboard</h1>
+		<ThemeProvider theme={{mode: theme}}>
+			<ApolloProvider client={client}>
+				<div className="container">
+					<h1 className="bp3-heading">Welcome to Dashboard!</h1>
+					<br/>
 
-				<p>✔️ You are logged in, click <a href="/logout">here</a> to logout.</p>
-				<br/>
-				<br/>
-				<Query query={GET_ORDERS}>
-					{({loading, error, data}) => {
-						if (loading) {
-							return <Spinner/>;
-						}
-
-						if (error) {
-							return <p>{error.toString()}</p>;
-						}
-
-						/* eslint-disable no-prototype-builtins */
-						function isEmpty(obj) {
-							for (const key in obj) {
-								if (obj.hasOwnProperty(key)) {
-									return false;
-								}
+					<p><Icon intent="success" icon="tick-circle" iconSize={18}/> You are logged in, click <a href="/logout">here</a> to logout.</p>
+					<br/>
+					<Switch className="switch" checked={!(theme === 'light' || undefined)} label="Dark Mode" onChange={changeTheme}/>
+					<br/>
+					<br/>
+					<Query query={GET_ORDERS}>
+						{({loading, error, data}) => {
+							if (loading) {
+								return <Spinner/>;
 							}
 
-							return true;
-						}
-						/* eslint-enable no-prototype-builtins */
+							if (error) {
+								return <p>{error.toString()}</p>;
+							}
 
-						if (isEmpty(data.orders)) {
-							return <p>No orders found!</p>;
-						}
+							/* eslint-disable no-prototype-builtins */
+							function isEmpty(obj) {
+								for (const key in obj) {
+									if (obj.hasOwnProperty(key)) {
+										return false;
+									}
+								}
 
-						return (
-							<div>
-								{data.orders.reverse().map(el => (
-									<Card className="half-width" key={el.id}>
-										<h2>Order id. <strong>{el.id}</strong></h2>
-										<br/>
-										<table className="bp3-html-table .bp3-interactive .bp3-html-table-bordered">
-											<thead>
-												<tr>
-													<th>Type</th>
-													<th>Size</th>
-													<th>Dough</th>
-													<th>Name</th>
-													<th>Phone</th>
-													<th>City</th>
-													<th>Street</th>
-													<th>Time</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>{el.type}</td>
-													<td>{el.size}</td>
-													<td>{el.dough}</td>
-													<td>{el.name}</td>
-													<td>{el.phone}</td>
-													<td>{el.city}</td>
-													<td>{el.street}</td>
-													<td>{el.time}</td>
-												</tr>
-											</tbody>
-										</table>
-										<Mutation
-											mutation={DELETE_ORDER}
-										>
-											{(deleteOrder, {loading, error}) => (
-												<div>
-													<Button
-														icon="trash"
-														data-order-id={el.id}
-														onClick={e => {
-															const orderID = e.currentTarget.attributes['data-order-id'].value;
-															deleteOrder({variables: {id: orderID}});
-															completeOrder();
-														}}
-													>
+								return true;
+							}
+							/* eslint-enable no-prototype-builtins */
+
+							if (isEmpty(data.orders)) {
+								return <p>No orders found!</p>;
+							}
+
+							return (
+								<div>
+									{data.orders.reverse().map(el => (
+										<Callout title={'Order id. ' + el.id} icon="flag" className="half-width" key={el.id}>
+											<ul>
+												<li>Type: <strong>{el.type}</strong></li>
+												<li>Size: <strong>{el.size}</strong></li>
+												<li>Dough: <strong>{el.dough}</strong></li>
+												<li>Name: <strong>{el.name}</strong></li>
+												<li>Phone: <strong>{el.phone}</strong></li>
+												<li>City: <strong>{el.city}</strong></li>
+												<li>Street: <strong>{el.street}</strong></li>
+												<li>Time: <strong>{el.time}</strong></li>
+											</ul>
+											<Mutation
+												mutation={DELETE_ORDER}
+											>
+												{(deleteOrder, {loading, error}) => (
+													<div>
+														<Button
+															icon="trash"
+															intent="danger"
+															data-order-id={el.id}
+															onClick={e => {
+																const orderID = e.currentTarget.attributes['data-order-id'].value;
+																deleteOrder({variables: {id: orderID}});
+																completeOrder();
+															}}
+														>
 												Delete
-													</Button>
-													{loading && <p>Loading...</p>}
-													{error && <p>Error :( Please try again</p>}
-												</div>
-											)}
-										</Mutation>
-									</Card>
-								))}
-							</div>
-						);
-					}}
-				</Query>
-				<GlobalStyle/>
-			</div>
-		</ApolloProvider>
+														</Button>
+														{loading && <p>Loading...</p>}
+														{error && <p>Error :( Please try again</p>}
+													</div>
+												)}
+											</Mutation>
+										</Callout>
+									))}
+								</div>
+							);
+						}}
+					</Query>
+					<GlobalStyle/>
+				</div>
+			</ApolloProvider>
+		</ThemeProvider>
 	);
 };
 
