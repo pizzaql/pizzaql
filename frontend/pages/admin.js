@@ -151,6 +151,16 @@ const Secret = () => {
 										</ul>
 										<Mutation
 											mutation={DELETE_ORDER}
+											update={(cache, {data: {deleteOrder}}) => {
+												const {orders} = cache.readQuery({query: GET_ORDERS});
+
+												const result = orders.filter(el => (deleteOrder.id.indexOf(el.id) === -1));
+
+												cache.writeQuery({
+													query: GET_ORDERS,
+													data: {orders: result}
+												});
+											}}
 										>
 											{(deleteOrder, {loading, error}) => (
 												<div>
