@@ -28,7 +28,6 @@
   "xo": "*"
  },
  "dependencies": {
-  "@babel/polyfill": "^7.2.5",
   "@blueprintjs/core": "^3.14.0",
   "@zeit/next-css": "^1.0.1",
   "apollo-boost": "^0.3.1",
