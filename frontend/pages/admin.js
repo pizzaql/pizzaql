@@ -42,6 +42,7 @@ body {
 }
 `;
 
+// Query to get a list of orders
 const GET_ORDERS = gql`
 query {
 		orders {
@@ -58,6 +59,7 @@ query {
 }
 `;
 
+// Mutation to delete an order using it's id
 const DELETE_ORDER = gql`
   mutation DeleteOrder($id: ID!) {
     deleteOrder(where: {id: $id}) {
