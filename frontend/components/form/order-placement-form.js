@@ -56,25 +56,23 @@ const OrderPlacementForm = () => {
 				setTimeout(async () => {
 					// Form a GraphQL mutation to create a new order
 					const query = `
-            mutation {
-                createOrder(
-                    data: {
-                        type: "${values.type}"
-                        size: "${values.size}"
-                        dough: "${values.dough}"
-                        name: "${values.name}"
-                        phone: "${values.phone}"
-                        time: "${values.time}"
-                        city: "${values.city}"
-                        street: "${values.street}"
-                    }
-                ) {
-                    id
-                }
-            }`;
+						mutation {
+							createOrder(
+								type: "${values.type}"
+								size: "${values.size}"
+								dough: "${values.dough}"
+								name: "${values.name}"
+								phone: "${values.phone}"
+								time: "${values.time}"
+								city: "${values.city}"
+								street: "${values.street}"
+							) {
+								id
+							}
+						}`;
 					await setSubmitting(false);
 					// Post a mutation to Prisma and obtain an ID
-					await request('http://localhost:4466', query).then(data => {
+					await request('http://localhost:4000', query).then(data => {
 						const orderID = JSON.stringify(data.createOrder.id);
 						// Move user to the thank you page
 						Router.push({

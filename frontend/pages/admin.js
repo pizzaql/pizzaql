@@ -62,7 +62,7 @@ query {
 // Mutation to delete an order using it's id
 const DELETE_ORDER = gql`
   mutation DeleteOrder($id: ID!) {
-    deleteOrder(where: {id: $id}) {
+    deleteOrder(id: $id) {
       id
     }
   }
