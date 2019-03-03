@@ -1,0 +1,19 @@
+{
+  "name": "pizzaql-backend",
+  "version": "1.0.0",
+  "description": "Backend for PizzaQL",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "xo"
+  },
+  "author": "Antoni Kepinski <a@kepinski.me> (https://kepinski.me)",
+  "license": "MIT",
+  "dependencies": {
+    "graphql-yoga": "1.17.4",
+    "prisma-binding": "2.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
