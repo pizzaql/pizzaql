@@ -119,19 +119,7 @@ const Secret = () => {
 							return <p>{error.toString()}</p>;
 						}
 
-						/* eslint-disable no-prototype-builtins */
-						function isEmpty(obj) {
-							for (const key in obj) {
-								if (obj.hasOwnProperty(key)) {
-									return false;
-								}
-							}
-
-							return true;
-						}
-						/* eslint-enable no-prototype-builtins */
-
-						if (isEmpty(data.orders)) {
+						if (Object.keys(data.orders).length === 0) {
 							return <p>No orders found!</p>;
 						}
 
