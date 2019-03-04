@@ -78,7 +78,7 @@ const Secret = () => {
 
 	useEffect(() => {
 		loadingSequence();
-	}, []);
+	}, [loadingSequence]);
 
 	const changeTheme = async () => {
 		await localStorage.setItem('adminTheme', theme === 'light' || undefined ? 'dark' : 'light');
