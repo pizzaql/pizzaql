@@ -24,12 +24,18 @@ const OrderSchema = Yup.object().shape({
 		.required('Required!'),
 	name: Yup.string()
 		.min(2, 'Too Short!')
-		.max(75, 'Too Long!')
+		.max(50, 'Too Long!')
 		// Regex for checking full name, https://stackoverflow.com/a/45871742
 		.matches(/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/, 'Invalid name!'),
 	phone: Yup.string()
 		// Regular expression for checking Polish phone numbers, https://github.com/skotniczny/phonePL
-		.matches(/^(?:(?:(?:\+|00)?48)|(?:\(\+?48\)))?(?:1[2-8]|2[2-69]|3[2-49]|4[1-68]|5\d|6[0-35-9]|[7-8][1-9]|9[145])\d{7}$/, 'Invalid phone number!')
+		.matches(/^(?:(?:(?:\+|00)?48)|(?:\(\+?48\)))?(?:1[2-8]|2[2-69]|3[2-49]|4[1-68]|5\d|6[0-35-9]|[7-8][1-9]|9[145])\d{7}$/, 'Invalid phone number!'),
+	city: Yup.string()
+		.min(2, 'Too Short!')
+		.max(50, 'Too Long!'),
+	street: Yup.string()
+		.min(2, 'Too Short!')
+		.max(50, 'Too Long!')
 });
 
 const OrderPlacementForm = () => {
