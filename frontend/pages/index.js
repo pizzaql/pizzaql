@@ -51,7 +51,7 @@ const Index = () => {
 
 	useEffect(() => {
 		loadingSequence();
-	}, []);
+	}, [loadingSequence]);
 
 	const changeTheme = async () => {
 		await localStorage.setItem('theme', theme === 'light' || undefined ? 'dark' : 'light');
