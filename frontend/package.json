@@ -35,7 +35,7 @@
   "auth0-js": "^9.10.0",
   "core-js": "^2.6.5",
   "dayjs": "^1.8.9",
-  "formik": "^2.0.0",
+  "formik": "^1.5.1",
   "formik-persist": "^1.1.0",
   "graphql": "^14.1.1",
   "graphql-request": "^1.8.2",
