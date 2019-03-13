@@ -34,7 +34,7 @@
   "apollo-boost": "^0.3.1",
   "auth0-js": "^9.10.0",
   "core-js": "^2.6.5",
-  "dayjs": "^1.8.9",
+  "dayjs": "^1.8.10",
   "formik": "^1.5.1",
   "formik-persist": "^1.1.0",
   "graphql": "^14.1.1",
