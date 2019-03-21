@@ -27,7 +27,7 @@ const parseHash = cb => {
 };
 
 const logout = () => {
-	return webAuth(clientID, domain).logout();
+	return webAuth(clientID, domain).logout({returnTo: 'http://localhost:3000'});
 };
 
 export {
