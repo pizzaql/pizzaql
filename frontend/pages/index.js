@@ -43,15 +43,11 @@ const Index = () => {
 	const [theme, setTheme] = useState('light');
 	const [skeleton, setSkeleton] = useState('bp3-skeleton');
 
-	const loadingSequence = () => {
+	useEffect(() => {
 		document.body.className = (localStorage.getItem('bodyTheme') || 'bp3-body');
 		setTheme(localStorage.getItem('theme') || 'light');
 		setSkeleton('');
-	};
-
-	useEffect(() => {
-		loadingSequence();
-	}, [loadingSequence]);
+	}, []);
 
 	const changeTheme = async () => {
 		await localStorage.setItem('theme', theme === 'light' || undefined ? 'dark' : 'light');

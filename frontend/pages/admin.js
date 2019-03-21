@@ -71,14 +71,10 @@ const DELETE_ORDER = gql`
 const Secret = () => {
 	const [theme, setTheme] = useState('light');
 
-	const loadingSequence = () => {
+	useEffect(() => {
 		document.body.className = (localStorage.getItem('adminBodyTheme') || 'bp3-body');
 		setTheme(localStorage.getItem('adminTheme') || 'light');
-	};
-
-	useEffect(() => {
-		loadingSequence();
-	}, [loadingSequence]);
+	}, []);
 
 	const changeTheme = async () => {
 		await localStorage.setItem('adminTheme', theme === 'light' || undefined ? 'dark' : 'light');
