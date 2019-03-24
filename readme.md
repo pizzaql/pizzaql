@@ -1,7 +1,5 @@
 <p align="left"><img src="logo/horizontal.png" alt="pizzaql" height="120px"></p>
 
-# PizzaQL :pizza:
-
 > Modern OSS Order Management System for Pizza Restaurants.
 
 [![Build Status](https://travis-ci.org/pizzaql/pizzaql.svg?branch=master)](https://travis-ci.org/pizzaql/pizzaql)
