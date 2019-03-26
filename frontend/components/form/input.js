@@ -23,7 +23,7 @@ const Input = styled(Wrapper)`
 `;
 
 Input.propTypes = {
-	className: PropTypes.string.isRequired,
+	className: PropTypes.string,
 	label: PropTypes.string,
 	type: PropTypes.string,
 	name: PropTypes.string,
