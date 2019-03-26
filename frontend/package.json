@@ -76,6 +76,7 @@
   "rules": {
    "import/no-unassigned-import": "off",
    "import/no-named-as-default": "off",
+   "import/no-unresolved": "off",
    "unicorn/filename-case": "off",
    "react/jsx-sort-props": "off",
    "react/prop-types": "off"
