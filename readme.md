@@ -47,7 +47,7 @@ Note: The following instructions are for developers. Setup instructions for begi
   * [x] Creating orders
     * [ ] Rewrite to Apollo Client and get rid of graphql-request
 * [x] Better delivery time selection
-* [ ] Lock order placement system between specific hours
+* [x] Lock order placement system between specific hours
 
 **Order Management System**
 
@@ -57,6 +57,7 @@ Note: The following instructions are for developers. Setup instructions for begi
   * [x] Listing orders
     * [ ] Rewrite to GraphQL Subscriptions (work in progress, requires custom resolver)
   * [x] Ability to delete orders
+  * [ ] Ability to manually add orders
   * [ ] Production-ready Frontend (styles etc.)
 * [x]  Working Backend
 
@@ -71,6 +72,7 @@ Note: The following instructions are for developers. Setup instructions for begi
 * [x] Testing with Cypress.io
 * [x] Move from Prisma Cloud to Docker
 * [x] Use GraphQL Yoga server
+* [ ] Integration with Algolia Places API (?)
 * [ ] Documentation
 * [ ] Paid support (?)
 
