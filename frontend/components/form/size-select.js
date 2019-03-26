@@ -25,7 +25,7 @@ const SizeSelect = styled(Wrapper)`
 `;
 
 SizeSelect.propTypes = {
-	className: PropTypes.string.isRequired
+	className: PropTypes.string
 };
 
 export default SizeSelect;

@@ -23,7 +23,7 @@ const DoughSelect = styled(Wrapper)`
 `;
 
 DoughSelect.propTypes = {
-	className: PropTypes.string.isRequired
+	className: PropTypes.string
 };
 
 export default DoughSelect;

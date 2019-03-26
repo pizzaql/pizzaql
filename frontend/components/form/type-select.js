@@ -33,7 +33,7 @@ const TypeSelect = styled(Wrapper)`
 `;
 
 TypeSelect.propTypes = {
-	className: PropTypes.string.isRequired
+	className: PropTypes.string
 };
 
 export default TypeSelect;
