@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import Router from 'next/router';
 import {Formik, Form} from 'formik';
 import {Persist} from 'formik-persist';
@@ -39,12 +39,6 @@ const OrderSchema = Yup.object().shape({
 });
 
 const OrderPlacementForm = () => {
-	const [skeleton, setSkeleton] = useState('bp3-skeleton');
-
-	useEffect(() => {
-		setSkeleton('');
-	}, []);
-
 	return (
 		<Formik
 			initialValues={{
@@ -97,21 +91,21 @@ const OrderPlacementForm = () => {
 			{({isSubmitting}) => (
 				<Form>
 					<SelectGroup>
-						<TypeSelect className={skeleton}/>
-						<SizeSelect className={skeleton}/>
-						<DoughSelect className={skeleton}/>
+						<TypeSelect/>
+						<SizeSelect/>
+						<DoughSelect/>
 					</SelectGroup>
 					<br/>
 					<br/>
-					<Input className={skeleton} label="Full Name:" type="text" name="name" placeholder="Mark Suckerberg" required/>
-					<Input className={skeleton} label="Phone:" type="tel" name="phone" placeholder="666666666" required/>
-					<Input className={skeleton} label="City:" type="text" name="city" placeholder="Menlo Park" required/>
-					<Input className={skeleton} label="Address:" type="text" name="street" placeholder="1 Hacker Way" required/>
+					<Input label="Full Name:" type="text" name="name" placeholder="Mark Suckerberg" required/>
+					<Input label="Phone:" type="tel" name="phone" placeholder="666666666" required/>
+					<Input label="Address:" type="text" name="street" placeholder="1 Hacker Way" required/>
+					<Input label="City:" type="text" name="city" placeholder="Menlo Park" required/>
 					<br/>
-					<TimeSelect className={skeleton}/>
+					<TimeSelect/>
 					<br/>
 					<br/>
-					<Submit className={skeleton} loading={isSubmitting} disabled={isSubmitting}/>
+					<Submit loading={isSubmitting} disabled={isSubmitting}/>
 					<Persist name="order-placement-form"/>
 				</Form>
 			)}
