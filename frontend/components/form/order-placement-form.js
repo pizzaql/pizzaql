@@ -77,7 +77,7 @@ const OrderPlacementForm = () => {
 						// Move user to the thank you page
 						Router.push({
 							pathname: '/order',
-							query: {id: orderID}
+							query: {id: orderID, time: JSON.stringify(values.time).replace(/:/g, '')}
 						});
 					}).catch(error => {
 						console.log(error);
