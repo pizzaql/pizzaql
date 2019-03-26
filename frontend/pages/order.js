@@ -45,19 +45,17 @@ h2 {
 `;
 
 class Index extends React.Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			theme: 'light',
-			copySuccess: ''
-		};
-	}
+	state = {
+		theme: 'light',
+		loaded: false,
+		copySuccess: ''
+	};
 
 	// Get order id from query
-	static async getInitialProps({query: {id}}) {
+	static async getInitialProps({query: {id, time}}) {
 		return {
-			id
+			id,
+			time
 		};
 	}
 
@@ -65,6 +63,8 @@ class Index extends React.Component {
 		if (document.body.className === 'bp3-dark') {
 			this.setState({theme: 'dark'});
 		}
+
+		this.setState({loaded: true});
 	}
 
 	copyToClipboard = () => {
@@ -74,17 +74,18 @@ class Index extends React.Component {
 	};
 
 	render() {
+		if (this.state.loaded === false) {
+			return null;
+		}
+
 		if (this.props.id === '' || this.props.id === '""') {
-			return (
-				<p>Order not found!</p>
-			);
+			return <p>Order not found!</p>;
 		}
 
 		return (
 			<ThemeProvider theme={{mode: this.state.theme}}>
 				<Card elevation={Elevation.FOUR}>
 					<h1 className="thanks">Thank you!</h1>
-					<br/>
 					<br/>
 					<p>This is your order id:</p>
 					<br/>
