@@ -1,4 +1,4 @@
-<img src="logo/horizontal.png" alt="pizzaql" width="359" height="95">
+# [![PizzaQL](logo/horizontal-scaled.png)](https://github.com/pizzaql/pizzaql)
 
 > Modern OSS Order Management System for Pizza Restaurants.
 
