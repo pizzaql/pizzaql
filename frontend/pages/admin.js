@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {createGlobalStyle, ThemeProvider} from 'styled-components';
 import theme from 'styled-theming';
-import 'core-js/modules/es6.regexp.to-string';
 
 import {Button, Callout, Icon, Position, Toaster, Spinner, Switch} from '@blueprintjs/core';
 import gql from 'graphql-tag';
@@ -137,8 +136,8 @@ const Secret = () => {
 											<li>Dough: <strong>{el.dough}</strong></li>
 											<li>Name: <strong>{el.name}</strong></li>
 											<li>Phone: <strong>{el.phone}</strong></li>
-											<li>City: <strong>{el.city}</strong></li>
 											<li>Street: <strong>{el.street}</strong></li>
+											<li>City: <strong>{el.city}</strong></li>
 											<li>Time: <strong>{el.time}</strong></li>
 										</ul>
 										<Mutation
