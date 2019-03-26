@@ -1,4 +1,4 @@
-<p align="left"><img src="logo/horizontal.png" alt="pizzaql" height="120px"></p>
+<img src="logo/horizontal.png" alt="pizzaql" height="128px">
 
 > Modern OSS Order Management System for Pizza Restaurants.
 
