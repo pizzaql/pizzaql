@@ -1,9 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import {FastField} from 'formik';
-import dayjs from 'dayjs';
 import {Label} from '@blueprintjs/core';
 import PropTypes from 'prop-types';
+
+const now = new Date();
+
+const firstHour = (now.getHours() + 1) + ':' + now.getMinutes();
+const secondHour = (now.getHours() + 2) + ':' + now.getMinutes();
 
 const Wrapper = ({className}) => (
 	<Label className={className}>
@@ -12,8 +16,8 @@ const Wrapper = ({className}) => (
 			<FastField name="time" component="select" placeholder="Time">
 				<option>Select</option>
 				<option value="ASAP">As fast as possible</option>
-				<option>{dayjs().startOf('minutes').add(2, 'hour').format('HH:mm')}</option>
-				<option>{dayjs().startOf('minutes').add(3, 'hour').format('HH:mm')}</option>
+				<option>{firstHour}</option>
+				<option>{secondHour}</option>
 			</FastField>
 		</div>
 	</Label>
@@ -24,7 +28,7 @@ const TimeSelect = styled(Wrapper)`
 `;
 
 TimeSelect.propTypes = {
-	className: PropTypes.string.isRequired
+	className: PropTypes.string
 };
 
 export default TimeSelect;
