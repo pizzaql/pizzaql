@@ -70,10 +70,12 @@ const DELETE_ORDER = gql`
 
 const Secret = () => {
 	const [theme, setTheme] = useState('light');
+	const [loaded, setLoaded] = useState(false);
 
 	useEffect(() => {
 		document.body.className = (localStorage.getItem('adminBodyTheme') || 'bp3-body');
 		setTheme(localStorage.getItem('adminTheme') || 'light');
+		setLoaded(true);
 	}, []);
 
 	const changeTheme = async () => {
@@ -95,6 +97,10 @@ const Secret = () => {
 			timeout: 3000
 		});
 	};
+
+	if (loaded === false) {
+		return null;
+	}
 
 	return (
 		<ThemeProvider theme={{mode: theme}}>
