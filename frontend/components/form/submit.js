@@ -22,7 +22,7 @@ const Submit = styled(Wrapper)`
 `;
 
 Submit.propTypes = {
-	className: PropTypes.string.isRequired,
+	className: PropTypes.string,
 	loading: PropTypes.bool.isRequired,
 	disabled: PropTypes.bool.isRequired
 };
