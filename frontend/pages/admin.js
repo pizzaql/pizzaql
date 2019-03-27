@@ -84,15 +84,24 @@ const Secret = () => {
 		setTheme(localStorage.getItem('adminTheme'));
 	};
 
-	const completeOrder = async () => {
+	const completeOrder = async error => {
 		const AppToaster = await Toaster.create({
 			position: Position.BOTTOM_RIGHT
 		});
 
+		if (error) {
+			AppToaster.show({
+				message: 'Something went wrong!',
+				intent: 'danger',
+				icon: 'trash',
+				timeout: 3000
+			});
+		}
+
 		AppToaster.show({
 			message: 'Order deleted!',
-			intent: 'danger',
-			icon: 'trash',
+			intent: 'success',
+			icon: 'tick',
 			timeout: 3000
 		});
 	};
@@ -163,7 +172,7 @@ const Secret = () => {
 														onClick={e => {
 															const orderID = e.currentTarget.attributes['data-order-id'].value;
 															deleteOrder({variables: {id: orderID}});
-															completeOrder();
+															completeOrder(error);
 														}}
 													>
 												Delete
