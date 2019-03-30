@@ -2,8 +2,7 @@ const presets = [
 	['@babel/preset-env', {
 		targets: {
 			esmodules: true
-		},
-		useBuiltIns: 'usage'
+		}
 	}],
 	['next/babel']
 ];
