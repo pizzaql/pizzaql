@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {createGlobalStyle, ThemeProvider} from 'styled-components';
 import theme from 'styled-theming';
-
 import {Button, Callout, Icon, Position, Toaster, Spinner, Switch} from '@blueprintjs/core';
 import gql from 'graphql-tag';
 import {Query, Mutation} from 'react-apollo';
+
 import secureTemplate from '../static/secure-template';
 
 const background = theme('mode', {
