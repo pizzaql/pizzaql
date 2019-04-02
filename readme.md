@@ -24,6 +24,8 @@ More information coming soon. Please note that this project is currently **work 
 ![Admin Dashboard (Light)](media/screenshots/dashboard-light.png)
 ![Admin Dashboard (Dark)](media/screenshots/dashboard-dark.png)
 
+[See more screenshots](https://github.com/pizzaql/pizzaql/tree/master/media/screenshots)
+
 ## TODO
 
 **Order Placement System**
