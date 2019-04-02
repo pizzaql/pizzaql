@@ -1,4 +1,4 @@
-# [![PizzaQL](logo/horizontal-scaled.png)](https://github.com/pizzaql/pizzaql)
+# [![PizzaQL](media/logo/horizontal-scaled.png)](https://github.com/pizzaql/pizzaql)
 
 > Modern OSS Order Management System for Pizza Restaurants.
 
@@ -16,6 +16,13 @@ More information coming soon. Please note that this project is currently **work 
 ## Docs
 
 [Here :zap:](https://pizzaql.now.sh)
+
+## Screenshots
+
+[Order Placement Form (Light)](media/screenshots/light.png)
+[Order Placement Form (Dark)](media/screenshots/dark.png)
+[Admin Dashboard (Light)](media/screenshots/dashboard-light.png)
+[Admin Dashboard (Dark)](media/screenshots/dashboard-dark.png)
 
 ## TODO
 
