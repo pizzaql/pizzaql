@@ -62,7 +62,7 @@ More information coming soon. Please note that this project is currently **work 
 * [x] Use GraphQL Yoga server
 * [ ] Integration with Algolia Places API (?)
 * [x] Documentation (not fully done)
-* [ ] Paid support (?)
+* [ ] Release a public demo
 
 (?) - unsure.
 
