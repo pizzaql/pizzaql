@@ -44,7 +44,7 @@ More information coming soon. Please note that this project is currently **work 
   * [x] Full security with Auth0
 * [x]  Basic Frontend
   * [x] Listing orders
-    * [ ] Rewrite to GraphQL Subscriptions (work in progress, requires custom resolver)
+    * [ ] **Rewrite to GraphQL Subscriptions (work in progress, requires custom resolver)**
   * [x] Ability to delete orders
   * [ ] Ability to manually add orders
   * [ ] Production-ready Frontend (styles etc.)
@@ -52,9 +52,8 @@ More information coming soon. Please note that this project is currently **work 
 
 **Project Page**
 
-* [ ] Home page
-* [ ] About page
-* [ ] Other pages (like contact form)
+* [x] Home page
+* [x] About page
 
 **Other**
 
@@ -62,7 +61,7 @@ More information coming soon. Please note that this project is currently **work 
 * [x] Move from Prisma Cloud to Docker
 * [x] Use GraphQL Yoga server
 * [ ] Integration with Algolia Places API (?)
-* [ ] Documentation
+* [x] Documentation (not fully done)
 * [ ] Paid support (?)
 
 (?) - unsure.
