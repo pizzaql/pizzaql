@@ -19,10 +19,10 @@ More information coming soon. Please note that this project is currently **work 
 
 ## Screenshots
 
-[Order Placement Form (Light)](media/screenshots/light.png)
-[Order Placement Form (Dark)](media/screenshots/dark.png)
-[Admin Dashboard (Light)](media/screenshots/dashboard-light.png)
-[Admin Dashboard (Dark)](media/screenshots/dashboard-dark.png)
+![Order Placement Form (Light)](media/screenshots/light.png)
+![Order Placement Form (Dark)](media/screenshots/dark.png)
+![Admin Dashboard (Light)](media/screenshots/dashboard-light.png)
+![Admin Dashboard (Dark)](media/screenshots/dashboard-dark.png)
 
 ## TODO
 
