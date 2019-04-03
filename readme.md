@@ -7,9 +7,14 @@
 [![style: styled-components](https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e)](https://github.com/styled-components/styled-components)
 [![Cypress.io tests](https://img.shields.io/badge/cypress.io-tests-green.svg)](https://cypress.io)
 
-<a href="https://www.patreon.com/akepinski">
-	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
-</a>
+<p align="left">
+  <a href="https://opencollective.com/pizzaql" target="_blank">
+    <img src="https://cdn-std.dprcdn.net/files/acc_649651/Q5nVhT" height="80" alt="Open Collective">
+  </a>
+  <a href="https://www.patreon.com/akepinski" target="_blank">
+    <img src="https://cdn-std.dprcdn.net/files/acc_649651/plrSCT" height="80" alt="Patreon">
+  </a>
+</p>
 
 ## Goal
 
