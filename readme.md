@@ -7,6 +7,15 @@
 [![style: styled-components](https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e)](https://github.com/styled-components/styled-components)
 [![Cypress.io tests](https://img.shields.io/badge/cypress.io-tests-green.svg)](https://cypress.io)
 
+<p align="left">
+  <a href="https://opencollective.com/pizzaql" target="_blank">
+    <img src="https://cdn-std.dprcdn.net/files/acc_649651/Q5nVhT" height="80" alt="Open Collective">
+  </a>
+  <a href="https://www.patreon.com/akepinski" target="_blank">
+    <img src="https://cdn-std.dprcdn.net/files/acc_649651/plrSCT" height="80" alt="Patreon">
+  </a>
+</p>
+
 ## Goal
 
 The goal of this project is to provide a modern and easy to use order management system with order placement form as well. You can track progress in our TODO list :smile: 
@@ -44,7 +53,7 @@ More information coming soon. Please note that this project is currently **work 
   * [x] Full security with Auth0
 * [x]  Basic Frontend
   * [x] Listing orders
-    * [ ] Rewrite to GraphQL Subscriptions (work in progress, requires custom resolver)
+    * [ ] **Rewrite to GraphQL Subscriptions (work in progress, requires custom resolver)**
   * [x] Ability to delete orders
   * [ ] Ability to manually add orders
   * [ ] Production-ready Frontend (styles etc.)
@@ -52,9 +61,8 @@ More information coming soon. Please note that this project is currently **work 
 
 **Project Page**
 
-* [ ] Home page
-* [ ] About page
-* [ ] Other pages (like contact form)
+* [x] Home page
+* [x] About page
 
 **Other**
 
@@ -62,8 +70,8 @@ More information coming soon. Please note that this project is currently **work 
 * [x] Move from Prisma Cloud to Docker
 * [x] Use GraphQL Yoga server
 * [ ] Integration with Algolia Places API (?)
-* [ ] Documentation
-* [ ] Paid support (?)
+* [x] Documentation (not fully done)
+* [ ] Release a public demo
 
 (?) - unsure.
 
