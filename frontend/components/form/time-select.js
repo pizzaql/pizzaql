@@ -8,7 +8,15 @@ const now = new Date();
 
 const firstHour = () => {
 	if (now.getHours() === 23) {
+		if (now.getMinutes() <= 9) {
+			return `00:0${now.getMinutes()}`;
+		}
+
 		return `00:${now.getMinutes()}`;
+	}
+
+	if (now.getMinutes() <= 9) {
+		return `${now.getHours() + 1}:0${now.getMinutes()}`;
 	}
 
 	return `${now.getHours() + 1}:${now.getMinutes()}`;
@@ -16,11 +24,23 @@ const firstHour = () => {
 
 const secondHour = () => {
 	if (now.getHours() === 22) {
+		if (now.getMinutes() <= 9) {
+			return `00:0${now.getMinutes()}`;
+		}
+
 		return `00:${now.getMinutes()}`;
 	}
 
 	if (now.getHours() === 23) {
+		if (now.getMinutes() <= 9) {
+			return `01:0${now.getMinutes()}`;
+		}
+
 		return `01:${now.getMinutes()}`;
+	}
+
+	if (now.getMinutes() <= 9) {
+		return `${now.getHours() + 2}:0${now.getMinutes()}`;
 	}
 
 	return (now.getHours() + 2) + ':' + now.getMinutes();
