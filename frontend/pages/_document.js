@@ -54,7 +54,7 @@ export default class MyDocument extends Document {
 							font-family: 'Montserrat';
 							font-style: normal;
 							font-weight: 400;
-							font-display: swap;
+							font-display: fallback;
 							src: local('Montserrat Regular'), local('Montserrat-Regular'),
 								url('static/fonts/montserrat-v12-latin-ext-regular.woff2') format('woff2'),
 								url('static/fonts/montserrat-v12-latin-ext-regular.woff') format('woff');
