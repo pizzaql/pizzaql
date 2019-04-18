@@ -138,7 +138,7 @@ const Secret = () => {
 						return (
 							<div>
 								{data.orders.reverse().map(el => (
-									<Callout title={'Order id. ' + el.id} icon="flag" className="half-width" key={el.id}>
+									<Callout title={'Order id. ' + el.id.slice(-3)} icon="flag" className="half-width" key={el.id}>
 										<ul>
 											<li>Type: <strong>{el.type}</strong></li>
 											<li>Size: <strong>{el.size}</strong></li>
