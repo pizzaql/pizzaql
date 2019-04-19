@@ -163,7 +163,13 @@ const Secret = () => {
 						return (
 							<div>
 								{data.orders.reverse().map(el => (
-									<Callout title={`Order id. ${el.id.slice(-3)} || Status: ${el.status}`} intent={el.status === 'completed' ? 'success' : ''} icon={el.status === 'completed' ? 'tick' : 'flag'} className="half-width" key={el.id}>
+									<Callout
+										title={`Order id. ${el.id.slice(-3)} || Status: ${el.status}`}
+										intent={el.status === 'completed' ? 'success' : ''}
+										icon={el.status === 'completed' ? 'tick' : 'flag'}
+										className="half-width"
+										key={el.id}
+									>
 										<ul>
 											<li>Type: <strong>{el.type}</strong></li>
 											<li>Size: <strong>{el.size}</strong></li>
