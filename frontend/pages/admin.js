@@ -25,7 +25,7 @@ body {
 		padding-right: 40px;
 		word-wrap: break-word;
     -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeSpeed 
+    text-rendering: optimizeSpeed;
 }
 
 .half-width {
@@ -33,11 +33,22 @@ body {
     word-wrap: break-word;
 }
 
+.complete {
+	margin-right: 5px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+		justify-content: flex-start;
+    text-align: right;
+}
+
 .inline {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    text-align: right 
+    text-align: right;
 }
 `;
 
@@ -46,6 +57,7 @@ const GET_ORDERS = gql`
 query {
 		orders {
 		id
+		status
 		size
 		dough
 		type
@@ -56,6 +68,19 @@ query {
 		street
 		}
 }
+`;
+
+// Mutation to update order status
+const CHANGE_ORDER_STATUS = gql`	
+	mutation UpdateOrder($status: String!, $id: ID!) {
+		updateOrder(
+			status: $status
+			id: $id
+		) {
+			status
+			id
+		}
+	}
 `;
 
 // Mutation to delete an order using it's id
@@ -84,7 +109,7 @@ const Secret = () => {
 		setTheme(localStorage.getItem('adminTheme'));
 	};
 
-	const completeOrder = async error => {
+	const showToaster = async (message, error) => {
 		const AppToaster = await Toaster.create({
 			position: Position.BOTTOM_RIGHT
 		});
@@ -92,14 +117,14 @@ const Secret = () => {
 		if (error) {
 			AppToaster.show({
 				message: 'Something went wrong!',
-				intent: 'danger',
+				intent: 'error',
 				icon: 'trash',
 				timeout: 3000
 			});
 		}
 
 		AppToaster.show({
-			message: 'Order deleted!',
+			message,
 			intent: 'success',
 			icon: 'tick',
 			timeout: 3000
@@ -138,7 +163,7 @@ const Secret = () => {
 						return (
 							<div>
 								{data.orders.reverse().map(el => (
-									<Callout title={'Order id. ' + el.id.slice(-3)} icon="flag" className="half-width" key={el.id}>
+									<Callout title={`Order id. ${el.id.slice(-3)} || Status: ${el.status}`} intent={el.status === 'completed' ? 'success' : ''} icon={el.status === 'completed' ? 'tick' : 'flag'} className="half-width" key={el.id}>
 										<ul>
 											<li>Type: <strong>{el.type}</strong></li>
 											<li>Size: <strong>{el.size}</strong></li>
@@ -149,39 +174,66 @@ const Secret = () => {
 											<li>City: <strong>{el.city}</strong></li>
 											<li>Time: <strong>{el.time}</strong></li>
 										</ul>
-										<Mutation
-											mutation={DELETE_ORDER}
-											update={(cache, {data: {deleteOrder}}) => {
-												const {orders} = cache.readQuery({query: GET_ORDERS});
+										<div className="buttons">
+											<Mutation
+												mutation={CHANGE_ORDER_STATUS}
+											>
+												{(updateOrder, {loading, error}) => (
+													<div>
+														<Button
+															className="complete"
+															icon="tick"
+															intent="primary"
+															disabled={el.status === 'completed'}
+															key={el.id}
+															data-order-id={el.id}
+															onClick={e => {
+																const orderID = e.currentTarget.attributes['data-order-id'].value;
+																updateOrder({variables: {status: 'completed', id: orderID}});
+																showToaster('Status changed!', error);
+															}}
+														>
+												Complete
+														</Button>
+														{loading && <p>Loading...</p>}
+														{error && <p>Error :( Please try again</p>}
+													</div>
+												)}
+											</Mutation>
+											<Mutation
+												mutation={DELETE_ORDER}
+												update={(cache, {data: {deleteOrder}}) => {
+													const {orders} = cache.readQuery({query: GET_ORDERS});
 
-												const result = orders.filter(el => (deleteOrder.id.indexOf(el.id) === -1));
+													const result = orders.filter(el => (deleteOrder.id.indexOf(el.id) === -1));
 
-												cache.writeQuery({
-													query: GET_ORDERS,
-													data: {orders: result}
-												});
-											}}
-										>
-											{(deleteOrder, {loading, error}) => (
-												<div>
-													<Button
-														icon="trash"
-														intent="danger"
-														key={el.id}
-														data-order-id={el.id}
-														onClick={e => {
-															const orderID = e.currentTarget.attributes['data-order-id'].value;
-															deleteOrder({variables: {id: orderID}});
-															completeOrder(error);
-														}}
-													>
+													cache.writeQuery({
+														query: GET_ORDERS,
+														data: {orders: result}
+													});
+												}}
+											>
+												{(deleteOrder, {loading, error}) => (
+													<div>
+														<Button
+															icon="trash"
+															intent="danger"
+															key={el.id}
+															data-order-id={el.id}
+															onClick={e => {
+																const orderID = e.currentTarget.attributes['data-order-id'].value;
+																deleteOrder({variables: {id: orderID}});
+																showToaster('Order deleted!', error);
+															}}
+														>
 												Delete
-													</Button>
-													{loading && <p>Loading...</p>}
-													{error && <p>Error :( Please try again</p>}
-												</div>
-											)}
-										</Mutation>
+														</Button>
+														{loading && <p>Loading...</p>}
+														{error && <p>Error :( Please try again</p>}
+													</div>
+												)}
+											</Mutation>
+										</div>
 									</Callout>
 								))}
 							</div>
