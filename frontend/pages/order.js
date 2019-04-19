@@ -52,10 +52,9 @@ class Index extends React.Component {
 	};
 
 	// Get order id from query
-	static async getInitialProps({query: {id, time}}) {
+	static async getInitialProps({query: {id}}) {
 		return {
-			id,
-			time
+			id
 		};
 	}
 
