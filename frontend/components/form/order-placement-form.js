@@ -58,6 +58,7 @@ const OrderPlacementForm = () => {
 					const query = `
 						mutation {
 							createOrder(
+								status: "in progress"
 								type: "${values.type}"
 								size: "${values.size}"
 								dough: "${values.dough}"
