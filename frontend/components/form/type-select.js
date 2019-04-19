@@ -9,7 +9,7 @@ const Wrapper = ({className}) => (
 Pizza Type:
 		<div className="bp3-select">
 			<FastField name="type" component="select" placeholder="Pizza Type">
-				<option>Select</option>
+				<option value="">Select</option>
 				<option value="Margharita">Margharita</option>
 				<option value="Funghi">Funghi</option>
 				<option value="Cacciatore">Cacciatore</option>

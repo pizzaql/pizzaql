@@ -51,7 +51,7 @@ const Wrapper = ({className}) => (
     Delivery time:
 		<div className="bp3-select">
 			<FastField name="time" component="select" placeholder="Time">
-				<option>Select</option>
+				<option value="">Select</option>
 				<option value="ASAP">As fast as possible</option>
 				<option>{firstHour()}</option>
 				<option>{secondHour()}</option>

@@ -9,7 +9,7 @@ const Wrapper = ({className}) => (
     Size:
 		<div className="bp3-select">
 			<FastField name="size" component="select" placeholder="Size">
-				<option>Select</option>
+				<option value="">Select</option>
 				<option value="Small">Small</option>
 				<option value="Medium">Medium</option>
 				<option value="Large">Large</option>
