@@ -36,6 +36,7 @@ interface Node {
 
 type Order implements Node {
   id: ID!
+  status: String!
   size: String!
   dough: String!
   type: String!
@@ -53,6 +54,7 @@ type OrderConnection {
 }
 
 input OrderCreateInput {
+  status: String!
   size: String!
   dough: String!
   type: String!
@@ -71,6 +73,8 @@ type OrderEdge {
 enum OrderOrderByInput {
   id_ASC
   id_DESC
+  status_ASC
+  status_DESC
   size_ASC
   size_DESC
   dough_ASC
@@ -91,6 +95,7 @@ enum OrderOrderByInput {
 
 type OrderPreviousValues {
   id: ID!
+  status: String!
   size: String!
   dough: String!
   type: String!
@@ -118,6 +123,7 @@ input OrderSubscriptionWhereInput {
 }
 
 input OrderUpdateInput {
+  status: String
   size: String
   dough: String
   type: String
@@ -129,6 +135,7 @@ input OrderUpdateInput {
 }
 
 input OrderUpdateManyMutationInput {
+  status: String
   size: String
   dough: String
   type: String
@@ -155,6 +162,20 @@ input OrderWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  status: String
+  status_not: String
+  status_in: [String!]
+  status_not_in: [String!]
+  status_lt: String
+  status_lte: String
+  status_gt: String
+  status_gte: String
+  status_contains: String
+  status_not_contains: String
+  status_starts_with: String
+  status_not_starts_with: String
+  status_ends_with: String
+  status_not_ends_with: String
   size: String
   size_not: String
   size_in: [String!]

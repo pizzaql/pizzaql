@@ -1,5 +1,6 @@
 type Order {
     id: ID! @id
+    status: String!
     size: String!
     dough: String!
     type: String!
