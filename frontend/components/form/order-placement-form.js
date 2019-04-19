@@ -74,15 +74,16 @@ const OrderPlacementForm = () => {
 					await setSubmitting(false);
 					// Post a mutation to Prisma and obtain an ID
 					await request('http://localhost:4000', query).then(data => {
-						const orderID = JSON.stringify(data.createOrder.id);
+						const orderID = JSON.stringify(data.createOrder.id).slice(18);
 						// Move user to the thank you page
 						Router.push({
 							pathname: '/order',
-							query: {id: orderID, time: JSON.stringify(values.time).replace(/:/g, '')}
+							query: {id: orderID}
 						});
 					}).catch(error => {
 						console.log(error);
 					});
+
 					// Call resetForm twice to delete values from localstorage, https://github.com/jaredpalmer/formik-persist/issues/16
 					resetForm();
 					resetForm();
