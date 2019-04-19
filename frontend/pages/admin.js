@@ -33,13 +33,14 @@ body {
     word-wrap: break-word;
 }
 
-.complete {
-	margin-right: 5px;
+.btn {
+	margin: 5px;
 }
 
 .buttons {
     display: flex;
     flex-direction: row;
+		flex-wrap: wrap;
 		justify-content: flex-start;
     text-align: right;
 }
@@ -164,9 +165,9 @@ const Secret = () => {
 							<div>
 								{data.orders.reverse().map(el => (
 									<Callout
-										title={`Order id. ${el.id.slice(-3)} || Status: ${el.status}`}
-										intent={el.status === 'completed' ? 'success' : ''}
-										icon={el.status === 'completed' ? 'tick' : 'flag'}
+										title={`Order id. ${el.id.slice(18)} || Status: ${el.status}`}
+										intent={el.status === 'completed' ? 'success' : '' || el.status === 'cancelled' ? 'warning' : ''}
+										icon="flag"
 										className="half-width"
 										key={el.id}
 									>
@@ -187,10 +188,10 @@ const Secret = () => {
 												{(updateOrder, {loading, error}) => (
 													<div>
 														<Button
-															className="complete"
+															className="btn"
 															icon="tick"
 															intent="primary"
-															disabled={el.status === 'completed'}
+															disabled={el.status === 'completed' || el.status === 'cancelled'}
 															key={el.id}
 															data-order-id={el.id}
 															onClick={e => {
@@ -200,6 +201,31 @@ const Secret = () => {
 															}}
 														>
 												Complete
+														</Button>
+														{loading && <p>Loading...</p>}
+														{error && <p>Error :( Please try again</p>}
+													</div>
+												)}
+											</Mutation>
+											<Mutation
+												mutation={CHANGE_ORDER_STATUS}
+											>
+												{(updateOrder, {loading, error}) => (
+													<div>
+														<Button
+															className="btn"
+															icon="cross"
+															intent="warning"
+															disabled={el.status === 'completed' || el.status === 'cancelled'}
+															key={el.id}
+															data-order-id={el.id}
+															onClick={e => {
+																const orderID = e.currentTarget.attributes['data-order-id'].value;
+																updateOrder({variables: {status: 'cancelled', id: orderID}});
+																showToaster('Status changed!', error);
+															}}
+														>
+												Cancel
 														</Button>
 														{loading && <p>Loading...</p>}
 														{error && <p>Error :( Please try again</p>}
@@ -222,6 +248,7 @@ const Secret = () => {
 												{(deleteOrder, {loading, error}) => (
 													<div>
 														<Button
+															className="btn"
 															icon="trash"
 															intent="danger"
 															key={el.id}
