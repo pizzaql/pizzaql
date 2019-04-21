@@ -191,7 +191,8 @@ const Secret = () => {
 															className="btn"
 															icon="tick"
 															intent="primary"
-															disabled={el.status === 'completed' || el.status === 'cancelled'}
+															loading={loading}
+															disabled={el.status === 'completed'}
 															key={el.id}
 															data-order-id={el.id}
 															onClick={e => {
@@ -202,7 +203,6 @@ const Secret = () => {
 														>
 												Complete
 														</Button>
-														{loading && <p>Loading...</p>}
 														{error && <p>Error :( Please try again</p>}
 													</div>
 												)}
@@ -216,7 +216,8 @@ const Secret = () => {
 															className="btn"
 															icon="cross"
 															intent="warning"
-															disabled={el.status === 'completed' || el.status === 'cancelled'}
+															loading={loading}
+															disabled={el.status === 'cancelled'}
 															key={el.id}
 															data-order-id={el.id}
 															onClick={e => {
@@ -227,7 +228,6 @@ const Secret = () => {
 														>
 												Cancel
 														</Button>
-														{loading && <p>Loading...</p>}
 														{error && <p>Error :( Please try again</p>}
 													</div>
 												)}
@@ -251,6 +251,7 @@ const Secret = () => {
 															className="btn"
 															icon="trash"
 															intent="danger"
+															loading={loading}
 															key={el.id}
 															data-order-id={el.id}
 															onClick={e => {
@@ -261,7 +262,6 @@ const Secret = () => {
 														>
 												Delete
 														</Button>
-														{loading && <p>Loading...</p>}
 														{error && <p>Error :( Please try again</p>}
 													</div>
 												)}
