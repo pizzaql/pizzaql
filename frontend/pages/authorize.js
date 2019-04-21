@@ -6,7 +6,7 @@ import template from '../static/template';
 const Login = () => {
 	useEffect(() => {
 		login();
-	});
+	}, []);
 
 	return null;
 };
