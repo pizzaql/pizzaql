@@ -43,7 +43,7 @@ More information coming soon. Please note that this project is currently **work 
   * [x] Dark mode
 * [x]  Working Backend
   * [x] Creating orders
-    * [ ] Rewrite to Apollo Client and get rid of graphql-request
+    * [x] Rewrite to Apollo Client and get rid of graphql-request
 * [x] Better delivery time selection
 * [x] Lock order placement system between specific hours
 
