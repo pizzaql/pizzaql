@@ -2,7 +2,8 @@ import React from 'react';
 import Router from 'next/router';
 import {Formik, Form} from 'formik';
 import {Persist} from 'formik-persist';
-import {request} from 'graphql-request';
+import gql from 'graphql-tag';
+import {Mutation} from 'react-apollo';
 import * as Yup from 'yup';
 
 // Import components
@@ -38,80 +39,108 @@ const OrderSchema = Yup.object().shape({
 		.max(50, 'Too Long!')
 });
 
+const CREATE_ORDER = gql`	
+	mutation CreateOrder (
+		$type: String!
+		$size: String!
+		$dough: String!
+		$name: String!
+		$phone: String!
+		$time: String!
+		$city: String!
+		$street: String!
+	) {
+		createOrder(
+			status: "in progress"
+			type: $type
+			size: $size
+			dough: $dough
+			name: $name
+			phone: $phone
+			time: $time
+			city: $city
+			street: $street
+		) {
+			id
+		}
+	}
+`;
+
 const OrderPlacementForm = () => {
 	return (
-		<Formik
-			initialValues={{
-				type: '',
-				size: '',
-				dough: '',
-				name: '',
-				phone: '',
-				city: '',
-				street: '',
-				time: ''
-			}}
-			validationSchema={OrderSchema}
-			onSubmit={(values, {setSubmitting, resetForm}) => {
-				setTimeout(async () => {
-					// Form a GraphQL mutation to create a new order
-					const query = `
-						mutation {
-							createOrder(
-								status: "in progress"
-								type: "${values.type}"
-								size: "${values.size}"
-								dough: "${values.dough}"
-								name: "${values.name}"
-								phone: "${values.phone}"
-								time: "${values.time}"
-								city: "${values.city}"
-								street: "${values.street}"
-							) {
-								id
-							}
-						}`;
-					await setSubmitting(false);
-					// Post a mutation to Prisma and obtain an ID
-					await request('http://localhost:4000', query).then(data => {
-						const orderID = JSON.stringify(data.createOrder.id).slice(18);
-						// Move user to the thank you page
-						Router.push({
-							pathname: '/order',
-							query: {id: orderID}
-						});
-					}).catch(error => {
-						console.log(error);
-					});
-
-					// Call resetForm twice to delete values from localstorage, https://github.com/jaredpalmer/formik-persist/issues/16
-					resetForm();
-					resetForm();
-				}, 500);
-			}}
+		<Mutation
+			mutation={CREATE_ORDER}
 		>
-			{({isSubmitting}) => (
-				<Form>
-					<SelectGroup>
-						<TypeSelect/>
-						<SizeSelect/>
-						<DoughSelect/>
-					</SelectGroup>
-					<br/>
-					<br/>
-					<Input label="Full Name:" type="text" name="name" placeholder="Mark Suckerberg" required/>
-					<Input label="Phone:" type="tel" name="phone" placeholder="666666666" required/>
-					<Input label="Address:" type="text" name="street" placeholder="1 Hacker Way" required/>
-					<Input label="City:" type="text" name="city" placeholder="Menlo Park" required/>
-					<br/>
-					<TimeSelect/>
-					<br/>
-					<br/>
-					<Submit loading={isSubmitting} disabled={isSubmitting}/>
-					<Persist name="order-placement-form"/>
-				</Form>
+			{(createOrder, {loading, error}) => (
+				<Formik
+					initialValues={{
+						type: '',
+						size: '',
+						dough: '',
+						name: '',
+						phone: '',
+						city: '',
+						street: '',
+						time: ''
+					}}
+					validationSchema={OrderSchema}
+					onSubmit={(values, {setSubmitting, resetForm}) => {
+						setTimeout(async () => {
+							createOrder({
+								variables: {
+									type: values.type,
+									size: values.size,
+									dough: values.dough,
+									name: values.name,
+									phone: values.phone,
+									time: values.time,
+									city: values.city,
+									street: values.street
+								}
+							}).then(data => {
+								const orderID = data.data.createOrder.id.slice(18);
+								// Move user to the thank you page
+								Router.push({
+									pathname: '/order',
+									query: {id: orderID}
+								});
+							}).catch(error => {
+								console.log(error);
+							});
+
+							await setSubmitting(false);
+
+							// Call resetForm twice to delete values from localstorage, https://github.com/jaredpalmer/formik-persist/issues/16
+							resetForm();
+							resetForm();
+						}, 500);
+					}}
+				>
+					{({isSubmitting}) => (
+						<Form>
+							<SelectGroup>
+								<TypeSelect/>
+								<SizeSelect/>
+								<DoughSelect/>
+							</SelectGroup>
+							<br/>
+							<br/>
+							<Input label="Full Name:" type="text" name="name" placeholder="Mark Suckerberg" required/>
+							<Input label="Phone:" type="tel" name="phone" placeholder="666666666" required/>
+							<Input label="Address:" type="text" name="street" placeholder="1 Hacker Way" required/>
+							<Input label="City:" type="text" name="city" placeholder="Menlo Park" required/>
+							<br/>
+							<TimeSelect/>
+							<br/>
+							<br/>
+							<Submit loading={isSubmitting || loading} disabled={isSubmitting}/>
+							{error && <p>Something went wrong! Try again later</p>}
+							<Persist name="order-placement-form"/>
+						</Form>
+					)}
+				</Formik>
 			)}
-		</Formik>
+		</Mutation>
 	);
 };
 
