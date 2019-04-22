@@ -90,6 +90,12 @@ More information coming soon. Please note that this project is currently **work 
 
 and many other awesome technologies :unicorn:
 
+## Big Thanks
+
+Cross-browser Testing Platform Provided by [Sauce Labs][homepage]
+
+[homepage]: https://saucelabs.com
+
 ## License
 
 MIT
