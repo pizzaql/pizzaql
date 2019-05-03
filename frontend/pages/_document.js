@@ -1,30 +1,30 @@
 import React from 'react';
 import Document, {Head, Main, NextScript} from 'next/document';
-import {ServerStyleSheet} from 'styled-components';
+import {createGlobalStyle, ServerStyleSheet} from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+	body {
+		font-family: Montserrat, Georgia, monospace;
+		background: #fff;
+		word-wrap: break-word;
+		-webkit-font-smoothing: antialiased;
+		text-rendering: optimizeSpeed;
+	}
+`;
 
 export default class MyDocument extends Document {
-	static async getInitialProps(ctx) {
+	static getInitialProps({renderPage}) {
 		const sheet = new ServerStyleSheet();
-		const originalRenderPage = ctx.renderPage;
 
-		try {
-			ctx.renderPage = () =>
-				originalRenderPage({
-					enhanceApp: App => props => sheet.collectStyles(<App {...props}/>)
-				});
+		const page = renderPage(Component => props => sheet.collectStyles(<Component {...props}/>));
 
-			const initialProps = await Document.getInitialProps(ctx);
-
-			return {
-				...initialProps,
-				styles: <>{initialProps.styles}{sheet.getStyleElement()}</>
-			};
-		} finally {
-			sheet.seal();
-		}
+		const styleElements = sheet.getStyleElement();
+		return {...page, styleElements};
 	}
 
 	render() {
+		const {styleElements} = this.props;
+
 		return (
 			<html lang="en">
 				<Head>
@@ -63,11 +63,12 @@ export default class MyDocument extends Document {
 						}
 					`}}/>
 					{/* eslint-enable react/no-danger */}
-					{this.props.styleTags}
+					{styleElements}
 				</Head>
 				<body>
 					<Main/>
 					<NextScript/>
+					<GlobalStyle/>
 				</body>
 			</html>
 		);
