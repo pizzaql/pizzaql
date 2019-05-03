@@ -40,7 +40,6 @@ More information coming soon. Please note that this project is currently **work 
 **Order Placement System**
 * [x]  Basic Frontend
   * [x] Production-ready Frontend (styles etc.)
-  * [x] Dark mode
 * [x]  Working Backend
   * [x] Creating orders
     * [x] Rewrite to Apollo Client and get rid of graphql-request
