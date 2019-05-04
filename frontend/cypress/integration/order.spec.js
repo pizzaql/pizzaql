@@ -7,10 +7,6 @@ describe('Thank you page', () => {
 		cy.get('h1').should('have.class', 'thanks');
 	});
 
-	it('Has div with class centerify', () => {
-		cy.get('div').should('have.class', 'centerify');
-	});
-
 	it('Has button with class bp3-button', () => {
 		cy.get('button').should('have.class', 'bp3-button');
 	});
