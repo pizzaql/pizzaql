@@ -24,7 +24,7 @@ More information coming soon. Please note that this project is currently **work 
 
 ## Docs
 
-[Here :zap:](https://nicedoc.io/pizzaql/docs)
+[Here :zap:](https://pizzaql.now.sh/)
 
 ## Screenshots
 
