@@ -2,7 +2,21 @@ import React from 'react';
 import Document, {Head, Main, NextScript} from 'next/document';
 import {createGlobalStyle, ServerStyleSheet} from 'styled-components';
 
+// Fonts
+import MontserratWoff from '../static/fonts/montserrat-v12-latin-ext-regular.woff';
+import MontserratWoff2 from '../static/fonts/montserrat-v12-latin-ext-regular.woff2';
+
 const GlobalStyle = createGlobalStyle`
+	@font-face {
+		font-family: 'Montserrat';
+		font-style: normal;
+		font-weight: 400;
+		font-display: fallback;
+		src: local('Montserrat Regular'), local('Montserrat-Regular'),
+			url(${MontserratWoff2}) format('woff2'),
+			url(${MontserratWoff}) format('woff');
+  	}
+	  
 	body {
 		font-family: Montserrat, Georgia, monospace;
 		background: #fff;
@@ -13,18 +27,28 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 export default class MyDocument extends Document {
-	static getInitialProps({renderPage}) {
+	static async getInitialProps(ctx) {
 		const sheet = new ServerStyleSheet();
+		const originalRenderPage = ctx.renderPage;
 
-		const page = renderPage(Component => props => sheet.collectStyles(<Component {...props}/>));
+		try {
+			ctx.renderPage = () =>
+				originalRenderPage({
+					enhanceApp: App => props => sheet.collectStyles(<App {...props}/>)
+				});
 
-		const styleElements = sheet.getStyleElement();
-		return {...page, styleElements};
+			const initialProps = await Document.getInitialProps(ctx);
+
+			return {
+				...initialProps,
+				styles: <>{initialProps.styles}{sheet.getStyleElement()}</>
+			};
+		} finally {
+			sheet.seal();
+		}
 	}
 
 	render() {
-		const {styleElements} = this.props;
-
 		return (
 			<html lang="en">
 				<Head>
@@ -48,22 +72,7 @@ export default class MyDocument extends Document {
 					<link rel="icon" href="static/favicon.png"/>
 					{/* Temporary workaround, since importing blueprint icons with Next.js throws an error */}
 					<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@blueprintjs/icons@3.6.0/lib/css/blueprint-icons.css"/>
-					{/* eslint-disable react/no-danger */}
-					<style dangerouslySetInnerHTML={{__html: `
-						@font-face {
-							font-family: 'Montserrat';
-							font-style: normal;
-							font-weight: 400;
-							font-display: fallback;
-							src: local('Montserrat Regular'), local('Montserrat-Regular'),
-								url('static/fonts/montserrat-v12-latin-ext-regular.woff2') format('woff2'),
-								url('static/fonts/montserrat-v12-latin-ext-regular.woff') format('woff');
-							}
-						}
-						}
-					`}}/>
-					{/* eslint-enable react/no-danger */}
-					{styleElements}
+					{this.props.styleTags}
 				</Head>
 				<body>
 					<Main/>
