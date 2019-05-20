@@ -38,10 +38,14 @@ export default class MyDocument extends Document {
 				});
 
 			const initialProps = await Document.getInitialProps(ctx);
-
 			return {
 				...initialProps,
-				styles: <>{initialProps.styles}{sheet.getStyleElement()}</>
+				styles: (
+					<>
+						{initialProps.styles}
+						{sheet.getStyleElement()}
+					</>
+				)
 			};
 		} finally {
 			sheet.seal();
@@ -72,7 +76,6 @@ export default class MyDocument extends Document {
 					<link rel="icon" href="static/favicon.png"/>
 					{/* Temporary workaround, since importing blueprint icons with Next.js throws an error */}
 					<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@blueprintjs/icons@3.6.0/lib/css/blueprint-icons.css"/>
-					{this.props.styleTags}
 				</Head>
 				<body>
 					<Main/>
