@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {FastField, ErrorMessage} from 'formik';
+import {FastField} from 'formik';
 import {Label} from '@blueprintjs/core';
 import PropTypes from 'prop-types';
 
@@ -8,7 +8,7 @@ const Wrapper = ({className}) => (
 	<Label className={className}>
 Pizza Type:
 		<div className="bp3-select">
-			<FastField name="type" component="select" placeholder="Pizza Type">
+			<FastField name="type" component="select" placeholder="Pizza Type" required>
 				<option value="">Select</option>
 				<option value="Margharita">Margharita</option>
 				<option value="Funghi">Funghi</option>
@@ -23,7 +23,6 @@ Pizza Type:
 				<option value="Pepperoni">Pepperoni</option>
 				<option value="Torino">Torino</option>
 			</FastField>
-			<ErrorMessage name="type" component="div"/>
 		</div>
 	</Label>
 );
