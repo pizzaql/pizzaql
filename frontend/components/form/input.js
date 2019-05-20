@@ -16,10 +16,6 @@ const Input = styled(Wrapper)`
     .bp3-input {
         width: 100%;
     }
-
-    &:placeholder {
-        color: #757575;
-    }
 `;
 
 Input.propTypes = {
