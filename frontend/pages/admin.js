@@ -5,6 +5,7 @@ import {Query, Mutation} from 'react-apollo';
 import secureTemplate from '../static/secure-template';
 
 import Container from '../components/dashboard/container';
+import Grid from '../components/dashboard/grid';
 import ButtonGroup from '../components/dashboard/button-group';
 
 // Query to get a list of orders
@@ -93,7 +94,7 @@ const Secret = () => {
 					}
 
 					return (
-						<>
+						<Grid>
 							{data.orders.reverse().map(el => (
 								<Callout
 									style={{marginBottom: '30px'}}
@@ -200,7 +201,7 @@ const Secret = () => {
 									</ButtonGroup>
 								</Callout>
 							))}
-						</>
+						</Grid>
 					);
 				}}
 			</Query>
