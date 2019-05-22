@@ -2,48 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import {FastField} from 'formik';
 import {Label} from '@blueprintjs/core';
+import {format, addHours} from 'date-fns';
 import PropTypes from 'prop-types';
 
-const now = new Date();
+const getTime = (number, isHalfPast) => {
+	const formatted = addHours(new Date(), number);
+	const date = format(formatted, 'HH')
 
-const firstHour = () => {
-	if (now.getHours() === 23) {
-		if (now.getMinutes() <= 9) {
-			return `00:0${now.getMinutes()}`;
-		}
-
-		return `00:${now.getMinutes()}`;
-	}
-
-	if (now.getMinutes() <= 9) {
-		return `${now.getHours() + 1}:0${now.getMinutes()}`;
-	}
-
-	return `${now.getHours() + 1}:${now.getMinutes()}`;
-};
-
-const secondHour = () => {
-	if (now.getHours() === 22) {
-		if (now.getMinutes() <= 9) {
-			return `00:0${now.getMinutes()}`;
-		}
-
-		return `00:${now.getMinutes()}`;
-	}
-
-	if (now.getHours() === 23) {
-		if (now.getMinutes() <= 9) {
-			return `01:0${now.getMinutes()}`;
-		}
-
-		return `01:${now.getMinutes()}`;
-	}
-
-	if (now.getMinutes() <= 9) {
-		return `${now.getHours() + 2}:0${now.getMinutes()}`;
-	}
-
-	return (now.getHours() + 2) + ':' + now.getMinutes();
+	return isHalfPast ? `${date}:30` : `${date}:00`;
 };
 
 const Wrapper = ({className}) => (
@@ -53,15 +19,20 @@ const Wrapper = ({className}) => (
 			<FastField name="time" component="select" placeholder="Time" required>
 				<option value="">Select</option>
 				<option value="ASAP">As fast as possible</option>
-				<option>{firstHour()}</option>
-				<option>{secondHour()}</option>
+				<option>{getTime(3)}</option>
+				<option>{getTime(3, true)}</option>
+				<option>{getTime(4)}</option>
+				<option>{getTime(4, true)}</option>
+				<option>{getTime(5)}</option>
+				<option>{getTime(5, true)}</option>
 			</FastField>
 		</div>
 	</Label>
 );
 
 const TimeSelect = styled(Wrapper)`
-    width: 200px;
+    width: 11rem;
+	user-select: none;
 `;
 
 TimeSelect.propTypes = {
