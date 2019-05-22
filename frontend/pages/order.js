@@ -33,7 +33,7 @@ class Index extends React.Component {
 		return (
 			<Container style={{textAlign: 'center'}}>
 				<Card elevation={Elevation.FOUR}>
-					<h1 style={{fontSize: '45px'}} className="thanks">Thank you!</h1>
+					<h1 style={{fontSize: '3rem'}} className="thanks">Thank you!</h1>
 					<br/>
 					<p>This is your order id:</p>
 					<br/>
@@ -44,7 +44,7 @@ class Index extends React.Component {
 						{this.state.copySuccess}
 					</div>
 					<br/>
-					<h2 style={{fontSize: '25px', fontWeight: 800}}>You will receive your order in about 45 minutes</h2>
+					<h2 style={{fontSize: '25px', fontWeight: 800}}>You will receive your order in about an hour</h2>
 					<br/>
 					<p>If you won&apos;t receive your order after this time, please call us: <strong>234 567 890</strong></p>
 					<br/>
