@@ -18,6 +18,7 @@ Submit!
 const Submit = styled(Wrapper)`
     .bp3-button {
         width: 100%;
+		user-select: none;
     }
 `;
 
