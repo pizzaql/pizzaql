@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import {Button, Card, Elevation} from '@blueprintjs/core';
-import Container from '../components/secure/container';
+import Container from '../../components/secure/container';
 import {getTokenForBrowser, getTokenForServer} from './auth';
 
 export default Page => class secureTemplate extends React.Component {

@@ -1,5 +1,5 @@
 import auth0 from 'auth0-js';
-import * as settings from '../settings';
+import * as settings from '../../settings';
 
 const {clientID, domain} = settings;
 
