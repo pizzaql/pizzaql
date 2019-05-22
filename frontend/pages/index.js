@@ -26,8 +26,7 @@ const Index = () => {
 
 	/*
 	const isLocked = () => {
-		const now = new Date();
-		const hours = now.getHours();
+		const hours = new Date().getHours();
 
 		if (hours >= 10 && hours <= 19) {
 			return false;
