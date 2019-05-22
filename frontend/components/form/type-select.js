@@ -28,7 +28,8 @@ Pizza Type:
 );
 
 const TypeSelect = styled(Wrapper)`
-    width: 200px;
+    width: 11rem;
+	user-select: none;
 `;
 
 TypeSelect.propTypes = {

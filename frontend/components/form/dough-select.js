@@ -18,7 +18,8 @@ const Wrapper = ({className}) => (
 );
 
 const DoughSelect = styled(Wrapper)`
-    width: 200px;
+    width: 11rem;
+	user-select: none;
 `;
 
 DoughSelect.propTypes = {

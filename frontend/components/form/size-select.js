@@ -20,7 +20,8 @@ const Wrapper = ({className}) => (
 );
 
 const SizeSelect = styled(Wrapper)`
-    width: 200px;
+    width: 11rem;
+	user-select: none;
 `;
 
 SizeSelect.propTypes = {
