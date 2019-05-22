@@ -74,7 +74,9 @@ More information coming soon. Please note that this project is currently **work 
 
 (?) - unsure.
 
-## Built with:
+## Technology Stack
+
+**Frontend:**
 
 - [React](https://reactjs.org/)
 - [Next.js](https://nextjs.org/)
@@ -82,12 +84,13 @@ More information coming soon. Please note that this project is currently **work 
 - [styled-components](https://www.styled-components.com/)
 - [Blueprint](https://blueprintjs.com/)
 - [Formik](https://jaredpalmer.com/formik/)
-- [Auth0](https://auth0.com/)
+
+**Backend:**
+
 - [Prisma](https://www.prisma.io/)
 - [GraphQL](https://graphql.org/)
-- [Babel](https://babeljs.io/)
-
-and many other awesome technologies :unicorn:
+- [MongoDB](https://www.mongodb.com/)
+- [Auth0](https://auth0.com/)
 
 ## Big Thanks
 
