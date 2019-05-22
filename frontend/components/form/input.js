@@ -15,6 +15,7 @@ const Wrapper = ({className, label, type, name, placeholder, required}) => (
 const Input = styled(Wrapper)`
     .bp3-input {
         width: 100%;
+		user-select: none;
     }
 `;
 
