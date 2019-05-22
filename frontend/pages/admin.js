@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Callout, Icon, Position, Toaster, Spinner} from '@blueprintjs/core';
 import gql from 'graphql-tag';
 import {Query, Mutation} from 'react-apollo';
-import secureTemplate from '../static/secure-template';
+import secureTemplate from '../static/auth/secure-template';
 
 import Container from '../components/dashboard/container';
 import Grid from '../components/dashboard/grid';

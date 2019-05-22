@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
-import {login} from '../static/auth0';
-import template from '../static/template';
+import {login} from '../static/auth/auth0';
+import template from '../static/auth/template';
 
 // Login
 const Login = () => {

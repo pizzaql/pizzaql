@@ -1,7 +1,7 @@
 import React from 'react';
 import Router from 'next/router';
-import {parseHash} from '../static/auth0';
-import {saveToken, verifyToken} from '../static/auth';
+import {parseHash} from '../static/auth/auth0';
+import {saveToken, verifyToken} from '../static/auth/auth';
 
 // Redirect user after login
 export default class extends React.Component {
