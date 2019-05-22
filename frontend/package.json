@@ -33,6 +33,7 @@
   "@blueprintjs/core": "^3.15.1",
   "apollo-boost": "^0.3.1",
   "auth0-js": "^9.10.2",
+  "date-fns": "^2.0.0-alpha.27",
   "formik": "^1.5.7",
   "formik-persist": "^1.1.0",
   "graphql": "^14.3.0",
