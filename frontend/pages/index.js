@@ -12,7 +12,6 @@ const GlobalStyle = createGlobalStyle`
 	}
 `;
 
-// Load fonts & main page
 const Index = () => {
 	/*
 	Allow placing orders between specific hours
