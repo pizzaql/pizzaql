@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 const getTime = (number, isHalfPast) => {
 	const formatted = addHours(new Date(), number);
-	const date = format(formatted, 'HH')
+	const date = format(formatted, 'HH');
 
 	return isHalfPast ? `${date}:30` : `${date}:00`;
 };
