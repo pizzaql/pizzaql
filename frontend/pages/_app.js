@@ -3,7 +3,9 @@ import Head from 'next/head';
 import React from 'react';
 import {ApolloProvider} from 'react-apollo';
 import fetch from 'isomorphic-unfetch';
-import ApolloClient, {InMemoryCache} from 'apollo-boost';
+import {ApolloClient} from 'apollo-client';
+import {InMemoryCache} from 'apollo-cache-inmemory';
+import {HttpLink} from 'apollo-link-http';
 
 import '../node_modules/modern-normalize/modern-normalize.css';
 import '../node_modules/@blueprintjs/core/lib/css/blueprint.css';
@@ -13,8 +15,12 @@ if (!process.browser) {
 }
 
 const client = new ApolloClient({
-	uri: 'http://localhost:4000',
-	cache: new InMemoryCache()
+	cache: new InMemoryCache(),
+	link: new HttpLink({
+		uri: 'http://localhost:4000'
+	}),
+	freezeResults: true,
+	assumeImmutableResults: true
 });
 
 class MyApp extends App {
