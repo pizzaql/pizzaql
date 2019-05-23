@@ -11,7 +11,7 @@ import ButtonGroup from '../components/dashboard/button-group';
 // Query to get a list of orders
 const GET_ORDERS = gql`
 query {
-		orders {
+	orders {
 		id
 		status
 		size
@@ -22,7 +22,7 @@ query {
 		time
 		city
 		street
-		}
+	}
 }
 `;
 
@@ -169,7 +169,7 @@ const Secret = () => {
 											update={(cache, {data: {deleteOrder}}) => {
 												const {orders} = cache.readQuery({query: GET_ORDERS});
 
-												const result = orders.filter(el => (deleteOrder.id.indexOf(el.id) === -1));
+												const result = orders.reverse().filter(el => (deleteOrder.id.indexOf(el.id) === -1));
 
 												cache.writeQuery({
 													query: GET_ORDERS,
