@@ -74,8 +74,6 @@ export default class MyDocument extends Document {
 					<meta name="og:site_name" content="PizzaQL"/>
 					<meta name="og:type" content="website"/>
 					<link rel="icon" href="static/favicon.png"/>
-					{/* Temporary workaround, since importing blueprint icons with Next.js throws an error */}
-					<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@blueprintjs/icons@3.6.0/lib/css/blueprint-icons.css"/>
 				</Head>
 				<body>
 					<Main/>
