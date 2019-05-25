@@ -1,11 +1,11 @@
-import React from 'react';
+import {useEffect} from 'react';
 import Router from 'next/router';
 import {parseHash} from '../static/auth/auth0';
 import {saveToken, verifyToken} from '../static/auth/auth';
 
 // Redirect user after login
-export default class extends React.Component {
-	componentDidMount() {
+export default () => {
+	useEffect(() => {
 		parseHash(async (err, result) => {
 			await verifyToken(result.idToken).then(valid => {
 				if (valid) {
@@ -19,9 +19,7 @@ export default class extends React.Component {
 				console.error('Error signing in', err);
 			}
 		});
-	}
+	}, []);
 
-	render() {
-		return null;
-	}
-}
+	return null;
+};
