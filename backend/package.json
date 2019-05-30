@@ -11,9 +11,9 @@
   "license": "MIT",
   "dependencies": {
     "graphql-yoga": "1.17.4",
-    "prisma-binding": "2.3.10"
+    "prisma-binding": "2.3.11"
   },
   "devDependencies": {
-    "nodemon": "^1.19.0"
+    "nodemon": "^1.19.1"
   }
 }
