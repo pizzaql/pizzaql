@@ -13,8 +13,8 @@ const getTime = (number, isHalfPast) => {
 };
 
 const hoursSelect = () => {
-	// Change to false if you want to display all hours
-	const hoursLock = true;
+	// Change to true if you want to enable the hours lock
+	const hoursLock = false;
 
 	const hours = new Date().getHours();
 
@@ -64,7 +64,7 @@ const hoursSelect = () => {
 	}
 
 	if (hoursLock && hours <= 19) {
-		return <option disabled value="">You can not order now!</option>;
+		return <option disabled value="">Ordering disabled</option>;
 	}
 
 	return (
