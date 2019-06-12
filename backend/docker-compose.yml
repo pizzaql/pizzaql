@@ -15,7 +15,7 @@ services:
             connector: mongo
             uri: 'mongodb://prisma:prisma@mongo'
   mongo:
-    image: mongo:latest
+    image: mongo:4.1
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: prisma
