@@ -13,32 +13,6 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Index = () => {
-	/*
-	Allow placing orders between specific hours
-
-	The first value (here 10) specifies the opening time
-	The second value (here 19) specifies the closing time
-
-	Note, that if your restaurant closes at 20, you should set the closing time to 19, so
-	that you will have enough time to complete all the orders
-	*/
-
-	/*
-	const isLocked = () => {
-		const hours = new Date().getHours();
-
-		if (hours >= 10 && hours <= 19) {
-			return false;
-		}
-
-		return true;
-	};
-
-	if (isLocked() === true) {
-		return <p style={{color: 'black'}}>The restaurant is currently closed.</p>;
-	}
-	*/
-
 	return (
 		<Container>
 			<Card elevation={Elevation.FOUR}>
