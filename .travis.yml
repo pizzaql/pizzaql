@@ -3,6 +3,16 @@ language: node_js
 node_js:
   - "node"
 
+addons:
+  apt:
+    packages:
+      - libgconf-2-4
+
+cache:
+  npm: true
+  directories:
+    - ~/.cache
+
 before_install: cd frontend
 
 before_script:
