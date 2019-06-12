@@ -2,11 +2,10 @@ import React from 'react';
 import Router from 'next/router';
 import {Formik, Form} from 'formik';
 import {Persist} from 'formik-persist';
-import gql from 'graphql-tag';
 import {Mutation} from 'react-apollo';
 import * as Yup from 'yup';
 
-// Import components
+import {CREATE_ORDER} from '../api';
 import SelectGroup from './select-group';
 import TypeSelect from './type-select';
 import SizeSelect from './size-select';
@@ -15,43 +14,16 @@ import Input from './input';
 import TimeSelect from './time-select';
 import Submit from './submit';
 
-// Custom Validation
+// Custom form validation
 const OrderSchema = Yup.object().shape({
 	name: Yup.string()
 		// Regex for checking full name, https://stackoverflow.com/a/45871742
-		.matches(/^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/, 'Invalid name!'),
+		.matches(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/, 'Invalid name!'),
 	phone: Yup.string()
 		// Regular expression for checking Polish phone numbers, https://github.com/skotniczny/phonePL
-		.matches(/^(?:(?:(?:\+|00)?48)|(?:\(\+?48\)))?(?:1[2-8]|2[2-69]|3[2-49]|4[1-68]|5\d|6[0-35-9]|[7-8][1-9]|9[145])\d{7}$/, 'Invalid phone number!')
+		.matches(/(?:(?:(?:\+|00)?48)|(?:\(\+?48\)))?(?:1[2-8]|2[2-69]|3[2-49]|4[1-68]|5\d|6[0-35-9]|[7-8][1-9]|9[145])\d{7}$/, 'Invalid phone number!')
 
 });
-
-const CREATE_ORDER = gql`	
-	mutation CreateOrder (
-		$type: String!
-		$size: String!
-		$dough: String!
-		$name: String!
-		$phone: String!
-		$time: String!
-		$city: String!
-		$street: String!
-	) {
-		createOrder(
-			status: "in progress"
-			type: $type
-			size: $size
-			dough: $dough
-			name: $name
-			phone: $phone
-			time: $time
-			city: $city
-			street: $street
-		) {
-			id
-		}
-	}
-`;
 
 const OrderPlacementForm = () => {
 	return (
