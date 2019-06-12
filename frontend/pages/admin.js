@@ -1,6 +1,5 @@
 import React from 'react';
 import {Button, Callout, Icon, Position, Toaster, Spinner} from '@blueprintjs/core';
-import gql from 'graphql-tag';
 import {Query, Mutation} from 'react-apollo';
 import LazyLoad from 'react-lazyload';
 import secureTemplate from '../static/auth/secure-template';
@@ -9,45 +8,7 @@ import Container from '../components/dashboard/container';
 import Grid from '../components/dashboard/grid';
 import ButtonGroup from '../components/dashboard/button-group';
 
-// Query to get a list of orders
-const GET_ORDERS = gql`
-query {
-	orders {
-		id
-		status
-		size
-		dough
-		type
-		name
-		phone
-		time
-		city
-		street
-	}
-}
-`;
-
-// Mutation to update order status
-const CHANGE_ORDER_STATUS = gql`	
-	mutation UpdateOrder($status: String!, $id: ID!) {
-		updateOrder(
-			status: $status
-			id: $id
-		) {
-			status
-			id
-		}
-	}
-`;
-
-// Mutation to delete an order using it's id
-const DELETE_ORDER = gql`
-  mutation DeleteOrder($id: ID!) {
-    deleteOrder(id: $id) {
-      id
-    }
-  }
-`;
+import {GET_ORDERS, CHANGE_ORDER_STATUS, DELETE_ORDER} from '../components/api';
 
 const Secret = () => {
 	const showToaster = async (message, error) => {
