@@ -8,7 +8,7 @@ describe('Submit button', () => {
 	});
 
 	it('Has valid text', () => {
-		cy.get('button').find('span').should('have.text', 'Submit!');
+		cy.get('button').find('span').should('have.text', 'Submit');
 	});
 
 	it('Has prop type', () => {
