@@ -53,7 +53,7 @@ const hoursSelect = () => {
 		);
 	}
 
-	if (hoursLock && (hours === 18 || hours === 17)) {
+	if (hoursLock && ((hours === 18 && minutes < 15) || hours === 17)) {
 		return (
 			<>
 				<option value="">Select</option>
