@@ -36,7 +36,7 @@
   "apollo-client": "^2.6.2",
   "apollo-link-http": "^1.5.14",
   "auth0-js": "^9.10.4",
-  "date-fns": "^2.0.0-alpha.32",
+  "date-fns": "^2.0.0-alpha.33",
   "formik": "^1.5.7",
   "formik-persist": "^1.1.0",
   "graphql": "^14.3.1",
