@@ -40,9 +40,15 @@ More information coming soon. Please note that this project is currently **work 
   * [x] Production-ready Frontend (styles etc.)
 * [x]  Working Backend
   * [x] Creating orders
-    * [x] Rewrite to Apollo Client and get rid of graphql-request
+    * [x] Rewrite to Apollo Client
+    * [x] Use HTML5 form validation wherever possible
 * [x] Better delivery time selection
-* [x] Lock order placement system between specific hours
+    * [x] Rewrite to date-fns
+    * [x] Display delivery time based on current hour
+* [ ] Thank you page
+    * [x] Ability to copy order id
+    * [x] Display simplified order id
+    * [ ] Show time left to order delivery
 
 **Order Management System**
 
@@ -51,23 +57,26 @@ More information coming soon. Please note that this project is currently **work 
 * [x]  Basic Frontend
   * [x] Listing orders
     * [ ] **Rewrite to GraphQL Subscriptions (work in progress, requires custom resolver)**
+  * [x] Ability to change order status
   * [x] Ability to delete orders
+    * [x] Confirmation alert
   * [ ] Ability to manually add orders
   * [ ] Production-ready Frontend (styles etc.)
 * [x]  Working Backend
 
-**Project Page**
+**Documentation**
 
-* [x] Home page
-* [x] About page
+* [x] Guides
+  * [x] Development
+  * [x] Production
+  * [ ] Security
+  * [ ] Deployment
 
 **Other**
 
 * [x] Testing with Cypress.io
 * [x] Move from Prisma Cloud to Docker
-* [x] Use GraphQL Yoga server
 * [ ] Integration with Algolia Places API (?)
-* [x] Documentation (not fully done)
 * [ ] Release a public demo
 
 (?) - unsure.
