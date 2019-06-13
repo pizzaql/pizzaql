@@ -10,7 +10,7 @@ const Wrapper = ({className, loading, disabled}) => (
 			loading={loading}
 			disabled={disabled}
 		>
-Submit!
+Submit
 		</Button>
 	</div>
 );
