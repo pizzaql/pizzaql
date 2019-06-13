@@ -1,5 +1,5 @@
-import React from 'react';
-import {Button, Callout, Icon, Position, Toaster, Spinner} from '@blueprintjs/core';
+import React, {useState} from 'react';
+import {Alert, Button, Callout, Icon, Position, Intent, Toaster, Spinner} from '@blueprintjs/core';
 import {Query, Mutation} from 'react-apollo';
 import LazyLoad from 'react-lazyload';
 import secureTemplate from '../static/auth/secure-template';
@@ -11,6 +11,9 @@ import ButtonGroup from '../components/dashboard/button-group';
 import {GET_ORDERS, CHANGE_ORDER_STATUS, DELETE_ORDER} from '../components/api';
 
 const Secret = () => {
+	const [isOpen, setIsOpen] = useState(false);
+	const [id, setId] = useState('');
+
 	const showToaster = async (message, error) => {
 		const AppToaster = await Toaster.create({
 			position: Position.BOTTOM_RIGHT
@@ -150,13 +153,33 @@ const Secret = () => {
 															key={el.id}
 															data-order-id={el.id}
 															onClick={e => {
-																const orderID = e.currentTarget.attributes['data-order-id'].value;
-																deleteOrder({variables: {id: orderID}});
-																showToaster('Order deleted!', error);
+																setId(e.currentTarget.attributes['data-order-id'].value);
+																setIsOpen(true);
 															}}
 														>
 												Delete
 														</Button>
+														<Alert
+															cancelButtonText="Cancel"
+															confirmButtonText="Delete"
+															icon="trash"
+															intent={Intent.DANGER}
+															isOpen={isOpen}
+															onCancel={() => {
+																setIsOpen(false);
+															}}
+															data-order-id={el.id}
+															onConfirm={async () => {
+																await deleteOrder({variables: {id}});
+																await setIsOpen(false);
+																await setId('');
+																showToaster('Order deleted!', error);
+															}}
+														>
+															<p>
+                        Are you sure you want delete this order? You will not be able to restore it later.
+															</p>
+														</Alert>
 														{error && <p>Error :( Please try again</p>}
 													</>
 												)}
