@@ -15,6 +15,7 @@ const hoursSelect = () => {
 	const hoursLock = false;
 
 	const hours = new Date().getHours();
+	const minutes = new Date().getMinutes();
 
 	if (hoursLock && hours === 14) {
 		return (
@@ -61,8 +62,8 @@ const hoursSelect = () => {
 		);
 	}
 
-	if (hoursLock && hours <= 19) {
-		return <option disabled value="">Ordering disabled</option>;
+	if (hoursLock && ((hours === 18 && minutes > 15) || hours <= 19 || hours <= 10)) {
+		return <option disabled value="">Restaurant is closed</option>;
 	}
 
 	return (
