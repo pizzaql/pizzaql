@@ -43,36 +43,34 @@ const OrderPlacementForm = () => {
 						time: ''
 					}}
 					validationSchema={OrderSchema}
-					onSubmit={(values, {setSubmitting, resetForm}) => {
-						setTimeout(async () => {
-							createOrder({
-								variables: {
-									type: values.type,
-									size: values.size,
-									dough: values.dough,
-									name: values.name,
-									phone: values.phone,
-									time: values.time,
-									city: values.city,
-									street: values.street
-								}
-							}).then(data => {
-								const orderID = data.data.createOrder.id.slice(18);
-								// Move user to the thank you page
-								Router.push({
-									pathname: '/order',
-									query: {id: orderID}
-								});
-							}).catch(error => {
-								console.log(error);
-							});
-
-							await setSubmitting(false);
+					onSubmit={async (values, {setSubmitting, resetForm}) => {
+						await setSubmitting(false);
+						await createOrder({
+							variables: {
+								type: values.type,
+								size: values.size,
+								dough: values.dough,
+								name: values.name,
+								phone: values.phone,
+								time: values.time,
+								city: values.city,
+								street: values.street
+							}
+						}).then(async data => {
+							const orderID = await data.data.createOrder.id.slice(18);
 
 							// Call resetForm twice to delete values from localstorage, https://github.com/jaredpalmer/formik-persist/issues/16
-							resetForm();
-							resetForm();
-						}, 500);
+							await resetForm();
+							await resetForm();
+
+							// Move user to the thank you page
+							Router.push({
+								pathname: '/order',
+								query: {id: orderID}
+							});
+						}).catch(error => {
+							console.log(error);
+						});
 					}}
 				>
 					{({isSubmitting}) => (
@@ -93,7 +91,7 @@ const OrderPlacementForm = () => {
 							<br/>
 							<br/>
 							<Submit loading={isSubmitting || loading} disabled={isSubmitting}/>
-							{error && <p>Something went wrong! Try again later</p>}
+							{error && <p>Something went wrong. Try again later.</p>}
 							<Persist name="order-placement-form"/>
 						</Form>
 					)}
