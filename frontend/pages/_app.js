@@ -16,6 +16,7 @@ if (!process.browser) {
 }
 
 const client = new ApolloClient({
+	ssrMode: true,
 	cache: new InMemoryCache(),
 	link: new HttpLink({
 		uri: 'http://localhost:4000'
