@@ -64,11 +64,12 @@ const Secret = () => {
 								<LazyLoad key={el.id}>
 									<Callout
 										style={{marginBottom: '30px'}}
-										title={`Order id. ${el.id.slice(18)} || Status: ${el.status}`}
+										title={`Order id. ${el.id.slice(18)}`}
 										intent={el.status === 'completed' ? 'success' : '' || el.status === 'cancelled' ? 'warning' : ''}
 										icon="flag"
 										key={el.id}
 									>
+										<p>Status: {el.status}</p>
 										<ul>
 											<li>Type: <strong>{el.type}</strong></li>
 											<li>Size: <strong>{el.size}</strong></li>
