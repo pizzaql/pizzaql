@@ -10,8 +10,8 @@
   "author": "Antoni Kepinski <a@kepinski.me> (https://kepinski.me)",
   "license": "MIT",
   "dependencies": {
-    "graphql-yoga": "1.17.4",
-    "prisma-binding": "2.3.12"
+    "graphql-yoga": "1.18.0",
+    "prisma-binding": "2.3.13"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
