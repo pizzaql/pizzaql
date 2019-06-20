@@ -1,7 +1,5 @@
 import auth0 from 'auth0-js';
-import * as settings from '../../settings';
-
-const {clientID, domain} = settings;
+import {clientID, domain} from '../../settings';
 
 // Authenticate to Auth0
 const webAuth = (clientID, domain) => {
