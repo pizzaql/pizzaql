@@ -35,18 +35,17 @@ class Index extends React.Component {
 				<Card elevation={Elevation.FOUR}>
 					<h1 style={{fontSize: '3rem'}} className="thanks">Thank you!</h1>
 					<br/>
-					<p>This is your order id:</p>
+					<p>Your order number is:</p>
 					<br/>
-					<div style={{width: '250px', margin: 'auto'}} className="bp3-input-group">
+					<div style={{width: '12em', margin: 'auto'}} className="bp3-input-group">
 						{/* eslint-disable-next-line no-return-assign */}
 						<input ref={input => this.input = input} className="bp3-input" value={this.props.id.replace(/"/g, '')} readOnly/>
 						<Button className="bp3-button bp3-minimal bp3-intent-primary bp3-icon-clipboard" onClick={this.copyToClipboard}/>
 						{this.state.copySuccess}
 					</div>
 					<br/>
-					<h2 style={{fontSize: '25px', fontWeight: 800}}>You will receive your order in about an hour</h2>
 					<br/>
-					<p>If you won&apos;t receive your order after this time, please call us: <strong>234 567 890</strong></p>
+					<p>If you won&apos;t receive your order after the selected time, please call us: <strong>234 567 890</strong></p>
 					<br/>
 					<Link prefetch href="/">
 						<Button>Order another pizza!</Button>
