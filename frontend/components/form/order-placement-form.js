@@ -1,5 +1,7 @@
 import React from 'react';
 import Router from 'next/router';
+import Link from 'next/link';
+import {Checkbox} from '@blueprintjs/core';
 import {Formik, Form} from 'formik';
 import {Persist} from 'formik-persist';
 import {Mutation} from 'react-apollo';
@@ -89,6 +91,9 @@ const OrderPlacementForm = () => {
 							<br/>
 							<TimeSelect/>
 							<br/>
+							<Checkbox required>
+    I accept your <Link href="/privacy"><a>privacy policy</a></Link>.
+							</Checkbox>
 							<br/>
 							<Submit loading={isSubmitting || loading} disabled={isSubmitting}/>
 							{error && <p>Something went wrong. Try again later.</p>}
