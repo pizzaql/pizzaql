@@ -92,7 +92,7 @@ const OrderPlacementForm = () => {
 							<TimeSelect/>
 							<br/>
 							<Checkbox required>
-    I accept your <Link href="/privacy"><a>privacy policy</a></Link>.
+    I accept your <Link href="/tos"><a>terms of service</a></Link> and <Link href="/privacy"><a>privacy policy</a></Link>.
 							</Checkbox>
 							<br/>
 							<Submit loading={isSubmitting || loading} disabled={isSubmitting}/>
