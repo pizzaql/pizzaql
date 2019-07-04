@@ -103,10 +103,6 @@ More information coming soon. Please note that this project is currently **work 
 ## Big Thanks
 
 <p align="left">
-  <a href="https://zeit.co/now" target="_blank">
-    <img src="media/sponsors/zeit-logo.svg" width="400" alt="Zeit Now">
-  </a>
-  <br/>
   <a href="https://saucelabs.com" target="_blank">
     <img src="media/sponsors/saucelabs-logo.svg" width="400" alt="Sauce Labs">
   </a>
