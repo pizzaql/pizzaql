@@ -1,5 +1,6 @@
 import React from 'react';
 import Router from 'next/router';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import {Checkbox} from '@blueprintjs/core';
 import {Formik, Form} from 'formik';
@@ -13,8 +14,9 @@ import TypeSelect from './type-select';
 import SizeSelect from './size-select';
 import DoughSelect from './dough-select';
 import Input from './input';
-import TimeSelect from './time-select';
 import Submit from './submit';
+
+const TimeSelect = dynamic(() => import('./time-select'));
 
 // Custom form validation
 const OrderSchema = Yup.object().shape({
