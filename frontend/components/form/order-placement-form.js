@@ -109,7 +109,6 @@ const OrderPlacementForm = () => {
 				>
 					{props => (
 						<Form>
-							<p>{props.values.onlinePayment.toString()}</p>
 							<SelectGroup>
 								<TypeSelect value={props.values.type} onChangeText={props.handleChange('type')}/>
 								<SizeSelect value={props.values.size} onChangeText={props.handleChange('size')}/>
