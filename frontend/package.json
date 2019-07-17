@@ -50,6 +50,7 @@
   "react": "^16.8.6",
   "react-apollo": "^2.5.8",
   "react-dom": "^16.8.6",
+  "react-stripe-checkout": "^2.6.3",
   "styled-components": "^4.3.2",
   "yup": "^0.27.0"
  },
