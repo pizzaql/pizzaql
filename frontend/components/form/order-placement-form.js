@@ -5,6 +5,7 @@ import Link from 'next/link';
 import {Checkbox, Radio, RadioGroup} from '@blueprintjs/core';
 import {Formik, Form} from 'formik';
 import {Mutation} from 'react-apollo';
+import StripeCheckout from 'react-stripe-checkout';
 import * as Yup from 'yup';
 
 import {CREATE_ORDER} from '../api';
@@ -16,6 +17,7 @@ import Input from './input';
 import Submit from './submit';
 
 const TimeSelect = dynamic(() => import('./time-select'));
+const StripeButton = dynamic(() => import('./stripe-button'));
 
 // Custom form validation
 const OrderSchema = Yup.object().shape({
@@ -49,36 +51,65 @@ const OrderPlacementForm = () => {
 					validationSchema={OrderSchema}
 					onSubmit={async (values, {setSubmitting, resetForm}) => {
 						await setSubmitting(false);
-						await createOrder({
-							variables: {
-								type: values.type,
-								size: values.size,
-								dough: values.dough,
-								name: values.name,
-								phone: values.phone,
-								time: values.time,
-								city: values.city,
-								street: values.street
-							}
-						}).then(async data => {
-							const orderID = await data.data.createOrder.id.slice(18);
 
-							// Call resetForm twice to delete values from localstorage, https://github.com/jaredpalmer/formik-persist/issues/16
-							await resetForm();
-							await resetForm();
+						if (values.onlinePayment) {
+							await createOrder({
+								variables: {
+									type: values.type,
+									size: values.size,
+									dough: values.dough,
+									name: values.name,
+									phone: values.phone,
+									time: values.time,
+									city: values.city,
+									street: values.street,
+									paid: true
+								}
+							}).then(async data => {
+								const orderID = await data.data.createOrder.id.slice(18);
 
-							// Move user to the thank you page
-							Router.push({
-								pathname: '/order',
-								query: {id: orderID}
+								await resetForm();
+
+								// Move user to the thank you page
+								Router.push({
+									pathname: '/order',
+									query: {id: orderID}
+								});
+							}).catch(error => {
+								console.log(error);
 							});
-						}).catch(error => {
-							console.log(error);
-						});
+						} else {
+							await createOrder({
+								variables: {
+									type: values.type,
+									size: values.size,
+									dough: values.dough,
+									name: values.name,
+									phone: values.phone,
+									time: values.time,
+									city: values.city,
+									street: values.street,
+									paid: false
+								}
+							}).then(async data => {
+								const orderID = await data.data.createOrder.id.slice(18);
+
+								await resetForm();
+
+								// Move user to the thank you page
+								Router.push({
+									pathname: '/order',
+									query: {id: orderID}
+								});
+							}).catch(error => {
+								console.log(error);
+							});
+						}
 					}}
 				>
 					{props => (
 						<Form>
+							<p>{props.values.onlinePayment.toString()}</p>
 							<SelectGroup>
 								<TypeSelect value={props.values.type} onChangeText={props.handleChange('type')}/>
 								<SizeSelect value={props.values.size} onChangeText={props.handleChange('size')}/>
@@ -98,23 +129,34 @@ const OrderPlacementForm = () => {
 								label="Choose payment option"
 								onChange={() => {
 									if (props.values.onlinePayment === false) {
-										props.setValues({onlinePayment: true});
+										props.setFieldValue('onlinePayment', true);
 									} else {
-										props.setValues({onlinePayment: false});
+										props.setFieldValue('onlinePayment', false);
 									}
 								}}
 								selectedValue={props.values.onlinePayment === false ? 'delivery' : 'online'}
 								required
 							>
-								<Radio label="Online" value="online"/>
 								<Radio label="On delivery" value="delivery"/>
+								<Radio label="Online" value="online"/>
 							</RadioGroup>
 							<br/>
 							<Checkbox required>
     I accept your <Link href="/tos"><a>terms of service</a></Link> and <Link href="/privacy"><a>privacy policy</a></Link>.
 							</Checkbox>
 							<br/>
-							<Submit loading={loading}/>
+							{props.values.onlinePayment ?
+								<StripeCheckout
+									token={props.handleSubmit}
+									stripeKey="pk_test_A6mUVOGtiDJwvnJsg1AmoNxO"
+									name="PizzaQL"
+									label="Pay using Stripe"
+									// Amount={} TODO
+									currency="PLN"
+								>
+									<StripeButton loading={loading}/>
+								</StripeCheckout> :
+								<Submit loading={loading}/>}
 							{error && <p>Something went wrong. Try again later.</p>}
 						</Form>
 					)}
