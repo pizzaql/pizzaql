@@ -2,9 +2,8 @@ import React from 'react';
 import Router from 'next/router';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import {Checkbox} from '@blueprintjs/core';
+import {Checkbox, Radio, RadioGroup} from '@blueprintjs/core';
 import {Formik, Form} from 'formik';
-import {Persist} from 'formik-persist';
 import {Mutation} from 'react-apollo';
 import * as Yup from 'yup';
 
@@ -44,7 +43,8 @@ const OrderPlacementForm = () => {
 						phone: '',
 						city: '',
 						street: '',
-						time: ''
+						time: '',
+						onlinePayment: false
 					}}
 					validationSchema={OrderSchema}
 					onSubmit={async (values, {setSubmitting, resetForm}) => {
@@ -77,29 +77,45 @@ const OrderPlacementForm = () => {
 						});
 					}}
 				>
-					{({isSubmitting}) => (
+					{props => (
 						<Form>
 							<SelectGroup>
-								<TypeSelect/>
-								<SizeSelect/>
-								<DoughSelect/>
+								<TypeSelect value={props.values.type} onChangeText={props.handleChange('type')}/>
+								<SizeSelect value={props.values.size} onChangeText={props.handleChange('size')}/>
+								<DoughSelect value={props.values.dough} onChangeText={props.handleChange('dough')}/>
 							</SelectGroup>
 							<br/>
 							<br/>
-							<Input label="Full Name:" type="text" name="name" placeholder="Mark Suckerberg" required/>
-							<Input label="Phone:" type="tel" name="phone" placeholder="666666666" required/>
-							<Input label="Address:" type="text" name="street" placeholder="1 Hacker Way" required/>
-							<Input label="City:" type="text" name="city" placeholder="Menlo Park" required/>
+							<Input value={props.values.name} onChangeText={props.handleChange('name')} label="Full Name:" type="text" name="name" placeholder="Mark Suckerberg" required/>
+							<Input value={props.values.phone} onChangeText={props.handleChange('phone')} label="Phone:" type="tel" name="phone" placeholder="666666666" required/>
+							<Input value={props.values.street} onChangeText={props.handleChange('street')} label="Address:" type="text" name="street" placeholder="1 Hacker Way" required/>
+							<Input value={props.values.city} onChangeText={props.handleChange('city')} label="City:" type="text" name="city" placeholder="Menlo Park" required/>
 							<br/>
-							<TimeSelect/>
+							<TimeSelect value={props.values.time} onChangeText={props.handleChange('time')}/>
+							<br/>
+							<RadioGroup
+								name="payment"
+								label="Choose payment option"
+								onChange={() => {
+									if (props.values.onlinePayment === false) {
+										props.setValues({onlinePayment: true});
+									} else {
+										props.setValues({onlinePayment: false});
+									}
+								}}
+								selectedValue={props.values.onlinePayment === false ? 'delivery' : 'online'}
+								required
+							>
+								<Radio label="Online" value="online"/>
+								<Radio label="On delivery" value="delivery"/>
+							</RadioGroup>
 							<br/>
 							<Checkbox required>
     I accept your <Link href="/tos"><a>terms of service</a></Link> and <Link href="/privacy"><a>privacy policy</a></Link>.
 							</Checkbox>
 							<br/>
-							<Submit loading={isSubmitting || loading} disabled={isSubmitting}/>
+							<Submit loading={loading}/>
 							{error && <p>Something went wrong. Try again later.</p>}
-							<Persist name="order-placement-form"/>
 						</Form>
 					)}
 				</Formik>
