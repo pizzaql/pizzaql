@@ -3,12 +3,11 @@ import styled from 'styled-components';
 import {Button} from '@blueprintjs/core';
 import PropTypes from 'prop-types';
 
-const Wrapper = ({className, loading, disabled}) => (
+const Wrapper = ({className, loading}) => (
 	<div className={className}>
 		<Button
 			type="submit"
 			loading={loading}
-			disabled={disabled}
 		>
 Submit
 		</Button>
@@ -24,8 +23,7 @@ const Submit = styled(Wrapper)`
 
 Submit.propTypes = {
 	className: PropTypes.string,
-	loading: PropTypes.bool.isRequired,
-	disabled: PropTypes.bool.isRequired
+	loading: PropTypes.bool.isRequired
 };
 
 export default Submit;
