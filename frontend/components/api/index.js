@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 // Mutation to create a new order
 const CREATE_ORDER = gql`	
 	mutation CreateOrder (
+		$paid: Boolean!
 		$type: String!
 		$size: String!
 		$dough: String!
@@ -14,6 +15,7 @@ const CREATE_ORDER = gql`
 	) {
 		createOrder(
 			status: "in progress"
+			paid: $paid
 			type: $type
 			size: $size
 			dough: $dough
@@ -34,6 +36,7 @@ query {
 	orders {
 		id
 		status
+		paid
 		size
 		dough
 		type

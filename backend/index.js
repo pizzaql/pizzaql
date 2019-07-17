@@ -3,8 +3,9 @@ const {Prisma} = require('prisma-binding');
 
 const typeDefs = `
   type Order {
-		id: ID!
-		status: String!
+	id: ID!
+	status: String!
+	paid: Boolean!
     size: String!
     dough: String!
     type: String!
@@ -22,7 +23,8 @@ const typeDefs = `
 
   type Mutation {
     createOrder(
-				status: String!
+		status: String!
+		paid: Boolean!
         size: String!
         dough: String!
         type: String!
@@ -36,7 +38,7 @@ const typeDefs = `
 			status: String!,
 			id: ID!
 		): Order
-    deleteOrder(id: ID!): Order
+    	deleteOrder(id: ID!): Order
   }
 `;
 
@@ -49,6 +51,7 @@ const resolvers = {
 		createOrder: (root, args, ctx, info) =>
 			ctx.prisma.mutation.createOrder({data: {
 				status: args.status,
+				paid: args.paid,
 				size: args.size,
 				dough: args.dough,
 				type: args.type,

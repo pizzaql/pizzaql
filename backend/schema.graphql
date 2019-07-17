@@ -54,6 +54,7 @@ type OrderConnection {
 }
 
 input OrderCreateInput {
+  id: ID
   status: String!
   size: String!
   dough: String!

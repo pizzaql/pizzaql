@@ -1,6 +1,7 @@
 type Order {
     id: ID! @id
     status: String!
+    paid: Boolean!
     size: String!
     dough: String!
     type: String!
