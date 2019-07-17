@@ -63,7 +63,7 @@ const Secret = () => {
 								<Callout
 									style={{marginBottom: '30px'}}
 									title={`Order id. ${el.id.slice(18)}`}
-									intent={el.status === 'completed' ? 'success' : 'none' || el.status === 'cancelled' ? 'warning' : 'none'}
+									intent={el.status === 'completed' ? 'success' : '' || el.status === 'cancelled' ? 'warning' : ''}
 									icon="flag"
 									key={el.id}
 								>
