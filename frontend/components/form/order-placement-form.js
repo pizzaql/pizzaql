@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import {Checkbox, Radio, RadioGroup} from '@blueprintjs/core';
 import {Formik, Form} from 'formik';
+import {Persist} from 'formik-persist';
 import {Mutation} from 'react-apollo';
 import StripeCheckout from 'react-stripe-checkout';
 import * as Yup from 'yup';
@@ -65,11 +66,14 @@ const OrderPlacementForm = () => {
 									time: values.time,
 									city: values.city,
 									street: values.street,
-									paid: true
+									paid: true,
+									price: calculatePrice(values.type, values.size, values.dough)
 								}
 							}).then(async data => {
 								const orderID = await data.data.createOrder.id.slice(18);
 
+								// https://github.com/jaredpalmer/formik-persist/issues/16
+								await resetForm();
 								await resetForm();
 
 								// Move user to the thank you page
@@ -91,11 +95,14 @@ const OrderPlacementForm = () => {
 									time: values.time,
 									city: values.city,
 									street: values.street,
-									paid: false
+									paid: false,
+									price: calculatePrice(values.type, values.size, values.dough)
 								}
 							}).then(async data => {
 								const orderID = await data.data.createOrder.id.slice(18);
 
+								// https://github.com/jaredpalmer/formik-persist/issues/16
+								await resetForm();
 								await resetForm();
 
 								// Move user to the thank you page
@@ -160,6 +167,7 @@ const OrderPlacementForm = () => {
 								</StripeCheckout> :
 								<Submit loading={loading}/>}
 							{error && <p>Something went wrong. Try again later.</p>}
+							<Persist name="order-placement-from" debounce={100} isSessionStorage/>
 						</Form>
 					)}
 				</Formik>
