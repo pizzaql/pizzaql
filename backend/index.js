@@ -6,6 +6,7 @@ const typeDefs = `
 	id: ID!
 	status: String!
 	paid: Boolean!
+	price: String!
     size: String!
     dough: String!
     type: String!
@@ -25,6 +26,7 @@ const typeDefs = `
     createOrder(
 		status: String!
 		paid: Boolean!
+		price: String!
         size: String!
         dough: String!
         type: String!
@@ -52,6 +54,7 @@ const resolvers = {
 			ctx.prisma.mutation.createOrder({data: {
 				status: args.status,
 				paid: args.paid,
+				price: args.price,
 				size: args.size,
 				dough: args.dough,
 				type: args.type,

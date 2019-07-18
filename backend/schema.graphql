@@ -38,6 +38,7 @@ type Order implements Node {
   id: ID!
   status: String!
   paid: Boolean!
+  price: String!
   size: String!
   dough: String!
   type: String!
@@ -57,7 +58,8 @@ type OrderConnection {
 input OrderCreateInput {
   id: ID
   status: String!
-  paid: Boolean
+  paid: Boolean!
+  price: String!
   size: String!
   dough: String!
   type: String!
@@ -80,6 +82,8 @@ enum OrderOrderByInput {
   status_DESC
   paid_ASC
   paid_DESC
+  price_ASC
+  price_DESC
   size_ASC
   size_DESC
   dough_ASC
@@ -102,6 +106,7 @@ type OrderPreviousValues {
   id: ID!
   status: String!
   paid: Boolean!
+  price: String!
   size: String!
   dough: String!
   type: String!
@@ -131,6 +136,7 @@ input OrderSubscriptionWhereInput {
 input OrderUpdateInput {
   status: String
   paid: Boolean
+  price: String
   size: String
   dough: String
   type: String
@@ -144,6 +150,7 @@ input OrderUpdateInput {
 input OrderUpdateManyMutationInput {
   status: String
   paid: Boolean
+  price: String
   size: String
   dough: String
   type: String
@@ -186,6 +193,20 @@ input OrderWhereInput {
   status_not_ends_with: String
   paid: Boolean
   paid_not: Boolean
+  price: String
+  price_not: String
+  price_in: [String!]
+  price_not_in: [String!]
+  price_lt: String
+  price_lte: String
+  price_gt: String
+  price_gte: String
+  price_contains: String
+  price_not_contains: String
+  price_starts_with: String
+  price_not_starts_with: String
+  price_ends_with: String
+  price_not_ends_with: String
   size: String
   size_not: String
   size_in: [String!]

@@ -2,6 +2,7 @@ type Order {
     id: ID! @id
     status: String!
     paid: Boolean!
+    price: String!
     size: String!
     dough: String!
     type: String!
