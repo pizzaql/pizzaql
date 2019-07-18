@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState, useRef} from 'react';
+import {withRouter} from 'next/router';
 import Link from 'next/link';
 import {createGlobalStyle} from 'styled-components';
 import {Button, Card, Elevation} from '@blueprintjs/core';
@@ -11,50 +12,42 @@ const GlobalStyle = createGlobalStyle`
 	}
 `;
 
-class Index extends React.Component {
-	state = {
-		copySuccess: ''
-	};
+const Order = ({router: {query}}) => {
+	const [copySuccess, setCopySuccess] = useState('');
+	const inputEl = useRef(null);
 
-	// Get order id from query
-	static async getInitialProps({query: {id}}) {
-		return {
-			id
-		};
-	}
+	const id = query.id.replace(/"/g, '');
 
-	copyToClipboard = () => {
-		this.input.select();
+	const copyToClipboard = () => {
+		inputEl.current.select();
 		document.execCommand('copy');
-		this.setState({copySuccess: 'Copied!'});
+
+		setCopySuccess('Copied!');
 	};
 
-	render() {
-		return (
-			<Container style={{textAlign: 'center'}}>
-				<Card elevation={Elevation.FOUR}>
-					<h1 style={{fontSize: '3rem'}} className="thanks">Thank you!</h1>
-					<br/>
-					<p>Your order number is:</p>
-					<br/>
-					<div style={{width: '12em', margin: 'auto'}} className="bp3-input-group">
-						{/* eslint-disable-next-line no-return-assign */}
-						<input ref={input => this.input = input} className="bp3-input" value={this.props.id.replace(/"/g, '')} readOnly/>
-						<Button className="bp3-button bp3-minimal bp3-intent-primary bp3-icon-clipboard" onClick={this.copyToClipboard}/>
-						{this.state.copySuccess}
-					</div>
-					<br/>
-					<br/>
-					<p>If you won&apos;t receive your order after the selected time, please call us: <strong>234 567 890</strong></p>
-					<br/>
-					<Link prefetch href="/">
-						<Button>Order another pizza!</Button>
-					</Link>
-				</Card>
-				<GlobalStyle/>
-			</Container>
-		);
-	}
-}
+	return (
+		<Container style={{textAlign: 'center'}}>
+			<Card elevation={Elevation.FOUR}>
+				<h1 style={{fontSize: '3rem'}} className="thanks">Thank you!</h1>
+				<br/>
+				<p>Your order number is:</p>
+				<br/>
+				<div style={{width: '12em', margin: 'auto'}} className="bp3-input-group">
+					<input ref={inputEl} className="bp3-input" value={id} readOnly/>
+					<Button className="bp3-button bp3-minimal bp3-intent-primary bp3-icon-clipboard" onClick={copyToClipboard}/>
+					{copySuccess}
+				</div>
+				<br/>
+				<br/>
+				<p>If you won&apos;t receive your order after the selected time, please call us: <strong>234 567 890</strong></p>
+				<br/>
+				<Link prefetch href="/">
+					<Button>Order another pizza!</Button>
+				</Link>
+			</Card>
+			<GlobalStyle/>
+		</Container>
+	);
+};
 
-export default Index;
+export default withRouter(Order);
