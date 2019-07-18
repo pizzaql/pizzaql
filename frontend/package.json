@@ -39,6 +39,7 @@
   "core-js": "^3.1.4",
   "date-fns": "^2.0.0-beta.2",
   "formik": "^1.5.8",
+  "formik-persist": "^1.1.0",
   "graphql": "^14.4.2",
   "graphql-tag": "^2.10.1",
   "isomorphic-unfetch": "^3.0.0",
