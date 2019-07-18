@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Alert, Button, Callout, Icon, Position, Intent, Toaster, Spinner} from '@blueprintjs/core';
+import {Alert, Button, Callout, Icon, Position, Intent, Toaster, Tooltip, Spinner} from '@blueprintjs/core';
 import {Query, Mutation} from 'react-apollo';
 import secureTemplate from '../static/auth/secure-template';
 
@@ -78,6 +78,14 @@ const Secret = () => {
 										<li>City: <strong>{el.city}</strong></li>
 										<li>Time: <strong>{el.time}</strong></li>
 									</ul>
+									<p>Price: {el.price} {el.paid ?
+										<Tooltip content="This order WAS paid online">
+											<Icon intent="success" icon="small-tick" iconSize={18}/>
+										</Tooltip> :
+										<Tooltip content="This order WAS NOT paid online">
+											<Icon intent="danger" icon="small-cross" iconSize={18}/>
+										</Tooltip>}
+									</p>
 									<ButtonGroup>
 										<Mutation
 											mutation={CHANGE_ORDER_STATUS}
