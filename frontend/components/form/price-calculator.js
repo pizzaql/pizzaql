@@ -1,5 +1,6 @@
 import prices from './prices';
 
+// Calculate price and display it to user in a friendly format
 const calculatePrice = (type, size, dough) => {
 	if (!type || !size || !dough) {
 		return '0.00 PLN';
@@ -14,6 +15,7 @@ const calculatePrice = (type, size, dough) => {
 	return `${price}.00 PLN`;
 };
 
+// Calculate the amount a user has to pay
 const calculateAmountToPay = (type, size, dough) => {
 	if (!type || !size || !dough) {
 		return 0;
