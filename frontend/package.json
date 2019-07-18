@@ -14,7 +14,7 @@
  "author": "Antoni Kepinski <a@kepinski.me> (https://kepinski.me)",
  "license": "MIT",
  "devDependencies": {
-  "@babel/core": "^7.5.4",
+  "@babel/core": "^7.5.5",
   "@zeit/next-css": "^1.0.1",
   "babel-eslint": "^10.0.2",
   "babel-plugin-styled-components": "^1.10.6",
