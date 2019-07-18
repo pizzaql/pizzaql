@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 const CREATE_ORDER = gql`	
 	mutation CreateOrder (
 		$paid: Boolean!
+		$price: String!
 		$type: String!
 		$size: String!
 		$dough: String!
@@ -16,6 +17,7 @@ const CREATE_ORDER = gql`
 		createOrder(
 			status: "in progress"
 			paid: $paid
+			price: $price
 			type: $type
 			size: $size
 			dough: $dough
@@ -37,6 +39,7 @@ query {
 		id
 		status
 		paid
+		price
 		size
 		dough
 		type
