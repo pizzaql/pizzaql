@@ -13,7 +13,7 @@ const Amount = styled.p`
 
 const Price = ({amount}) => (
 	<Wrapper>
-		<Amount>{amount}</Amount>
+		<Amount>Total: {amount}</Amount>
 	</Wrapper>
 );
 
