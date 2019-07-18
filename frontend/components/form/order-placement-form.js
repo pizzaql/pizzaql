@@ -13,6 +13,8 @@ import SelectGroup from './select-group';
 import TypeSelect from './type-select';
 import SizeSelect from './size-select';
 import DoughSelect from './dough-select';
+import Price from './price';
+import {calculatePrice, calculateAmountToPay} from './price-calculator';
 import Input from './input';
 import Submit from './submit';
 
@@ -114,6 +116,7 @@ const OrderPlacementForm = () => {
 								<SizeSelect value={props.values.size} onChangeText={props.handleChange('size')}/>
 								<DoughSelect value={props.values.dough} onChangeText={props.handleChange('dough')}/>
 							</SelectGroup>
+							<Price amount={calculatePrice(props.values.type, props.values.size, props.values.dough)}/>
 							<br/>
 							<br/>
 							<Input value={props.values.name} onChangeText={props.handleChange('name')} label="Full Name:" type="text" name="name" placeholder="Mark Suckerberg" required/>
@@ -150,7 +153,7 @@ const OrderPlacementForm = () => {
 									stripeKey="pk_test_A6mUVOGtiDJwvnJsg1AmoNxO"
 									name="PizzaQL"
 									label="Pay using Stripe"
-									// Amount={} TODO
+									amount={calculateAmountToPay(props.values.type, props.values.size, props.values.dough)}
 									currency="PLN"
 								>
 									<StripeButton loading={loading}/>
