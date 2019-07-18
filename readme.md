@@ -42,7 +42,8 @@ More information coming soon. Please note that this project is currently **work 
   * [x] Creating orders
     * [x] Rewrite to Apollo Client
     * [x] Use HTML5 form validation wherever possible
-    * [ ] Implement prices
+    * [x] Implement prices
+    * [x] Online payments via Stripe
 * [x] Better delivery time selection
     * [x] Rewrite to date-fns
     * [x] Display delivery time based on current hour
