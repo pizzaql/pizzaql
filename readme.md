@@ -20,8 +20,6 @@
 
 The goal of this project is to provide a modern and easy to use order management system with order placement form as well. You can track progress in our TODO list :smile: 
 
-More information coming soon. Please note that this project is currently **work in progress** and you shouldn't use it in production!
-
 ## Docs
 
 [Here :zap:](https://docs.pizzaql.tech/)
