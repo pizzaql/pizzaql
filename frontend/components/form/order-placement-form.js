@@ -123,8 +123,8 @@ const OrderPlacementForm = () => {
 								<SizeSelect value={props.values.size} onChangeText={props.handleChange('size')}/>
 								<DoughSelect value={props.values.dough} onChangeText={props.handleChange('dough')}/>
 							</SelectGroup>
-							<Price amount={calculatePrice(props.values.type, props.values.size, props.values.dough)}/>
 							<br/>
+							<Price amount={calculatePrice(props.values.type, props.values.size, props.values.dough)}/>
 							<br/>
 							<Input value={props.values.name} onChangeText={props.handleChange('name')} label="Full Name:" type="text" name="name" placeholder="Mark Suckerberg" required/>
 							<Input value={props.values.phone} onChangeText={props.handleChange('phone')} label="Phone:" type="tel" name="phone" placeholder="666666666" required/>
