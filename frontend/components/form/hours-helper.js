@@ -1,5 +1,6 @@
 import React from 'react';
 import {format, addHours} from 'date-fns';
+import mem from 'mem';
 
 // Add specific amount of hours to the current date and format it
 const getTime = (number, isHalfPast) => {
@@ -8,6 +9,8 @@ const getTime = (number, isHalfPast) => {
 
 	return isHalfPast ? `${date}:30` : `${date}:00`;
 };
+
+const memGetTime = mem(getTime);
 
 // Hours lock: Show available delivery time based on the current hour
 const hoursSelect = () => {
@@ -22,11 +25,11 @@ const hoursSelect = () => {
 			<>
 				<option value="">Select</option>
 				<option value="ASAP">As fast as possible</option>
-				<option>{getTime(3)}</option>
-				<option>{getTime(3, true)}</option>
-				<option>{getTime(4)}</option>
-				<option>{getTime(4, true)}</option>
-				<option>{getTime(5)}</option>
+				<option>{memGetTime(3)}</option>
+				<option>{memGetTime(3, true)}</option>
+				<option>{memGetTime(4)}</option>
+				<option>{memGetTime(4, true)}</option>
+				<option>{memGetTime(5)}</option>
 			</>
 		);
 	}
@@ -36,9 +39,9 @@ const hoursSelect = () => {
 			<>
 				<option value="">Select</option>
 				<option value="ASAP">As fast as possible</option>
-				<option>{getTime(3)}</option>
-				<option>{getTime(3, true)}</option>
-				<option>{getTime(4)}</option>
+				<option>{memGetTime(3)}</option>
+				<option>{memGetTime(3, true)}</option>
+				<option>{memGetTime(4)}</option>
 			</>
 		);
 	}
@@ -48,7 +51,7 @@ const hoursSelect = () => {
 			<>
 				<option value="">Select</option>
 				<option value="ASAP">As fast as possible</option>
-				<option>{getTime(3)}</option>
+				<option>{memGetTime(3)}</option>
 			</>
 		);
 	}
@@ -70,12 +73,12 @@ const hoursSelect = () => {
 		<>
 			<option value="">Select</option>
 			<option value="ASAP">As fast as possible</option>
-			<option>{getTime(3)}</option>
-			<option>{getTime(3, true)}</option>
-			<option>{getTime(4)}</option>
-			<option>{getTime(4, true)}</option>
-			<option>{getTime(5)}</option>
-			<option>{getTime(5, true)}</option>
+			<option>{memGetTime(3)}</option>
+			<option>{memGetTime(3, true)}</option>
+			<option>{memGetTime(4)}</option>
+			<option>{memGetTime(4, true)}</option>
+			<option>{memGetTime(5)}</option>
+			<option>{memGetTime(5, true)}</option>
 		</>
 	);
 };
