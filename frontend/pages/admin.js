@@ -50,7 +50,7 @@ const Secret = () => {
 					}
 
 					if (error) {
-						return <p>{error.toString()}</p>;
+						return <p>Something went wrong: {error.toString()}</p>;
 					}
 
 					if (Object.keys(data.orders).length === 0) {
