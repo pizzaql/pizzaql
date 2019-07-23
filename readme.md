@@ -45,10 +45,10 @@ The goal of this project is to provide a modern and easy to use order management
 * [x] Better delivery time selection
     * [x] Rewrite to date-fns
     * [x] Display delivery time based on current hour
-* [ ] Thank you page
+* [x] Thank you page
     * [x] Ability to copy order id
     * [x] Display simplified order id
-    * [ ] Show time left to order delivery
+    * [x] Show time left to order delivery
 
 **Order Management System**
 
