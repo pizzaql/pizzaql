@@ -46,7 +46,7 @@ const typeDefs = `
 
 const resolvers = {
 	Query: {
-		order: (root, args, ctx, info) => ctx.prisma.query.order({id: args.id}, info),
+		order: (root, args, ctx, info) => ctx.prisma.query.order({where: {id: args.id}}, info),
 		orders: (root, args, ctx, info) => ctx.prisma.query.orders({}, info)
 	},
 	Mutation: {
