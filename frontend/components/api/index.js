@@ -1,5 +1,35 @@
 import gql from 'graphql-tag';
 
+// Query to get a list of orders
+const GET_ORDERS = gql`
+	query {
+		orders {
+			id
+			status
+			paid
+			price
+			size
+			dough
+			type
+			name
+			phone
+			time
+			city
+			street
+		}
+	}
+`;
+
+// Query to get information about an order using it's id
+const GET_ORDER_BY_ID = gql`
+	query Order($id: ID!) {
+		order(id: $id) {
+			id
+			time
+		}
+	}
+`;
+
 // Mutation to create a new order
 const CREATE_ORDER = gql`	
 	mutation CreateOrder (
@@ -32,26 +62,6 @@ const CREATE_ORDER = gql`
 	}
 `;
 
-// Query to get a list of orders
-const GET_ORDERS = gql`
-query {
-	orders {
-		id
-		status
-		paid
-		price
-		size
-		dough
-		type
-		name
-		phone
-		time
-		city
-		street
-	}
-}
-`;
-
 // Mutation to update order status
 const CHANGE_ORDER_STATUS = gql`	
 	mutation UpdateOrder($status: String!, $id: ID!) {
@@ -75,8 +85,9 @@ const DELETE_ORDER = gql`
 `;
 
 export {
-	CREATE_ORDER,
 	GET_ORDERS,
+	GET_ORDER_BY_ID,
+	CREATE_ORDER,
 	CHANGE_ORDER_STATUS,
 	DELETE_ORDER
 };
