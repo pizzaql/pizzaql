@@ -70,7 +70,7 @@ const OrderPlacementForm = () => {
 									price: calculatePrice(values.type, values.size, values.dough)
 								}
 							}).then(async data => {
-								const orderID = await data.data.createOrder.id.slice(18);
+								const orderID = await data.data.createOrder.id;
 
 								// https://github.com/jaredpalmer/formik-persist/issues/16
 								await resetForm();
@@ -99,7 +99,7 @@ const OrderPlacementForm = () => {
 									price: calculatePrice(values.type, values.size, values.dough)
 								}
 							}).then(async data => {
-								const orderID = await data.data.createOrder.id.slice(18);
+								const orderID = await data.data.createOrder.id;
 
 								// https://github.com/jaredpalmer/formik-persist/issues/16
 								await resetForm();
