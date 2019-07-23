@@ -99,7 +99,7 @@ The goal of this project is to provide a modern and easy to use order management
 - [MongoDB](https://www.mongodb.com/)
 - [Auth0](https://auth0.com/)
 
-## Big Thanks
+## Special thanks
 
 <p align="left">
   <a href="https://saucelabs.com" target="_blank">
