@@ -18,7 +18,7 @@
   "@zeit/next-css": "^1.0.1",
   "babel-eslint": "^10.0.2",
   "babel-plugin-styled-components": "^1.10.6",
-  "cypress": "^3.4.0",
+  "cypress": "^3.4.1",
   "eslint-config-xo-react": "^0.20.0",
   "eslint-plugin-react": "^7.14.3",
   "eslint-plugin-react-hooks": "^1.6.1",
@@ -30,8 +30,8 @@
   "xo": "*"
  },
  "dependencies": {
-  "@blueprintjs/core": "^3.17.1",
-  "@blueprintjs/icons": "^3.9.1",
+  "@blueprintjs/core": "^3.18.0",
+  "@blueprintjs/icons": "^3.10.0",
   "apollo-cache-inmemory": "^1.6.2",
   "apollo-client": "^2.6.3",
   "apollo-link-http": "^1.5.15",
@@ -47,7 +47,7 @@
   "jsonwebtoken": "^8.5.1",
   "mem": "^5.1.1",
   "modern-normalize": "^0.5.0",
-  "next": "^9.0.2",
+  "next": "^9.0.3",
   "prop-types": "^15.7.2",
   "react": "^16.8.6",
   "react-apollo": "^2.5.8",
