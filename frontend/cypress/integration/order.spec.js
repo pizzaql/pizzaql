@@ -1,6 +1,6 @@
 describe('Thank you page', () => {
 	before(() => {
-		cy.visit('http://localhost:3000/order?id="123123123"');
+		cy.visit('http://localhost:3000/order');
 	});
 
 	it('Has error message', () => {
