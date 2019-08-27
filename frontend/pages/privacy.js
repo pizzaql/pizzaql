@@ -29,7 +29,7 @@ const Privacy = () => {
 				<p>Habes, inquam, Cato, formam eorum, de quibus loquor, philosophorum. Eadem nunc mea adversum te oratio est. Equidem soleo etiam quod uno Graeci, si aliter non possum, idem pluribus verbis exponere. Unum est sine dolore esse, alterum cum voluptate. Nec vero alia sunt quaerenda contra Carneadeam illam sententiam. Quod cum dixissent, ille contra. Atqui eorum nihil est eius generis, ut sit in fine atque extrerno bonorum. Tenent mordicus. Ut nemo dubitet, eorum omnia officia quo spectare, quid sequi, quid fugere debeant? Quid enim tanto opus est instrumento in optimis artibus comparandis? </p>
 				<br/>
 				<div style={{textAlign: 'center'}}>
-					<Link prefetch href="/">
+					<Link href="/">
 						<Button>Go back</Button>
 					</Link>
 				</div>

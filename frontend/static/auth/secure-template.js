@@ -26,7 +26,7 @@ export default Page => class secureTemplate extends React.Component {
 							</div>
 							<h4 className="bp3-heading">Access Denied!</h4>
 							<div>You need to login to access this page!</div>
-							<Link prefetch href="/authorize">
+							<Link href="/authorize">
 								<Button>Login</Button>
 							</Link>
 						</div>

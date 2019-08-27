@@ -20,7 +20,7 @@ export default class Error extends React.Component {
 						`An error ${this.props.statusCode} occurred on server` :
 						'An error occurred on client'}
 				</p>
-				<Link prefetch href="/">
+				<Link href="/">
 					<Button>Back to the home page</Button>
 				</Link>
 			</div>
