@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import {gql} from 'apollo-boost';
 
 // Query to get a list of orders
 const GET_ORDERS = gql`

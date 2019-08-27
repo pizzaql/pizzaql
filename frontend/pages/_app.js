@@ -1,10 +1,8 @@
 import App from 'next/app';
 import Head from 'next/head';
 import React from 'react';
-import {ApolloProvider} from 'react-apollo';
-import {ApolloClient} from 'apollo-client';
-import {InMemoryCache} from 'apollo-cache-inmemory';
-import {HttpLink} from 'apollo-link-http';
+import ApolloClient from 'apollo-boost';
+import {ApolloProvider} from '@apollo/react-hooks';
 import fetch from 'isomorphic-unfetch';
 
 import 'modern-normalize/modern-normalize.css';
@@ -16,26 +14,10 @@ if (!process.browser) {
 }
 
 const client = new ApolloClient({
-	ssrMode: true,
-	cache: new InMemoryCache(),
-	link: new HttpLink({
-		uri: 'http://localhost:4000'
-	}),
-	freezeResults: true,
-	assumeImmutableResults: true
+	uri: 'http://localhost:4000'
 });
 
 class MyApp extends App {
-	static async getInitialProps({Component, ctx}) {
-		let pageProps = {};
-
-		if (Component.getInitialProps) {
-			pageProps = await Component.getInitialProps(ctx);
-		}
-
-		return {pageProps};
-	}
-
 	render() {
 		const {Component, pageProps} = this.props;
 
