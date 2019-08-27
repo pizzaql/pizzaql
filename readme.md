@@ -36,19 +36,23 @@ The goal of this project is to provide a modern and easy to use order management
 **Order Placement System**
 * [x]  Basic Frontend
   * [x] Production-ready Frontend (styles etc.)
-* [x]  Working Backend
-  * [x] Creating orders
-    * [x] Rewrite to Apollo Client
-    * [x] Use HTML5 form validation wherever possible
-    * [x] Implement prices
-    * [x] Online payments via Stripe
-* [x] Better delivery time selection
+  * [x] Rewrite to Apollo Client
+  * [x] Use HTML5 form validation wherever possible
+  * [x] Implement prices
+  * [x] Online payments via Stripe
+    * [ ] Rewrite online payments to use react-stripe-elements
+  * [x] Delivery time selection
     * [x] Rewrite to date-fns
     * [x] Display delivery time based on current hour
+  * [ ] Rewrite to @apollo/react-hooks
+  * [ ] Rewrite with useFormik hook
+* [x]  Working Backend
+    * [x] Creating orders
 * [x] Thank you page
     * [x] Ability to copy order id
     * [x] Display simplified order id
     * [x] Show time left to order delivery
+    * [x] Rewrite to @apollo/react-hooks
 
 **Order Management System**
 
@@ -56,7 +60,8 @@ The goal of this project is to provide a modern and easy to use order management
   * [x] Full security with Auth0
 * [x]  Basic Frontend
   * [x] Listing orders
-    * [ ] **Rewrite to GraphQL Subscriptions (work in progress, requires custom resolver)**
+    * [x] Rewrite to @apollo/react-hooks
+    * [ ] Rewrite to GraphQL Subscriptions
   * [x] Ability to change order status
   * [x] Ability to delete orders
     * [x] Confirmation alert
