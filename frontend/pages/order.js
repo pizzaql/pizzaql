@@ -25,10 +25,6 @@ const Order = ({router: {query}}) => {
 		variables: {id}
 	});
 
-	if (error || !query.id) {
-		return <p>Order not found or it&apos;s id is invalid</p>;
-	}
-
 	const copyToClipboard = () => {
 		inputEl.current.select();
 		document.execCommand('copy');
@@ -36,32 +32,40 @@ const Order = ({router: {query}}) => {
 		setCopySuccess('Copied!');
 	};
 
-	const shortId = query.id.replace(/"/g, '').slice(18);
-
 	return (
 		<Container style={{textAlign: 'center'}}>
-			<Card elevation={Elevation.FOUR}>
-				{loading ? <Spinner/> :
-				<>
-					<h1 style={{fontSize: '3rem'}} className="thanks">Thank you!</h1>
-					<br/>
-					<p>Your order number is:</p>
-					<br/>
-					<div style={{width: '12em', margin: 'auto'}} className="bp3-input-group">
-						<input ref={inputEl} className="bp3-input" value={shortId} readOnly/>
-						<Button className="bp3-button bp3-minimal bp3-intent-primary bp3-icon-clipboard" onClick={copyToClipboard}/>
-						{copySuccess}
-					</div>
-					<br/>
-					<h4 style={{fontSize: '1.2rem'}}>You will receive your order {data.order.time === 'ASAP' ? 'in about an hour' : `at ${data.order.time}`}</h4>
-					<br/>
-					<br/>
-					<p>If you won&apos;t receive your order after that time, please call us: <strong>234 567 890</strong></p>
-					<br/>
-					<Link href="/">
-						<Button>Order another pizza!</Button>
-					</Link>
-				</>}
+			<Card style={{minHeight: '40rem'}} elevation={Elevation.FOUR}>
+				{loading ? <Spinner/> : (error || !query.id) ?
+					<div style={{margin: 'auto'}} className="bp3-non-ideal-state">
+						<div className="bp3-non-ideal-state-visual">
+							<span className="bp3-icon bp3-icon-error"/>
+						</div>
+						<h4 className="bp3-heading">Oh snap...</h4>
+						<p>Order not found or it&apos;s id is invalid</p>
+						<Link href="/">
+							<Button>Back to the home page</Button>
+						</Link>
+					</div> :
+					<>
+						<h1 style={{fontSize: '3rem'}} className="thanks">Thank you!</h1>
+						<br/>
+						<p>Your order number is:</p>
+						<br/>
+						<div style={{width: '12em', margin: 'auto'}} className="bp3-input-group">
+							<input ref={inputEl} className="bp3-input" value={query.id.replace(/"/g, '').slice(18)} readOnly/>
+							<Button className="bp3-button bp3-minimal bp3-intent-primary bp3-icon-clipboard" onClick={copyToClipboard}/>
+							{copySuccess}
+						</div>
+						<br/>
+						<h4 style={{fontSize: '1.2rem'}}>You will receive your order {data.order.time === 'ASAP' ? 'in about an hour' : `at ${data.order.time}`}</h4>
+						<br/>
+						<br/>
+						<p>If you won&apos;t receive your order after that time, please call us: <strong>234 567 890</strong></p>
+						<br/>
+						<Link href="/">
+							<Button>Order another pizza!</Button>
+						</Link>
+					</>}
 			</Card>
 			<GlobalStyle/>
 		</Container>
