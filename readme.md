@@ -44,7 +44,7 @@ The goal of this project is to provide a modern and easy to use order management
   * [x] Delivery time selection
     * [x] Rewrite to date-fns
     * [x] Display delivery time based on current hour
-  * [ ] Rewrite to @apollo/react-hooks
+  * [x] Rewrite to @apollo/react-hooks
   * [ ] Rewrite with useFormik hook
 * [x]  Working Backend
     * [x] Creating orders
