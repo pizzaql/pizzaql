@@ -1,19 +1,8 @@
 import React from 'react';
-import {format, addHours} from 'date-fns';
-import mem from 'mem';
+import * as wasm from '@pizzaql/hours-helper';
 
-// Add specific amount of hours to the current date and format it
-const getTime = (number, isHalfPast) => {
-	const formatted = addHours(new Date(), number);
-	const date = format(formatted, 'HH');
-
-	return isHalfPast ? `${date}:30` : `${date}:00`;
-};
-
-const memGetTime = mem(getTime);
-
-// Hours lock: Show available delivery time based on the current hour
 const hoursSelect = () => {
+	// Hours lock: Show available delivery time based on the current hour
 	// Change to true to enable
 	const hoursLock = false;
 
@@ -25,11 +14,11 @@ const hoursSelect = () => {
 			<>
 				<option value="">Select</option>
 				<option value="ASAP">As fast as possible</option>
-				<option>{memGetTime(3)}</option>
-				<option>{memGetTime(3, true)}</option>
-				<option>{memGetTime(4)}</option>
-				<option>{memGetTime(4, true)}</option>
-				<option>{memGetTime(5)}</option>
+				<option>{wasm.get_time(3, false)}</option>
+				<option>{wasm.get_time(3, true)}</option>
+				<option>{wasm.get_time(4, false)}</option>
+				<option>{wasm.get_time(4, true)}</option>
+				<option>{wasm.get_time(5, false)}</option>
 			</>
 		);
 	}
@@ -39,9 +28,9 @@ const hoursSelect = () => {
 			<>
 				<option value="">Select</option>
 				<option value="ASAP">As fast as possible</option>
-				<option>{memGetTime(3)}</option>
-				<option>{memGetTime(3, true)}</option>
-				<option>{memGetTime(4)}</option>
+				<option>{wasm.get_time(3, false)}</option>
+				<option>{wasm.get_time(3, true)}</option>
+				<option>{wasm.get_time(4, false)}</option>
 			</>
 		);
 	}
@@ -51,7 +40,7 @@ const hoursSelect = () => {
 			<>
 				<option value="">Select</option>
 				<option value="ASAP">As fast as possible</option>
-				<option>{memGetTime(3)}</option>
+				<option>{wasm.get_time(3, false)}</option>
 			</>
 		);
 	}
@@ -73,12 +62,12 @@ const hoursSelect = () => {
 		<>
 			<option value="">Select</option>
 			<option value="ASAP">As fast as possible</option>
-			<option>{memGetTime(3)}</option>
-			<option>{memGetTime(3, true)}</option>
-			<option>{memGetTime(4)}</option>
-			<option>{memGetTime(4, true)}</option>
-			<option>{memGetTime(5)}</option>
-			<option>{memGetTime(5, true)}</option>
+			<option>{wasm.get_time(3, false)}</option>
+			<option>{wasm.get_time(3, true)}</option>
+			<option>{wasm.get_time(4, false)}</option>
+			<option>{wasm.get_time(4, true)}</option>
+			<option>{wasm.get_time(5, false)}</option>
+			<option>{wasm.get_time(5, true)}</option>
 		</>
 	);
 };
