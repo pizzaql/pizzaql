@@ -10,6 +10,7 @@ import StripeCheckout from 'react-stripe-checkout';
 import * as Yup from 'yup';
 
 import {CREATE_ORDER} from '../api';
+import config from '../../config';
 import SelectGroup from './select-group';
 import TypeSelect from './type-select';
 import SizeSelect from './size-select';
@@ -18,6 +19,8 @@ import Price from './price';
 import {calculatePrice, calculateAmountToPay} from './price-calculator';
 import Input from './input';
 import Submit from './submit';
+
+const {stripe, restaurant} = config;
 
 const TimeSelect = dynamic(() => import('./time-select'));
 const StripeButton = dynamic(() => import('./stripe-button'));
@@ -155,8 +158,8 @@ const OrderPlacementForm = () => {
 					{props.values.onlinePayment ?
 						<StripeCheckout
 							token={props.handleSubmit}
-							stripeKey="pk_test_A6mUVOGtiDJwvnJsg1AmoNxO"
-							name="PizzaQL"
+							stripeKey={stripe.key}
+							name={restaurant.name || 'PizzaQL'}
 							label="Pay using Stripe"
 							amount={calculateAmountToPay(props.values.type, props.values.size, props.values.dough)}
 							currency="PLN"
@@ -165,7 +168,7 @@ const OrderPlacementForm = () => {
 						</StripeCheckout> :
 						<Submit loading={loading}/>}
 					{error && <p>Something went wrong. Try again later.</p>}
-					<Persist name="order-placement-from" debounce={100} isSessionStorage/>
+					<Persist name="order-placement-from" debounce={100}/>
 				</Form>
 			)}
 		</Formik>

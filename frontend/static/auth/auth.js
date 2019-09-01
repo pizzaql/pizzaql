@@ -1,11 +1,11 @@
 import Cookie from 'js-cookie';
 import jwt from 'jsonwebtoken';
 import fetch from 'isomorphic-unfetch';
-import {domain} from '../../settings';
+import config from '../../config';
 
 // Get JWK from Auth0
 const getJWK = async () => {
-	const res = await fetch(`https://${domain}/.well-known/jwks.json`);
+	const res = await fetch(`https://${config.auth0.domain}/.well-known/jwks.json`);
 	const jwk = await res.json();
 	return jwk;
 };

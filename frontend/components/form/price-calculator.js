@@ -1,4 +1,6 @@
-import prices from './prices';
+import config from '../../config';
+
+const {prices} = config;
 
 // Calculate price and display it to user in a friendly format
 const calculatePrice = (type, size, dough) => {
@@ -9,7 +11,7 @@ const calculatePrice = (type, size, dough) => {
 	const price = prices[type][size];
 
 	if (dough === 'Thick') {
-		return `${price + 3}.00 PLN`;
+		return `${price + prices.thickDough}.00 PLN`;
 	}
 
 	return `${price}.00 PLN`;
@@ -24,7 +26,7 @@ const calculateAmountToPay = (type, size, dough) => {
 	const price = prices[type][size];
 
 	if (dough === 'Thick') {
-		return (price + 3) * 100;
+		return (price + prices.thickDough) * 100;
 	}
 
 	return price * 100;
