@@ -1,10 +1,13 @@
 import React from 'react';
 import * as wasm from '@pizzaql/hours-helper';
 
+import config from '../../config';
+
+const {hoursLock} = config;
+
 const hoursSelect = () => {
 	// Hours lock: Show available delivery time based on the current hour
 	// Change to true to enable
-	const hoursLock = false;
 
 	const hours = new Date().getHours();
 	const minutes = new Date().getMinutes();
