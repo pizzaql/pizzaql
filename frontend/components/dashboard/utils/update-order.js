@@ -26,7 +26,7 @@ const UpdateOrder = ({icon, intent, disabled, key, id, status}) => {
 					showToaster('Status changed!', error);
 				}}
 			>
-      Complete
+				{status === 'completed' ? 'Complete' : 'Cancel'}
 			</Button>
 			{error && <p>Error :( Please try again</p>}
 		</>
