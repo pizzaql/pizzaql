@@ -42,7 +42,6 @@ The goal of this project is to provide a modern and easy to use order management
   * [x] Online payments via Stripe
     * [ ] Rewrite online payments to use react-stripe-elements
   * [x] Delivery time selection
-    * [x] Rewrite to date-fns
     * [x] Display delivery time based on current hour
   * [x] Rewrite to @apollo/react-hooks
   * [ ] Rewrite with useFormik hook
