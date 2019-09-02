@@ -1,81 +1,161 @@
 'use strict';
 
 const config = {
-	auth0: {
+	auth0: { // Auth0 configuration
 		clientID: 'BUUYjCiP2SYKQBB48OZRALsccmijoubx',
 		domain: 'pizzaql.eu.auth0.com'
 	},
-	stripe: {
+	stripe: { // Stripe configuration
 		key: 'pk_test_A6mUVOGtiDJwvnJsg1AmoNxO'
 	},
-	restaurant: {
+	restaurant: { // Basic restaurant options
 		name: 'PizzaQL',
 		phone: 693827127,
 		hoursLock: false
 	},
-	prices: {
+	pizzas: { // Pizzas
 		Margharita: {
-			Small: 17,
-			Medium: 20,
-			Large: 23
+			ingredients: [
+				'Mozzarella',
+				'Oregano'
+			],
+			prices: {
+				Small: 17,
+				Medium: 20,
+				Large: 23
+			}
 		},
 		Funghi: {
-			Small: 20,
-			Medium: 23,
-			Large: 26
+			ingredients: [
+				'Mozzarella',
+				'Oregano',
+				'Mushrooms'
+			],
+			prices: {
+				Small: 20,
+				Medium: 23,
+				Large: 26
+			}
 		},
 		Cacciatore: {
-			Small: 16,
-			Medium: 19,
-			Large: 22
+			ingredients: [
+				'Mozzarella',
+				'Oregano',
+				'Salami'
+			],
+			prices: {
+				Small: 16,
+				Medium: 19,
+				Large: 22
+			}
 		},
 		Vesuvio: {
-			Small: 19,
-			Medium: 22,
-			Large: 25
-		},
-		Milano: {
-			Small: 20,
-			Medium: 23,
-			Large: 26
+			ingredients: [
+				'Mozzarella',
+				'Oregano',
+				'Ham'
+			],
+			prices: {
+				Small: 19,
+				Medium: 22,
+				Large: 25
+			}
 		},
 		Capriciosa: {
-			Small: 20,
-			Medium: 23,
-			Large: 26
+			ingredients: [
+				'Mozzarella',
+				'Oregano',
+				'Ham',
+				'Mushrooms'
+			],
+			prices: {
+				Small: 20,
+				Medium: 23,
+				Large: 26
+			}
 		},
 		Prosciutto: {
-			Small: 21,
-			Medium: 24,
-			Large: 27
+			ingredients: [
+				'Mozzarella',
+				'Oregano',
+				'Prosciutto Cotto'
+			],
+			prices: {
+				Small: 21,
+				Medium: 24,
+				Large: 27
+			}
 		},
 		Hawaiano: {
-			Small: 21,
-			Medium: 24,
-			Large: 27
+			ingredients: [
+				'Mozzarella',
+				'Oregano',
+				'Ham',
+				'Pineapple'
+			],
+			prices: {
+				Small: 21,
+				Medium: 24,
+				Large: 27
+			}
 		},
-		Rimini: {
-			Small: 20,
-			Medium: 23,
-			Large: 26
+		Fiorentina: {
+			ingredients: [
+				'Mozzarella',
+				'Oregano',
+				'Ham',
+				'Mushrooms',
+				'Black Olives',
+				'Capers'
+			],
+			prices: {
+				Small: 20,
+				Medium: 23,
+				Large: 26
+			}
 		},
 		Bali: {
-			Small: 22,
-			Medium: 25,
-			Large: 28
+			ingredients: [
+				'Mozzarella',
+				'Oregano',
+				'Grilled Chicken',
+				'Mushrooms',
+				'Pineapple'
+			],
+			prices: {
+				Small: 22,
+				Medium: 25,
+				Large: 28
+			}
 		},
 		Pepperoni: {
-			Small: 20,
-			Medium: 23,
-			Large: 26
+			ingredients: [
+				'Mozzarella',
+				'Oregano',
+				'Salami Pepperoni'
+			],
+			prices: {
+				Small: 20,
+				Medium: 23,
+				Large: 26
+			}
 		},
-		Torino: {
-			Small: 20,
-			Medium: 23,
-			Large: 26
-		},
-		thickDough: 3
-	}
+		Pescatore: {
+			ingredients: [
+				'Mozzarella',
+				'Oregano',
+				'Tuna',
+				'Black Olives',
+				'Capers'
+			],
+			prices: {
+				Small: 20,
+				Medium: 23,
+				Large: 26
+			}
+		}
+	},
+	thickDough: 3 // How much should thick dough add to the final price?
 };
 
 export default config;
