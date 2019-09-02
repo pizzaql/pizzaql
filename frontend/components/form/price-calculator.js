@@ -1,6 +1,6 @@
 import config from '../../config';
 
-const {prices} = config;
+const {pizzas, thickDough} = config;
 
 // Calculate price and display it to user in a friendly format
 const calculatePrice = (type, size, dough) => {
@@ -8,10 +8,10 @@ const calculatePrice = (type, size, dough) => {
 		return '0.00 PLN';
 	}
 
-	const price = prices[type][size];
+	const price = pizzas[type].prices[size];
 
 	if (dough === 'Thick') {
-		return `${price + prices.thickDough}.00 PLN`;
+		return `${price + thickDough}.00 PLN`;
 	}
 
 	return `${price}.00 PLN`;
@@ -23,10 +23,10 @@ const calculateAmountToPay = (type, size, dough) => {
 		return 0;
 	}
 
-	const price = prices[type][size];
+	const price = pizzas[type].prices[size];
 
 	if (dough === 'Thick') {
-		return (price + prices.thickDough) * 100;
+		return (price + thickDough) * 100;
 	}
 
 	return price * 100;
