@@ -34,7 +34,7 @@
   "@apollo/react-hooks": "^3.0.1",
   "@blueprintjs/core": "^3.18.0",
   "@blueprintjs/icons": "^3.10.0",
-  "@pizzaql/hours-helper": "^0.3.3",
+  "@pizzaql/hours-helper": "^0.4.0",
   "apollo-boost": "^0.4.4",
   "auth0-js": "^9.11.3",
   "core-js": "^3.2.1",
