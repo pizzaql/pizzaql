@@ -1,0 +1,21 @@
+{
+    "name": "PizzaQL",
+    "short_name": "PizzaQL",
+    "icons": [
+      {
+        "src": "/static/favicon-small.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/static/favicon.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#fff",
+    "theme_color": "#fff"
+  }

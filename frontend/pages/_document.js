@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
 			url(${MontserratWoff2}) format('woff2'),
 			url(${MontserratWoff}) format('woff');
   	}
-	  
+
 	body {
 		font-family: Montserrat, Georgia, monospace;
 		background: #fff;
@@ -63,6 +63,9 @@ export default class MyDocument extends Document {
 					<meta name="image" content="https://i.imgur.com/wTAVqy5.jpg"/>
 					<meta name="theme-color" content="#212121"/>
 					<meta name="msapplication-TileColor" content="#212121"/>
+					<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+					<link rel="manifest" href="static/manifest.json"/>
+					<link rel="icon" href="static/favicon.png"/>
 					<meta name="twitter:card" content="summary"/>
 					<meta name="twitter:title" content="PizzaQL"/>
 					<meta name="twitter:description" content="Modern Order Management & Placement System"/>
