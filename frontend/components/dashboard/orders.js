@@ -62,7 +62,7 @@ const Orders = () => {
 							status="completed"
 						/>
 						<UpdateOrder
-							icon="tick"
+							icon="cross"
 							intent="warning"
 							disabled={el.status === 'cancelled'}
 							key={el.id}
