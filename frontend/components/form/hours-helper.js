@@ -6,11 +6,8 @@ import config from '../../config';
 const {hoursLock} = config;
 
 const hoursSelect = () => {
-	// Hours lock: Show available delivery time based on the current hour
-	// Change to true to enable
-
-	const hours = new Date().getHours();
-	const minutes = new Date().getMinutes();
+	const hours = wasm.get_hours();
+	const minutes = wasm.get_minutes();
 
 	if (hoursLock && hours === 14) {
 		return (
