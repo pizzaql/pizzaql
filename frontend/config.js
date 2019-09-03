@@ -11,7 +11,9 @@ const config = {
 	restaurant: { // Basic restaurant options
 		name: 'PizzaQL',
 		phone: 693827127,
-		hoursLock: false // Show available delivery time based on the current hour
+		hoursLock: true, // Show available delivery time based on the current hour
+		openingTime: 10, // Time your restaurant opens (currently only full hours are supported)
+		closingTime: 19 // Time your restaurant closes (currently only full hours are supported)
 	},
 	pizzas: { // Pizzas
 		Margharita: {
