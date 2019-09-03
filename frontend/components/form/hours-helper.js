@@ -3,13 +3,13 @@ import * as wasm from '@pizzaql/hours-helper';
 
 import config from '../../config';
 
-const {hoursLock} = config;
-
 const hoursSelect = () => {
+	const {hoursLock, openingTime, closingTime} = config.restaurant;
+
 	const hours = wasm.get_hours();
 	const minutes = wasm.get_minutes();
 
-	if (hoursLock && hours === 14) {
+	if (hoursLock && hours === (closingTime - 4)) {
 		return (
 			<>
 				<option value="">Select</option>
@@ -23,7 +23,7 @@ const hoursSelect = () => {
 		);
 	}
 
-	if (hoursLock && hours === 15) {
+	if (hoursLock && hours === (closingTime - 4)) {
 		return (
 			<>
 				<option value="">Select</option>
@@ -35,7 +35,7 @@ const hoursSelect = () => {
 		);
 	}
 
-	if (hoursLock && hours === 16) {
+	if (hoursLock && hours === (closingTime - 3)) {
 		return (
 			<>
 				<option value="">Select</option>
@@ -45,7 +45,7 @@ const hoursSelect = () => {
 		);
 	}
 
-	if (hoursLock && ((hours === 18 && minutes < 15) || hours === 17)) {
+	if (hoursLock && ((hours === (closingTime - 1) && minutes < 15) || hours === (closingTime - 2))) {
 		return (
 			<>
 				<option value="">Select</option>
@@ -54,7 +54,7 @@ const hoursSelect = () => {
 		);
 	}
 
-	if (hoursLock && ((hours === 18 && minutes > 15) || hours <= 19 || hours <= 10)) {
+	if (hoursLock && ((hours === (closingTime - 1) && minutes > 15) || hours >= closingTime || hours <= openingTime)) {
 		return <option disabled value="">Restaurant is closed</option>;
 	}
 
