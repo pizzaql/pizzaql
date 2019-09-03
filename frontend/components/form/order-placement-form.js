@@ -167,7 +167,7 @@ const OrderPlacementForm = () => {
 							name={restaurant.name || 'PizzaQL'}
 							label="Pay using Stripe"
 							amount={calculateAmountToPay(props.values.type, props.values.size, props.values.dough)}
-							currency="PLN"
+							currency={restaurant.currency || 'USD'}
 						>
 							<StripeButton loading={loading}/>
 						</StripeCheckout> :
