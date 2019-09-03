@@ -39,6 +39,11 @@ const OrderSchema = Yup.object().shape({
 const OrderPlacementForm = () => {
 	const [createOrder, {loading, error}] = useMutation(CREATE_ORDER);
 
+	// Devlopment message about hours lock
+	if (restaurant.hoursLock) {
+		console.log('%c PizzaQL', 'color: black; background: #fba627; font-size: 14px; border-radius: 3px;', 'Hours Lock is enabled!');
+	}
+
 	return (
 		<Formik
 			initialValues={{
