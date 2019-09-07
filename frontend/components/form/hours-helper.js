@@ -54,7 +54,7 @@ const hoursSelect = () => {
 		);
 	}
 
-	if (hoursLock && ((hours === (closingTime - 1) && minutes > 15) || hours >= closingTime || hours <= openingTime)) {
+	if (hoursLock && ((hours === (closingTime - 1) && minutes > 15) || hours >= closingTime || hours < openingTime)) {
 		return <option disabled value="">Restaurant is closed</option>;
 	}
 
