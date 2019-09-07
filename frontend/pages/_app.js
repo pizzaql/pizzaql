@@ -3,7 +3,7 @@ import Head from 'next/head';
 import React from 'react';
 import ApolloClient from 'apollo-boost';
 import {ApolloProvider} from '@apollo/react-hooks';
-import fetch from 'isomorphic-unfetch';
+import fetch from 'node-fetch';
 
 import 'modern-normalize/modern-normalize.css';
 import '@blueprintjs/icons/lib/css/blueprint-icons.css';
