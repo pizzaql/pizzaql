@@ -3,85 +3,85 @@
 	"version": "0.2.0",
 	"description": "Frontend for PizzaQL",
 	"scripts": {
-	 "dev": "next",
-	 "build": "next build",
-	 "start": "next start",
-	 "test": "xo && stylelint './pages/**/*.js'",
-	 "cy:open": "cypress open",
-	 "cy:run": "cypress run"
+		"dev": "next",
+		"build": "next build",
+		"start": "next start",
+		"test": "xo && stylelint './pages/**/*.js'",
+		"cy:open": "cypress open",
+		"cy:run": "cypress run"
 	},
 	"main": "pages/index.js",
 	"author": "Antoni Kepinski <a@kepinski.me> (https://kepinski.me)",
 	"license": "MIT",
 	"devDependencies": {
-	 "@babel/core": "^7.5.5",
-	 "@zeit/next-css": "^1.0.1",
-	 "babel-eslint": "^10.0.3",
-	 "babel-plugin-styled-components": "^1.10.6",
-	 "cypress": "^3.4.1",
-	 "eslint-config-xo-react": "^0.20.0",
-	 "eslint-plugin-react": "^7.14.3",
-	 "eslint-plugin-react-hooks": "^2.0.1",
-	 "next-fonts": "^0.18.0",
-	 "next-offline": "^4.0.5",
-	 "stylelint": "^10.1.0",
-	 "stylelint-config-recommended": "^2.2.0",
-	 "stylelint-config-styled-components": "^0.1.1",
-	 "stylelint-processor-styled-components": "^1.8.0",
-	 "xo": "*"
+		"@babel/core": "^7.6.0",
+		"@zeit/next-css": "^1.0.1",
+		"babel-eslint": "^10.0.3",
+		"babel-plugin-styled-components": "^1.10.6",
+		"cypress": "^3.4.1",
+		"eslint-config-xo-react": "^0.20.0",
+		"eslint-plugin-react": "^7.14.3",
+		"eslint-plugin-react-hooks": "^2.0.1",
+		"next-fonts": "^0.18.0",
+		"next-offline": "^4.0.5",
+		"stylelint": "^10.1.0",
+		"stylelint-config-recommended": "^2.2.0",
+		"stylelint-config-styled-components": "^0.1.1",
+		"stylelint-processor-styled-components": "^1.8.0",
+		"xo": "*"
 	},
 	"dependencies": {
-	 "@apollo/react-hooks": "^3.0.1",
-	 "@blueprintjs/core": "^3.18.0",
-	 "@blueprintjs/icons": "^3.10.0",
-	 "@pizzaql/hours-helper": "^0.4.0",
-	 "apollo-boost": "^0.4.4",
-	 "auth0-js": "^9.11.3",
-	 "core-js": "^3.2.1",
-	 "formik": "^1.5.8",
-	 "formik-persist": "^1.1.0",
-	 "graphql": "^14.5.4",
-	 "js-cookie": "^2.2.1",
-	 "jsonwebtoken": "^8.5.1",
-	 "modern-normalize": "^0.5.0",
-	 "next": "^9.0.5",
-	 "node-fetch": "^2.6.0",
-	 "prop-types": "^15.7.2",
-	 "react": "^16.9.0",
-	 "react-dom": "^16.9.0",
-	 "react-stripe-checkout": "^2.6.3",
-	 "styled-components": "^4.3.2",
-	 "yup": "^0.27.0"
+		"@apollo/react-hooks": "^3.1.0",
+		"@blueprintjs/core": "^3.18.0",
+		"@blueprintjs/icons": "^3.10.0",
+		"@pizzaql/hours-helper": "^0.4.0",
+		"apollo-boost": "^0.4.4",
+		"auth0-js": "^9.11.3",
+		"core-js": "^3.2.1",
+		"formik": "^1.5.8",
+		"formik-persist": "^1.1.0",
+		"graphql": "^14.5.4",
+		"js-cookie": "^2.2.1",
+		"jsonwebtoken": "^8.5.1",
+		"modern-normalize": "^0.5.0",
+		"next": "^9.0.5",
+		"node-fetch": "^2.6.0",
+		"prop-types": "^15.7.2",
+		"react": "^16.9.0",
+		"react-dom": "^16.9.0",
+		"react-stripe-checkout": "^2.6.3",
+		"styled-components": "^4.3.2",
+		"yup": "^0.27.0"
 	},
 	"xo": {
-	 "nodeVersion": ">=10",
-	 "parser": "babel-eslint",
-	 "envs": [
-	  "node",
-	  "browser"
-	 ],
-	 "globals": [
-	  "describe",
-	  "it",
-	  "cy",
-	  "expect",
-	  "beforeEach"
-	 ],
-	 "ignores": "cypress",
-	 "extends": "xo-react",
-	 "settings": {
-	  "react": {
-	   "version": "16.9"
-	  }
-	 },
-	 "rules": {
-	  "import/no-unassigned-import": "off",
-	  "import/no-unresolved": "off",
-	  "import/no-named-as-default": "off",
-	  "unicorn/filename-case": "off",
-	  "react/jsx-sort-props": "off",
-	  "react/prop-types": "off",
-	  "react/boolean-prop-naming": "off"
-	 }
+		"nodeVersion": ">=10",
+		"parser": "babel-eslint",
+		"envs": [
+			"node",
+			"browser"
+		],
+		"globals": [
+			"describe",
+			"it",
+			"cy",
+			"expect",
+			"beforeEach"
+		],
+		"ignores": "cypress",
+		"extends": "xo-react",
+		"settings": {
+			"react": {
+				"version": "16.9"
+			}
+		},
+		"rules": {
+			"import/no-unassigned-import": "off",
+			"import/no-unresolved": "off",
+			"import/no-named-as-default": "off",
+			"unicorn/filename-case": "off",
+			"react/jsx-sort-props": "off",
+			"react/prop-types": "off",
+			"react/boolean-prop-naming": "off"
+		}
 	}
-   }
+}
