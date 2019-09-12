@@ -32,7 +32,7 @@
 	},
 	"dependencies": {
 		"@apollo/react-hooks": "^3.1.0",
-		"@blueprintjs/core": "^3.18.0",
+		"@blueprintjs/core": "^3.18.1",
 		"@blueprintjs/icons": "^3.10.0",
 		"@pizzaql/hours-helper": "^0.4.0",
 		"apollo-boost": "^0.4.4",
