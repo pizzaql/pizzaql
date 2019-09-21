@@ -1,6 +1,6 @@
 import Cookie from 'js-cookie';
 import jwt from 'jsonwebtoken';
-import fetch from 'isomorphic-unfetch';
+import fetch from 'node-fetch';
 import config from '../../config';
 
 // Get JWK from Auth0
