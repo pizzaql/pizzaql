@@ -1,5 +1,5 @@
 import React from 'react';
-import {Callout, Icon, Tooltip, Spinner} from '@blueprintjs/core';
+import {Callout, Divider, Icon, Tooltip, Spinner} from '@blueprintjs/core';
 import {useQuery} from '@apollo/react-hooks';
 
 import {GET_ORDERS} from '../api';
@@ -27,10 +27,10 @@ const Orders = () => {
 		<Grid>
 			{data.orders.reverse().map(el => (
 				<Callout
-					style={{marginBottom: '30px'}}
+					style={{marginBottom: '20px'}}
 					title={`Order id. ${el.id.slice(18)}`}
 					intent={el.status === 'completed' ? 'success' : '' || el.status === 'cancelled' ? 'warning' : ''}
-					icon="flag"
+					icon={el.status === 'completed' ? 'tick' : '' || el.status === 'cancelled' ? 'cross' : ''}
 					key={el.id}
 				>
 					<p>Status: {el.status}</p>
@@ -69,6 +69,7 @@ const Orders = () => {
 							id={el.id}
 							status="cancelled"
 						/>
+						<Divider/>
 						<DeleteOrder key={el.id} orderId={el.id}/>
 					</ButtonGroup>
 				</Callout>
