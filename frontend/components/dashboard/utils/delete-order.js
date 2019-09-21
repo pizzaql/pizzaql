@@ -42,6 +42,7 @@ const DeleteOrder = ({key, orderId}) => {
       Delete
 			</Button>
 			<Alert
+				style={{width: '100%', margin: '5vw'}}
 				cancelButtonText="Cancel"
 				confirmButtonText="Delete"
 				icon="trash"
