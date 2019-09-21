@@ -13,7 +13,7 @@ const config = {
 		phone: 693827127,
 		openingTime: 10, // Time your restaurant opens (currently only full hours are supported)
 		closingTime: 19, // Time your restaurant closes (currently only full hours are supported)
-		hoursLock: true, // Show available delivery time based on the current hour (recommended in production)
+		hoursLock: false, // Show available delivery time based on the current hour (recommended in production)
 		currency: 'PLN' // Currency code, in which you will be processing payments
 	},
 	pizzas: { // Pizzas
