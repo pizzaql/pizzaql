@@ -15,7 +15,7 @@ const DeleteOrder = ({key, orderId}) => {
 			update(cache, {data: {deleteOrder}}) {
 				const {orders} = cache.readQuery({query: GET_ORDERS});
 
-				const result = orders.reverse().filter(el => (deleteOrder.id.indexOf(el.id) === -1));
+				const result = orders.reverse().filter(el => (!deleteOrder.id.includes(el.id)));
 
 				cache.writeQuery({
 					query: GET_ORDERS,

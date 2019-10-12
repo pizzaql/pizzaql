@@ -37,7 +37,7 @@ const Order = ({router: {query}}) => {
 	return (
 		<Container style={{textAlign: 'center'}}>
 			<Card style={{minHeight: '40rem'}} elevation={Elevation.FOUR}>
-				{loading ? <Spinner/> : (error || !query.id) ?
+				{loading ? <Spinner/> : ((error || !query.id) ?
 					<div style={{margin: 'auto'}} className="bp3-non-ideal-state">
 						<div className="bp3-non-ideal-state-visual">
 							<span className="bp3-icon bp3-icon-error"/>
@@ -67,7 +67,7 @@ const Order = ({router: {query}}) => {
 						<Link href="/">
 							<Button>Order another pizza!</Button>
 						</Link>
-					</>}
+					</>)}
 			</Card>
 			<GlobalStyle/>
 		</Container>

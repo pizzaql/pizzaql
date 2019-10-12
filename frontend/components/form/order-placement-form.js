@@ -87,8 +87,8 @@ const OrderPlacementForm = () => {
 							pathname: '/order',
 							query: {id: orderID}
 						});
-					}).catch(error => {
-						console.log(error);
+					}).catch(error_ => {
+						console.log(error_);
 					});
 				} else {
 					await createOrder({
@@ -116,8 +116,8 @@ const OrderPlacementForm = () => {
 							pathname: '/order',
 							query: {id: orderID}
 						});
-					}).catch(error => {
-						console.log(error);
+					}).catch(error_ => {
+						console.log(error_);
 					});
 				}
 			}}
