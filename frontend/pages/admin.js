@@ -1,7 +1,7 @@
 import React from 'react';
 import {Icon} from '@blueprintjs/core';
 
-import secureTemplate from '../static/auth/secure-template';
+import secureTemplate from '../public/auth/secure-template';
 
 import Container from '../components/dashboard/container';
 import Orders from '../components/dashboard/orders';

@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 import Router from 'next/router';
-import {parseHash} from '../static/auth/auth0';
-import {saveToken, verifyToken} from '../static/auth/auth';
+import {parseHash} from '../public/auth/auth0';
+import {saveToken, verifyToken} from '../public/auth/auth';
 
 // Redirect user after login
 export default () => {

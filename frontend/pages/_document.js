@@ -3,8 +3,8 @@ import Document, {Head, Main, NextScript} from 'next/document';
 import {createGlobalStyle, ServerStyleSheet} from 'styled-components';
 
 // Fonts
-import MontserratWoff from '../static/fonts/montserrat-v12-latin-ext-regular.woff';
-import MontserratWoff2 from '../static/fonts/montserrat-v12-latin-ext-regular.woff2';
+import MontserratWoff from '../public/fonts/montserrat-v12-latin-ext-regular.woff';
+import MontserratWoff2 from '../public/fonts/montserrat-v12-latin-ext-regular.woff2';
 
 const GlobalStyle = createGlobalStyle`
 	@font-face {
