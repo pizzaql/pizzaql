@@ -29,8 +29,8 @@ const Orders = () => {
 				<Callout
 					style={{marginBottom: '20px'}}
 					title={`Order id. ${el.id.slice(18)}`}
-					intent={el.status === 'completed' ? 'success' : '' || el.status === 'cancelled' ? 'warning' : ''}
-					icon={el.status === 'completed' ? 'tick' : '' || el.status === 'cancelled' ? 'cross' : ''}
+					intent={el.status === 'completed' ? 'success' : ('' || el.status === 'cancelled' ? 'warning' : '')}
+					icon={el.status === 'completed' ? 'tick' : ('' || el.status === 'cancelled' ? 'cross' : '')}
 					key={el.id}
 				>
 					<p>Status: {el.status}</p>
