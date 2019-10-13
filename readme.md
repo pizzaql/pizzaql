@@ -64,7 +64,7 @@ The goal of this project is to provide a modern and easy to use order management
   * [x] Ability to change order status
   * [x] Ability to delete orders
     * [x] Confirmation alert
-  * [ ] Ability to manually add orders
+  * [x] Ability to manually add orders
   * [ ] Production-ready Frontend (styles etc.)
 * [x]  Working Backend
 
