@@ -79,6 +79,7 @@
 			"import/no-unresolved": "off",
 			"import/no-named-as-default": "off",
 			"unicorn/filename-case": "off",
+			"unicorn/catch-error-name": "off",
 			"react/jsx-sort-props": "off",
 			"react/prop-types": "off",
 			"react/boolean-prop-naming": "off"
