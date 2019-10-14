@@ -64,8 +64,8 @@ export default class MyDocument extends Document {
 					<meta name="theme-color" content="#212121"/>
 					<meta name="msapplication-TileColor" content="#212121"/>
 					<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-					<link rel="manifest" href="static/manifest.json"/>
-					<link rel="icon" href="static/favicon.png"/>
+					<link rel="manifest" href="/manifest.json"/>
+					<link rel="icon" href="/favicon.png"/>
 					<meta name="twitter:card" content="summary"/>
 					<meta name="twitter:title" content="PizzaQL"/>
 					<meta name="twitter:description" content="Modern Order Management & Placement System"/>
@@ -76,7 +76,7 @@ export default class MyDocument extends Document {
 					<meta name="og:url" content=""/>
 					<meta name="og:site_name" content="PizzaQL"/>
 					<meta name="og:type" content="website"/>
-					<link rel="icon" href="static/favicon.png"/>
+					<link rel="icon" href="/favicon.png"/>
 				</Head>
 				<body>
 					<Main/>
