@@ -1,13 +1,11 @@
 import React from 'react';
-import dynamic from 'next/dynamic';
 import {Divider, Icon} from '@blueprintjs/core';
 
 import secureTemplate from '../public/auth/secure-template';
 
 import Container from '../components/dashboard/container';
+import CreateOrder from '../components/dashboard/utils/create-order';
 import Orders from '../components/dashboard/orders';
-
-const CreateOrder = dynamic(() => import('../components/dashboard/utils/create-order'));
 
 const Dashboard = () => (
 	<Container>
