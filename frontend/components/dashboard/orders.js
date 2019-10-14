@@ -9,7 +9,9 @@ import UpdateOrder from './utils/update-order';
 import DeleteOrder from './utils/delete-order';
 
 const Orders = () => {
-	const {loading, error, data} = useQuery(GET_ORDERS);
+	const {loading, error, data} = useQuery(GET_ORDERS, {
+		pollInterval: 2000
+	});
 
 	if (loading) {
 		return <Spinner/>;
@@ -57,7 +59,6 @@ const Orders = () => {
 							icon="tick"
 							intent="primary"
 							disabled={el.status === 'completed'}
-							key={el.id}
 							id={el.id}
 							status="completed"
 						/>
@@ -65,12 +66,11 @@ const Orders = () => {
 							icon="cross"
 							intent="warning"
 							disabled={el.status === 'cancelled'}
-							key={el.id}
 							id={el.id}
 							status="cancelled"
 						/>
 						<Divider/>
-						<DeleteOrder key={el.id} orderId={el.id}/>
+						<DeleteOrder orderId={el.id}/>
 					</ButtonGroup>
 				</Callout>
 			))}
