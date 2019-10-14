@@ -37,7 +37,7 @@
 		"@pizzaql/hours-helper": "^0.4.0",
 		"apollo-boost": "^0.4.4",
 		"auth0-js": "^9.11.3",
-		"core-js": "^3.2.1",
+		"core-js": "^3.3.2",
 		"formik": "^1.5.8",
 		"formik-persist": "^1.1.0",
 		"graphql": "^14.5.8",
