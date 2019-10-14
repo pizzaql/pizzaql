@@ -3,10 +3,11 @@ import {Alert, Button} from '@blueprintjs/core';
 import {useMutation} from '@apollo/react-hooks';
 import PropTypes from 'prop-types';
 
+import config from '../../../config';
 import {DELETE_ORDER, GET_ORDERS} from '../../api';
 import showToaster from './show-toaster';
 
-const DeleteOrder = ({key, orderId}) => {
+const DeleteOrder = ({orderId}) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [id, setId] = useState('');
 	const [deleteOrder, {loading, error}] = useMutation(
@@ -32,12 +33,12 @@ const DeleteOrder = ({key, orderId}) => {
 				icon="trash"
 				intent="danger"
 				loading={loading}
-				key={key}
 				data-order-id={orderId}
 				onClick={e => {
 					setId(e.currentTarget.attributes['data-order-id'].value);
 					setIsOpen(true);
 				}}
+				disabled={config.restaurant.allowOrdersDeletion === false}
 			>
       Delete
 			</Button>
@@ -70,7 +71,6 @@ const DeleteOrder = ({key, orderId}) => {
 };
 
 DeleteOrder.propTypes = {
-	key: PropTypes.string.isRequired,
 	orderId: PropTypes.string.isRequired
 };
 

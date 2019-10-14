@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import {CHANGE_ORDER_STATUS} from '../../api';
 import showToaster from './show-toaster';
 
-const UpdateOrder = ({icon, intent, disabled, key, id, status}) => {
+const UpdateOrder = ({icon, intent, disabled, id, status}) => {
 	const [updateOrder, {loading, error}] = useMutation(CHANGE_ORDER_STATUS);
 
 	return (
@@ -17,7 +17,6 @@ const UpdateOrder = ({icon, intent, disabled, key, id, status}) => {
 				intent={intent}
 				loading={loading}
 				disabled={disabled}
-				key={key}
 				data-order-id={id}
 				onClick={e => {
 					const orderID = e.currentTarget.attributes['data-order-id'].value;
@@ -37,7 +36,6 @@ UpdateOrder.propTypes = {
 	icon: PropTypes.string.isRequired,
 	intent: PropTypes.string.isRequired,
 	disabled: PropTypes.bool.isRequired,
-	key: PropTypes.string.isRequired,
 	id: PropTypes.string.isRequired,
 	status: PropTypes.string.isRequired
 };
