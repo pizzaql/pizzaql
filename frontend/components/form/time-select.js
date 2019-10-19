@@ -4,7 +4,7 @@ import {FastField} from 'formik';
 import {Label} from '@blueprintjs/core';
 import PropTypes from 'prop-types';
 
-import hoursSelect from './hours-helper';
+import hoursSelect from './utils/hours-helper';
 
 const Wrapper = ({className}) => {
 	const deliveryTime = useMemo(() => hoursSelect(), []);
