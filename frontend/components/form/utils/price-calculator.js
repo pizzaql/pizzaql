@@ -1,4 +1,4 @@
-import config from '../../config';
+import config from '../../../config';
 
 const {pizzas, thickDough, restaurant} = config;
 const {currency} = restaurant;

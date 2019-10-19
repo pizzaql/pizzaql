@@ -1,7 +1,7 @@
 import React from 'react';
 import * as wasm from '@pizzaql/hours-helper';
 
-import config from '../../config';
+import config from '../../../config';
 
 const hoursSelect = () => {
 	const {hoursLock, openingTime, closingTime} = config.restaurant;
