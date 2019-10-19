@@ -1,30 +1,6 @@
 import React from 'react';
 import Document, {Head, Main, NextScript} from 'next/document';
-import {createGlobalStyle, ServerStyleSheet} from 'styled-components';
-
-// Fonts
-import MontserratWoff from '../public/fonts/montserrat-v12-latin-ext-regular.woff';
-import MontserratWoff2 from '../public/fonts/montserrat-v12-latin-ext-regular.woff2';
-
-const GlobalStyle = createGlobalStyle`
-	@font-face {
-		font-family: 'Montserrat';
-		font-style: normal;
-		font-weight: 400;
-		font-display: fallback;
-		src: local('Montserrat Regular'), local('Montserrat-Regular'),
-			url(${MontserratWoff2}) format('woff2'),
-			url(${MontserratWoff}) format('woff');
-  	}
-
-	body {
-		font-family: Montserrat, Georgia, monospace;
-		background: #fff;
-		word-wrap: break-word;
-		-webkit-font-smoothing: antialiased;
-		text-rendering: optimizeSpeed;
-	}
-`;
+import {ServerStyleSheet} from 'styled-components';
 
 export default class MyDocument extends Document {
 	static async getInitialProps(ctx) {
@@ -81,7 +57,6 @@ export default class MyDocument extends Document {
 				<body>
 					<Main/>
 					<NextScript/>
-					<GlobalStyle/>
 				</body>
 			</html>
 		);
