@@ -5,7 +5,7 @@ import {useMutation} from '@apollo/react-hooks';
 import * as Yup from 'yup';
 
 import {CREATE_ORDER, GET_ORDERS} from '../../api';
-import {calculatePrice} from '../../form/price-calculator';
+import {calculatePrice} from '../../form/utils/price-calculator';
 
 import SelectGroup from '../../form/select-group';
 import TypeSelect from '../../form/type-select';
@@ -123,7 +123,7 @@ const CreateOrder = () => {
 							<br/>
 							<Input value={props.values.time} onChangeText={props.handleChange('time')} label="Delivery time:" type="text" name="time" placeholder="12:00" required/>
 							<br/>
-							<Submit loading={loading}/>
+							<Submit type="submit" text="Submit" loading={loading}/>
 							{error && <p>Something went wrong. Try again later.</p>}
 						</Form>
 					)}
