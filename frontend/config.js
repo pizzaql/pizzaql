@@ -15,7 +15,8 @@ const config = {
 		closingTime: 19, // Time your restaurant closes (currently only full hours are supported)
 		hoursLock: false, // Show available delivery time based on the current hour (recommended in production)
 		currency: 'PLN', // Currency code, in which you will be processing payments
-		allowOrdersDeletion: true // Whether you want to allow order deletion or not
+		allowOrdersDeletion: true, // Whether you want to allow order deletion or not
+		validatePhoneNumbers: true // Whether you want the system to validate phone numbers
 	},
 	pizzas: { // Pizzas
 		Margharita: {
