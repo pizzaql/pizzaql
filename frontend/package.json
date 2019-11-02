@@ -18,10 +18,10 @@
 		"@zeit/next-css": "^1.0.1",
 		"babel-eslint": "^10.0.3",
 		"babel-plugin-styled-components": "^1.10.6",
-		"cypress": "^3.4.1",
+		"cypress": "^3.6.0",
 		"eslint-config-xo-react": "^0.20.0",
 		"eslint-plugin-react": "^7.16.0",
-		"eslint-plugin-react-hooks": "^2.1.2",
+		"eslint-plugin-react-hooks": "^2.2.0",
 		"next-fonts": "^0.19.0",
 		"next-offline": "^4.0.6",
 		"stylelint": "^11.1.1",
@@ -37,21 +37,20 @@
 		"@pizzaql/hours-helper": "^0.4.0",
 		"apollo-boost": "^0.4.4",
 		"auth0-js": "^9.11.3",
-		"core-js": "^3.3.2",
-		"formik": "^1.5.8",
-		"formik-persist": "^1.1.0",
+		"core-js": "^3.3.6",
 		"graphql": "^14.5.8",
 		"js-cookie": "^2.2.1",
 		"jsonwebtoken": "^8.5.1",
 		"modern-normalize": "^0.5.0",
-		"next": "^9.1.1",
+		"next": "^9.1.2",
 		"node-fetch": "^2.6.0",
 		"prop-types": "^15.7.2",
-		"react": "^16.10.2",
-		"react-dom": "^16.10.2",
+		"react": "^16.11.0",
+		"react-dom": "^16.11.0",
 		"react-stripe-checkout": "^2.6.3",
-		"stripe": "^7.10.0",
-		"styled-components": "^5.0.0-beta.8",
+		"react-use-form-state": "^0.12.0",
+		"stripe": "^7.11.0",
+		"styled-components": "^5.0.0-rc.1",
 		"yup": "^0.27.0"
 	},
 	"xo": {
@@ -72,7 +71,7 @@
 		"extends": "xo-react",
 		"settings": {
 			"react": {
-				"version": "16.9"
+				"version": "16.11"
 			}
 		},
 		"rules": {
