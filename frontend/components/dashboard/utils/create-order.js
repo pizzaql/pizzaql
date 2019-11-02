@@ -1,33 +1,31 @@
 import React, {useState} from 'react';
-import {Dialog, Button} from '@blueprintjs/core';
-import {Formik, Form} from 'formik';
+import {Dialog, Label, Button} from '@blueprintjs/core';
+import {useFormState} from 'react-use-form-state';
 import {useMutation} from '@apollo/react-hooks';
-import * as Yup from 'yup';
 
 import {CREATE_ORDER, GET_ORDERS} from '../../api';
 import {calculatePrice} from '../../form/utils/price-calculator';
 
 import SelectGroup from '../../form/select-group';
-import TypeSelect from '../../form/type-select';
-import SizeSelect from '../../form/size-select';
-import DoughSelect from '../../form/dough-select';
 import Input from '../../form/input';
 import Price from '../../form/price';
 import Submit from '../../form/submit';
+import pizzaTypes from '../../form/utils/pizza-types';
 import showToaster from './show-toaster';
-
-// Custom form validation
-const OrderSchema = Yup.object().shape({
-	name: Yup.string()
-		// Regex for checking full name, https://stackoverflow.com/a/45871742
-		.matches(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/, 'Invalid name!'),
-	phone: Yup.string()
-		// Regular expression for checking Polish phone numbers, https://github.com/skotniczny/phonePL
-		.matches(/(?:(?:(?:\+|00)?48)|(?:\(\+?48\)))?(?:1[2-8]|2[2-69]|3[2-49]|4[1-68]|5\d|6[0-35-9]|[7-8][1-9]|9[145])\d{7}$/, 'Invalid phone number!')
-});
 
 const CreateOrder = () => {
 	const [isOpen, setIsOpen] = useState(false);
+	const [formState, {text, select}] = useFormState({
+		type: '',
+		size: '',
+		dough: '',
+		name: '',
+		phone: '',
+		city: '',
+		street: '',
+		time: '',
+		onlinePayment: false
+	});
 	const [createOrder, {loading, error}] = useMutation(
 		CREATE_ORDER,
 		{
@@ -41,6 +39,33 @@ const CreateOrder = () => {
 			}
 		}
 	);
+
+	const handleSubmit = async e => {
+		e.preventDefault();
+
+		const {values} = formState;
+
+		await createOrder({
+			variables: {
+				type: values.type,
+				size: values.size,
+				dough: values.dough,
+				name: values.name,
+				phone: values.phone,
+				time: values.time,
+				city: values.city,
+				street: values.street,
+				paid: false,
+				price: calculatePrice(values.type, values.size, values.dough)
+			}
+		}).then(async () => {
+			await setIsOpen(false);
+
+			showToaster('Order added!');
+		}).catch(error => {
+			console.log(error);
+		});
+	};
 
 	return (
 		<>
@@ -63,71 +88,82 @@ const CreateOrder = () => {
 					setIsOpen(false);
 				}}
 			>
-				<Formik
-					initialValues={{
-						type: '',
-						size: '',
-						dough: '',
-						name: '',
-						phone: '',
-						city: '',
-						street: '',
-						time: '',
-						onlinePayment: false
-					}}
-					validationSchema={OrderSchema}
-					onSubmit={async (values, {setSubmitting, resetForm}) => {
-						await setSubmitting(false);
 
-						await createOrder({
-							variables: {
-								type: values.type,
-								size: values.size,
-								dough: values.dough,
-								name: values.name,
-								phone: values.phone,
-								time: values.time,
-								city: values.city,
-								street: values.street,
-								paid: false,
-								price: calculatePrice(values.type, values.size, values.dough)
-							}
-						}).then(async () => {
-						// https://github.com/jaredpalmer/formik-persist/issues/16
-							await resetForm();
-							await resetForm();
-
-							await setIsOpen(false);
-
-							showToaster('Order added!');
-						}).catch(error => {
-							console.log(error);
-						});
-					}}
-				>
-					{props => (
-						<Form>
-							<br/>
-							<SelectGroup>
-								<TypeSelect value={props.values.type} onChangeText={props.handleChange('type')}/>
-								<SizeSelect value={props.values.size} onChangeText={props.handleChange('size')}/>
-								<DoughSelect value={props.values.dough} onChangeText={props.handleChange('dough')}/>
-							</SelectGroup>
-							<br/>
-							<Price amount={calculatePrice(props.values.type, props.values.size, props.values.dough)}/>
-							<br/>
-							<Input value={props.values.name} onChangeText={props.handleChange('name')} label="Full Name:" type="text" name="name" placeholder="Mark Suckerberg" required/>
-							<Input value={props.values.phone} onChangeText={props.handleChange('phone')} label="Phone:" type="tel" name="phone" placeholder="666666666" required/>
-							<Input value={props.values.street} onChangeText={props.handleChange('street')} label="Address:" type="text" name="street" placeholder="1 Hacker Way" required/>
-							<Input value={props.values.city} onChangeText={props.handleChange('city')} label="City:" type="text" name="city" placeholder="Menlo Park" required/>
-							<br/>
-							<Input value={props.values.time} onChangeText={props.handleChange('time')} label="Delivery time:" type="text" name="time" placeholder="12:00" required/>
-							<br/>
-							<Submit type="submit" text="Submit" loading={loading}/>
-							{error && <p>Something went wrong. Try again later.</p>}
-						</Form>
-					)}
-				</Formik>
+				<form onSubmit={handleSubmit}>
+					<br/>
+					<SelectGroup>
+						<Label style={{width: '11rem', userSelect: 'none'}}>
+					Pizza Type:
+							<div className="bp3-select">
+								<select {...select('type')} name="type" required>
+									<option value="">Select</option>
+									{pizzaTypes()}
+								</select>
+							</div>
+						</Label>
+						<Label style={{width: '11rem', userSelect: 'none'}}>
+    Size:
+							<div className="bp3-select">
+								<select {...select('size')} name="size" required>
+									<option value="">Select</option>
+									<option value="Small">Small</option>
+									<option value="Medium">Medium</option>
+									<option value="Large">Large</option>
+								</select>
+							</div>
+						</Label>
+						<Label style={{width: '11rem', userSelect: 'none'}}>
+    Dough:
+							<div className="bp3-select">
+								<select {...select('dough')} name="dough" required>
+									<option value="">Select</option>
+									<option value="Thin">Thin</option>
+									<option value="Thick">Thick</option>
+								</select>
+							</div>
+						</Label>
+					</SelectGroup>
+					<br/>
+					<Price amount={calculatePrice(formState.values.type, formState.values.size, formState.values.dough)}/>
+					<br/>
+					<Label>
+				Full name:
+						<Input
+							{...text('name')}
+							className="bp3-input"
+							type="text"
+							name="name"
+							placeholder="Mark Zuckerberg"
+							required
+						/>
+					</Label>
+					<Label>
+				Phone:
+						<Input
+							{...text('phone')}
+							className="bp3-input"
+							type="tel"
+							name="phone"
+							placeholder="666666666"
+							required
+						/>
+					</Label>
+					<Label>
+				Address:
+						<Input {...text('street')} className="bp3-input" type="text" name="street" placeholder="1 Hacker Way" required/>
+					</Label>
+					<Label>
+				City:
+						<Input {...text('city')} className="bp3-input" type="text" name="city" placeholder="Menlo Park" required/>
+					</Label>
+					<Label>
+				Delivery time:
+						<Input {...text('time')} className="bp3-input" type="text" name="time" placeholder="12:00" required/>
+					</Label>
+					<br/>
+					<Submit type="submit" text="Submit" loading={loading}/>
+					{error && <p>Something went wrong. Try again later.</p>}
+				</form>
 			</Dialog>
 			{error && <p>Error :( Please try again</p>}
 		</>
