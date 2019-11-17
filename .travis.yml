@@ -16,7 +16,7 @@ cache:
 before_install: cd frontend
 
 before_script:
-  - npm test && npm run dev &
+  - npm test && npm run dev && sleep 10 &
 
 script:
   - npm run cy:run
