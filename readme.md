@@ -105,14 +105,13 @@ The goal of this project is to provide a modern and easy to use order management
 
 ## Sponsors
 
-<div style="display:flex;flex-direction:column">
   <a href="https://www.digitalocean.com/" target="_blank">
     <img src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_blue.svg" width="400" alt="Digital Ocean">
   </a>
-    <a href="https://saucelabs.com" target="_blank">
+  <br/>
+  <a href="https://saucelabs.com" target="_blank">
     <img src="media/sponsors/saucelabs-logo.svg" width="400" alt="Sauce Labs">
   </a>
-</div>
 
 ## License
 
