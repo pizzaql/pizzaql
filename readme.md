@@ -103,13 +103,16 @@ The goal of this project is to provide a modern and easy to use order management
 - [MongoDB](https://www.mongodb.com/)
 - [Auth0](https://auth0.com/)
 
-## Special thanks
+## Sponsors
 
-<p align="left">
-  <a href="https://saucelabs.com" target="_blank">
+<div style="display:flex;flex-direction:column">
+  <a href="https://www.digitalocean.com/" target="_blank">
+    <img src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_blue.svg" width="400" alt="Digital Ocean">
+  </a>
+    <a href="https://saucelabs.com" target="_blank">
     <img src="media/sponsors/saucelabs-logo.svg" width="400" alt="Sauce Labs">
   </a>
-</p>
+</div>
 
 ## License
 
