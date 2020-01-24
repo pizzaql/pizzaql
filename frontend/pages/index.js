@@ -1,12 +1,10 @@
 import React from 'react';
-import dynamic from 'next/dynamic';
 import {createGlobalStyle} from 'styled-components';
 import {Card, Elevation} from '@blueprintjs/core';
 
 import Container from '../components/form/container';
+import OrderPlacementForm from '../components/form/order-placement-form';
 import Footer from '../components/form/footer';
-
-const OrderPlacementForm = dynamic(() => import('../components/form/order-placement-form'));
 
 const GlobalStyle = createGlobalStyle`
 	body {

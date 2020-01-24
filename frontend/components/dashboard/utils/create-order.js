@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Dialog, Label, Button} from '@blueprintjs/core';
+import {Dialog, Label, Button, HTMLSelect, Classes} from '@blueprintjs/core';
 import {useFormState} from 'react-use-form-state';
 import {useMutation} from '@apollo/react-hooks';
 
@@ -58,8 +58,8 @@ const CreateOrder = () => {
 				paid: false,
 				price: calculatePrice(values.type, values.size, values.dough)
 			}
-		}).then(async () => {
-			await setIsOpen(false);
+		}).then(() => {
+			setIsOpen(false);
 
 			showToaster('Order added!');
 		}).catch(error => {
@@ -80,7 +80,7 @@ const CreateOrder = () => {
       Add order
 			</Button>
 			<Dialog
-				style={{width: '100%', maxWidth: '50em', margin: '5vw', padding: '2em'}}
+				style={{width: '100%', maxWidth: '50em', margin: '1em', padding: '1em'}}
 				title="Add new order"
 				icon="info-sign"
 				isOpen={isOpen}
@@ -94,33 +94,27 @@ const CreateOrder = () => {
 					<SelectGroup>
 						<Label style={{width: '11rem', userSelect: 'none'}}>
 					Pizza Type:
-							<div className="bp3-select">
-								<select {...select('type')} name="type" required>
-									<option value="">Select</option>
-									{pizzaTypes()}
-								</select>
-							</div>
+							<HTMLSelect {...select('type')} name="type" required>
+								<option value="">Select</option>
+								{pizzaTypes()}
+							</HTMLSelect>
 						</Label>
 						<Label style={{width: '11rem', userSelect: 'none'}}>
     Size:
-							<div className="bp3-select">
-								<select {...select('size')} name="size" required>
-									<option value="">Select</option>
-									<option value="Small">Small</option>
-									<option value="Medium">Medium</option>
-									<option value="Large">Large</option>
-								</select>
-							</div>
+							<HTMLSelect {...select('size')} name="size" required>
+								<option value="">Select</option>
+								<option value="Small">Small</option>
+								<option value="Medium">Medium</option>
+								<option value="Large">Large</option>
+							</HTMLSelect>
 						</Label>
 						<Label style={{width: '11rem', userSelect: 'none'}}>
     Dough:
-							<div className="bp3-select">
-								<select {...select('dough')} name="dough" required>
-									<option value="">Select</option>
-									<option value="Thin">Thin</option>
-									<option value="Thick">Thick</option>
-								</select>
-							</div>
+							<HTMLSelect {...select('dough')} name="dough" required>
+								<option value="">Select</option>
+								<option value="Thin">Thin</option>
+								<option value="Thick">Thick</option>
+							</HTMLSelect>
 						</Label>
 					</SelectGroup>
 					<br/>
@@ -130,7 +124,8 @@ const CreateOrder = () => {
 				Full name:
 						<Input
 							{...text('name')}
-							className="bp3-input"
+							addOrder
+							className={Classes.INPUT}
 							type="text"
 							name="name"
 							placeholder="Mark Zuckerberg"
@@ -141,7 +136,8 @@ const CreateOrder = () => {
 				Phone:
 						<Input
 							{...text('phone')}
-							className="bp3-input"
+							addOrder
+							className={Classes.INPUT}
 							type="tel"
 							name="phone"
 							placeholder="666666666"
@@ -150,15 +146,15 @@ const CreateOrder = () => {
 					</Label>
 					<Label>
 				Address:
-						<Input {...text('street')} className="bp3-input" type="text" name="street" placeholder="1 Hacker Way" required/>
+						<Input {...text('street')} addOrder className={Classes.INPUT} type="text" name="street" placeholder="1 Hacker Way" required/>
 					</Label>
 					<Label>
 				City:
-						<Input {...text('city')} className="bp3-input" type="text" name="city" placeholder="Menlo Park" required/>
+						<Input {...text('city')} addOrder className={Classes.INPUT} type="text" name="city" placeholder="Menlo Park" required/>
 					</Label>
 					<Label>
 				Delivery time:
-						<Input {...text('time')} className="bp3-input" type="text" name="time" placeholder="12:00" required/>
+						<Input {...text('time')} addOrder className={Classes.INPUT} type="text" name="time" placeholder="12:00" required/>
 					</Label>
 					<br/>
 					<Submit type="submit" text="Submit" loading={loading}/>

@@ -8,7 +8,6 @@ import fetch from 'node-fetch';
 
 import MontserratWoff from '../public/fonts/montserrat-v12-latin-ext-regular.woff';
 import MontserratWoff2 from '../public/fonts/montserrat-v12-latin-ext-regular.woff2';
-import 'modern-normalize/modern-normalize.css';
 import '@blueprintjs/icons/lib/css/blueprint-icons.css';
 import '@blueprintjs/core/lib/css/blueprint.css';
 
@@ -33,7 +32,7 @@ const GlobalStyle = createGlobalStyle`
 
 	body {
 		font-family: Montserrat, Georgia, monospace;
-		background: #fff;
+		background: #394b59;
 		word-wrap: break-word;
 		-webkit-font-smoothing: antialiased;
 		text-rendering: optimizeSpeed;
@@ -45,15 +44,13 @@ class MyApp extends App {
 		const {Component, pageProps} = this.props;
 
 		return (
-			<>
-				<ApolloProvider client={client}>
-					<Head>
-						<title>PizzaQL</title>
-					</Head>
-					<Component {...pageProps}/>
-					<GlobalStyle/>
-				</ApolloProvider>
-			</>
+			<ApolloProvider client={client}>
+				<Head>
+					<title>PizzaQL</title>
+				</Head>
+				<Component {...pageProps}/>
+				<GlobalStyle/>
+			</ApolloProvider>
 		);
 	}
 }

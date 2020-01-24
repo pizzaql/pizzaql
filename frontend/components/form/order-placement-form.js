@@ -1,7 +1,7 @@
-import React, {useState, useMemo} from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import Router from 'next/router';
 import Link from 'next/link';
-import {Checkbox, Label, Radio, RadioGroup} from '@blueprintjs/core';
+import {Checkbox, Label, Radio, RadioGroup, HTMLSelect, Classes} from '@blueprintjs/core';
 import {useFormState} from 'react-use-form-state';
 import {useMutation} from '@apollo/react-hooks';
 import StripeCheckout from 'react-stripe-checkout';
@@ -17,9 +17,10 @@ import Submit from './submit';
 const {stripe, restaurant} = config;
 
 import pizzaTypes from './utils/pizza-types';
-import hoursSelect from './utils/hours-helper';
+import {deliveryHours} from './utils/hours-helper';
 
 const OrderPlacementForm = () => {
+	const [hours, setHours] = useState([]);
 	const [fieldError, setFieldError] = useState(null);
 	const [formState, {text, select}] = useFormState({
 		type: '',
@@ -33,6 +34,16 @@ const OrderPlacementForm = () => {
 		onlinePayment: false
 	});
 	const [createOrder, {loading, error}] = useMutation(CREATE_ORDER);
+
+	useEffect(() => {
+		const getHours = async () => {
+			const result = await deliveryHours();
+
+			setHours(result);
+		};
+
+		getHours();
+	}, []);
 
 	const handleSubmit = async e => {
 		try {
@@ -113,33 +124,27 @@ const OrderPlacementForm = () => {
 			<SelectGroup>
 				<Label style={{width: '11rem', userSelect: 'none'}}>
 					Pizza Type:
-					<div className="bp3-select">
-						<select {...select('type')} name="type" required>
-							<option value="">Select</option>
-							{useMemo(() => pizzaTypes(), [])}
-						</select>
-					</div>
+					<HTMLSelect {...select('type')} name="type" required>
+						<option value="">Select</option>
+						{useMemo(() => pizzaTypes(), [])}
+					</HTMLSelect>
 				</Label>
 				<Label style={{width: '11rem', userSelect: 'none'}}>
     Size:
-					<div className="bp3-select">
-						<select {...select('size')} name="size" required>
-							<option value="">Select</option>
-							<option value="Small">Small</option>
-							<option value="Medium">Medium</option>
-							<option value="Large">Large</option>
-						</select>
-					</div>
+					<HTMLSelect {...select('size')} name="size" required>
+						<option value="">Select</option>
+						<option value="Small">Small</option>
+						<option value="Medium">Medium</option>
+						<option value="Large">Large</option>
+					</HTMLSelect>
 				</Label>
 				<Label style={{width: '11rem', userSelect: 'none'}}>
     Dough:
-					<div className="bp3-select">
-						<select {...select('dough')} name="dough" required>
-							<option value="">Select</option>
-							<option value="Thin">Thin</option>
-							<option value="Thick">Thick</option>
-						</select>
-					</div>
+					<HTMLSelect {...select('dough')} name="dough" required>
+						<option value="">Select</option>
+						<option value="Thin">Thin</option>
+						<option value="Thick">Thick</option>
+					</HTMLSelect>
 				</Label>
 			</SelectGroup>
 			<br/>
@@ -149,7 +154,7 @@ const OrderPlacementForm = () => {
 				Full name:
 				<Input
 					{...text('name')}
-					className="bp3-input"
+					className={Classes.INPUT}
 					type="text"
 					name="name"
 					placeholder="Mark Zuckerberg"
@@ -160,7 +165,7 @@ const OrderPlacementForm = () => {
 				Phone:
 				<Input
 					{...text('phone')}
-					className="bp3-input"
+					className={Classes.INPUT}
 					type="tel"
 					name="phone"
 					placeholder="666666666"
@@ -170,20 +175,41 @@ const OrderPlacementForm = () => {
 			{fieldError}
 			<Label>
 				Address:
-				<Input {...text('street')} className="bp3-input" type="text" name="street" placeholder="1 Hacker Way" required/>
+				<Input {...text('street')} className={Classes.INPUT} type="text" name="street" placeholder="1 Hacker Way" required/>
 			</Label>
 			<Label>
 				City:
-				<Input {...text('city')} className="bp3-input" type="text" name="city" placeholder="Menlo Park" required/>
+				<Input {...text('city')} className={Classes.INPUT} type="text" name="city" placeholder="Menlo Park" required/>
 			</Label>
 			<br/>
 			<Label style={{width: '11rem', userSelect: 'none'}}>
 		Delivery time:
-				<div className="bp3-select">
-					<select {...select('time')} name="time" required>
-						{useMemo(() => hoursSelect(), [])}
-					</select>
-				</div>
+				<HTMLSelect {...select('time')} name="time" required>
+					{useMemo(() => {
+						if (!hours) {
+							return <option disabled value="">Restaurant is closed</option>;
+						}
+
+						if (hours === 'asap') {
+							return (
+								<>
+									<option value="">Select</option>
+									<option value="ASAP">As fast as possible</option>
+								</>
+							);
+						}
+
+						return (
+							<>
+								<option value="">Select</option>
+								<option value="ASAP">As fast as possible</option>
+								{hours.map(hour => (
+									<option key={hour} value={hour}>{hour}</option>
+								))}
+							</>
+						);
+					}, [hours])}
+				</HTMLSelect>
 			</Label>
 			<br/>
 			<RadioGroup
