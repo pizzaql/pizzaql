@@ -1,75 +1,54 @@
-import React from 'react';
-import * as wasm from '@pizzaql/hours-helper';
+'use strict';
 
 import config from '../../../config';
 
-const hoursSelect = () => {
+export const deliveryHours = async () => {
 	const {hoursLock, openingTime, closingTime} = config.restaurant;
+
+	const wasm = await import('@pizzaql/hours-helper');
 
 	const hours = wasm.get_hours();
 	const minutes = wasm.get_minutes();
 
 	if (hoursLock && hours === (closingTime - 4)) {
-		return (
-			<>
-				<option value="">Select</option>
-				<option value="ASAP">As fast as possible</option>
-				<option>{wasm.get_time(3, false)}</option>
-				<option>{wasm.get_time(3, true)}</option>
-				<option>{wasm.get_time(4, false)}</option>
-				<option>{wasm.get_time(4, true)}</option>
-				<option>{wasm.get_time(5, false)}</option>
-			</>
-		);
+		return [
+			wasm.get_time(3, false),
+			wasm.get_time(3, true),
+			wasm.get_time(4, false),
+			wasm.get_time(4, true),
+			wasm.get_time(5, false)
+		];
 	}
 
 	if (hoursLock && hours === (closingTime - 4)) {
-		return (
-			<>
-				<option value="">Select</option>
-				<option value="ASAP">As fast as possible</option>
-				<option>{wasm.get_time(3, false)}</option>
-				<option>{wasm.get_time(3, true)}</option>
-				<option>{wasm.get_time(4, false)}</option>
-			</>
-		);
+		return [
+			wasm.get_time(3, false),
+			wasm.get_time(3, true),
+			wasm.get_time(4, false)
+		];
 	}
 
 	if (hoursLock && hours === (closingTime - 3)) {
-		return (
-			<>
-				<option value="">Select</option>
-				<option value="ASAP">As fast as possible</option>
-				<option>{wasm.get_time(3, false)}</option>
-			</>
-		);
+		return [
+			wasm.get_time(3, false)
+		];
 	}
 
 	if (hoursLock && ((hours === (closingTime - 1) && minutes < 15) || hours === (closingTime - 2))) {
-		return (
-			<>
-				<option value="">Select</option>
-				<option value="ASAP">As fast as possible</option>
-			</>
-		);
+		return 'asap';
 	}
 
 	if (hoursLock && ((hours === (closingTime - 1) && minutes > 15) || hours >= closingTime || hours < openingTime)) {
-		return <option disabled value="">Restaurant is closed</option>;
+		return null;
 	}
 
-	return (
-		<>
-			<option value="">Select</option>
-			<option value="ASAP">As fast as possible</option>
-			<option>{wasm.get_time(3, false)}</option>
-			<option>{wasm.get_time(3, true)}</option>
-			<option>{wasm.get_time(4, false)}</option>
-			<option>{wasm.get_time(4, true)}</option>
-			<option>{wasm.get_time(5, false)}</option>
-			<option>{wasm.get_time(5, true)}</option>
-		</>
-	);
+	return [
+		wasm.get_time(3, false),
+		wasm.get_time(3, true),
+		wasm.get_time(4, false),
+		wasm.get_time(4, true),
+		wasm.get_time(5, false),
+		wasm.get_time(5, true)
+	];
 };
 
-export default hoursSelect;
