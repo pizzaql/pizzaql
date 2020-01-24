@@ -54,7 +54,7 @@ export default class MyDocument extends Document {
 					<meta name="og:type" content="website"/>
 					<link rel="icon" href="/favicon.png"/>
 				</Head>
-				<body>
+				<body className="bp3-dark">
 					<Main/>
 					<NextScript/>
 				</body>
