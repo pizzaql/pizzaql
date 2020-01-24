@@ -78,8 +78,8 @@ The goal of this project is to provide a modern and easy to use order management
 
 **Other**
 
-* [x] Testing with Cypress.io
 * [x] Move from Prisma Cloud to Docker
+* [ ] Testing with Cypress.io
 * [ ] Integration with Algolia Places API (?)
 * [ ] Release a public demo
 
