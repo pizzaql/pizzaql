@@ -66,9 +66,10 @@ The goal of this project is to provide a modern and easy to use order management
   * [x] Ability to delete orders
     * [x] Confirmation alert
   * [x] Ability to manually add orders
+  * [ ] Ability to delete all orders with 1 click
+  * [ ] Ability to sort orders
   * [ ] Production-ready Frontend (styles etc.)
 * [x]  Working Backend
-* [X]  Rewrite to Prisma 2
 
 **Documentation**
 
@@ -80,7 +81,7 @@ The goal of this project is to provide a modern and easy to use order management
 
 **Other**
 
-* [x] Move from Prisma Cloud to Docker
+* [x] Rewrite backend to Prisma 2
 * [ ] Testing with Cypress.io
 * [ ] Integration with Algolia Places API (?)
 * [ ] Release a public demo (**WIP**)
