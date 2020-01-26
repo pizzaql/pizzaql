@@ -36,6 +36,10 @@ const GlobalStyle = createGlobalStyle`
 		word-wrap: break-word;
 		-webkit-font-smoothing: antialiased;
 		text-rendering: optimizeSpeed;
+
+		@media (min-width: 320px) and (max-width: 480px) {
+			font-size: 16px;
+		}
 	}
 `;
 
