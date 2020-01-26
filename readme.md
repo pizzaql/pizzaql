@@ -21,6 +21,8 @@ The goal of this project is to provide a modern and easy to use order management
 
 ## Docs
 
+> Please note, that we are currently preparing a new docs for PizzaQL. Stay tuned 🙌
+
 [Here :zap:](https://docs.pizzaql.tech/)
 
 ## Screenshots
@@ -43,7 +45,7 @@ The goal of this project is to provide a modern and easy to use order management
   * [x] Delivery time selection
     * [x] Display delivery time based on current hour
   * [x] Rewrite to @apollo/react-hooks
-  * [ ] Rewrite with useFormik hook
+  * [ ] Rewrite to use react-hook-form
 * [x]  Working Backend
     * [x] Creating orders
 * [x] Thank you page
@@ -59,13 +61,14 @@ The goal of this project is to provide a modern and easy to use order management
 * [x]  Basic Frontend
   * [x] Listing orders
     * [x] Rewrite to @apollo/react-hooks
-    * [ ] Rewrite to GraphQL Subscriptions
+    * [ ] Rewrite to GraphQL Subscriptions (**WIP**)
   * [x] Ability to change order status
   * [x] Ability to delete orders
     * [x] Confirmation alert
   * [x] Ability to manually add orders
   * [ ] Production-ready Frontend (styles etc.)
 * [x]  Working Backend
+* [X]  Rewrite to Prisma 2
 
 **Documentation**
 
@@ -80,7 +83,7 @@ The goal of this project is to provide a modern and easy to use order management
 * [x] Move from Prisma Cloud to Docker
 * [ ] Testing with Cypress.io
 * [ ] Integration with Algolia Places API (?)
-* [ ] Release a public demo
+* [ ] Release a public demo (**WIP**)
 
 (?) - unsure.
 
@@ -93,13 +96,11 @@ The goal of this project is to provide a modern and easy to use order management
 - [Apollo Client](https://github.com/apollographql/apollo-client)
 - [styled-components](https://www.styled-components.com/)
 - [Blueprint](https://blueprintjs.com/)
-- [Formik](https://jaredpalmer.com/formik/)
 
 **Backend:**
 
-- [Prisma](https://www.prisma.io/)
+- [Prisma 2](https://github.com/prisma/prisma2)
 - [GraphQL](https://graphql.org/)
-- [MongoDB](https://www.mongodb.com/)
 - [Auth0](https://auth0.com/)
 
 ## Sponsors
