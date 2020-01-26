@@ -2,8 +2,8 @@ import React, {useState, useRef} from 'react';
 import {withRouter} from 'next/router';
 import Link from 'next/link';
 import {createGlobalStyle} from 'styled-components';
-import {Button, Card, Elevation, Spinner} from '@blueprintjs/core';
-import {useQuery} from '@apollo/react-hooks';
+import {Button, Classes, Card, Elevation, NonIdealState, InputGroup, Spinner} from '@blueprintjs/core';
+import {useLazyQuery} from '@apollo/react-hooks';
 
 import Container from '../components/form/container';
 
@@ -20,12 +20,13 @@ const GlobalStyle = createGlobalStyle`
 const Order = ({router: {query}}) => {
 	const [copySuccess, setCopySuccess] = useState('');
 	const inputEl = useRef(null);
-
-	const {id} = query;
-
-	const {loading, error, data} = useQuery(GET_ORDER_BY_ID, {
-		variables: {id}
+	const [getOrderData, {called, loading, error, data}] = useLazyQuery(GET_ORDER_BY_ID, {
+		variables: {id: query.id}
 	});
+
+	if (query.id && !called) {
+		getOrderData();
+	}
 
 	const copyToClipboard = () => {
 		inputEl.current.select();
@@ -37,32 +38,34 @@ const Order = ({router: {query}}) => {
 	return (
 		<Container style={{textAlign: 'center'}}>
 			<Card style={{minHeight: '40rem'}} elevation={Elevation.FOUR}>
-				{loading ? <Spinner/> : ((error || !query.id) ?
-					<div style={{margin: 'auto'}} className="bp3-non-ideal-state">
-						<div className="bp3-non-ideal-state-visual">
-							<span className="bp3-icon bp3-icon-error"/>
-						</div>
-						<h4 className="bp3-heading">Oh snap...</h4>
-						<p>Order not found or it&apos;s id is invalid</p>
-						<Link href="/">
-							<Button>Back to the home page</Button>
-						</Link>
-					</div> :
+				{!called || loading ? <Spinner/> : (error || !query.id || !data?.order[0] ?
+					<NonIdealState
+						icon="error"
+						title="Oh snap..."
+						description="Order not found"
+						action={
+							<Link href="/">
+								<Button>Back to the home page</Button>
+							</Link>
+						}
+					/> :
 					<>
 						<h1 style={{fontSize: '3rem'}} className="thanks">Thank you!</h1>
 						<br/>
 						<p>Your order number is:</p>
-						<br/>
-						<div style={{width: '12em', margin: 'auto'}} className="bp3-input-group">
-							<input ref={inputEl} className="bp3-input" value={query.id.replace(/"/g, '').slice(18)} readOnly/>
-							<Button className="bp3-button bp3-minimal bp3-intent-primary bp3-icon-clipboard" onClick={copyToClipboard}/>
-							{copySuccess}
+						<div style={{width: '12em', margin: 'auto'}}>
+						<InputGroup
+							readOnly
+							inputRef={inputEl}
+							value={query.id}
+							rightElement={
+								<Button minimal intent="primary" icon="clipboard" onClick={copyToClipboard}/>
+							}
+						/>
+						{copySuccess}
 						</div>
-						<br/>
-						<h4 style={{fontSize: '1.2rem'}}>You will receive your order {data.order.time === 'ASAP' ? 'in about an hour' : `at ${data.order.time}`}</h4>
-						<br/>
-						<br/>
-						<p>If you won&apos;t receive your order after that time, please call us: <strong>{config.restaurant.phone}</strong></p>
+						<h4 style={{fontSize: '1.2rem'}}>You will receive your order {data.order[0].time === 'ASAP' ? 'in about an hour' : `at ${data.order[0].time}`}</h4>
+						<p>If you won&apos;t receive your order after that time or you want to make some changes, please call us: <strong>{config.restaurant.phone}</strong></p>
 						<br/>
 						<Link href="/">
 							<Button>Order another pizza!</Button>
