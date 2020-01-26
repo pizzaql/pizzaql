@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {createGlobalStyle} from 'styled-components';
-import {Card, Elevation} from '@blueprintjs/core';
+import {Card, Elevation, Dialog} from '@blueprintjs/core';
 
 import Container from '../components/form/container';
 import OrderPlacementForm from '../components/form/order-placement-form';
@@ -13,9 +13,32 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Index = () => {
+	const [isOpen, setIsOpen] = useState(true);
+
 	return (
 		<Container>
 			<Card elevation={Elevation.FOUR}>
+				<Dialog
+					icon="info-sign"
+					title="Read before using!"
+					isOpen={isOpen}
+					onClose={() => {
+						setIsOpen(false);
+					}}
+				>
+					<div style={{padding: '1em'}}>
+						<h1>Welcome to PizzaQL Demo</h1>
+						<p>
+							This project aims to provide a modern and easy to use order management system with order placement form as well.
+							It uses technologies such as React, Next.js, GraphQL and Prisma 2.
+						</p>
+						<p>Be sure to check out our <a href="https://github.com/pizzaql/pizzaql">Github repo</a>!</p>
+						<b>Before you continue using this demo, please note that currently there is no database connected to this demo, so you can't make & manage orders etc.</b>
+						<br/>
+						<br/>
+						<b>We are currently in process of releasing the full demo, so stay tuned :)</b>
+					</div>
+				</Dialog>
 				<OrderPlacementForm/>
 				<Footer>
 					<br/>
