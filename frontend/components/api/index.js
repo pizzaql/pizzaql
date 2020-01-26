@@ -22,7 +22,7 @@ const GET_ORDERS = gql`
 
 // Query to get information about an order using it's id
 const GET_ORDER_BY_ID = gql`
-	query Order($id: ID!) {
+	query getOrder($id: ID!) {
 		order(id: $id) {
 			id
 			time
@@ -31,7 +31,7 @@ const GET_ORDER_BY_ID = gql`
 `;
 
 // Mutation to create a new order
-const CREATE_ORDER = gql`	
+const CREATE_ORDER = gql`
 	mutation CreateOrder (
 		$paid: Boolean!
 		$price: String!
@@ -63,7 +63,7 @@ const CREATE_ORDER = gql`
 `;
 
 // Mutation to update order status
-const CHANGE_ORDER_STATUS = gql`	
+const CHANGE_ORDER_STATUS = gql`
 	mutation UpdateOrder($status: String!, $id: ID!) {
 		updateOrder(
 			status: $status
@@ -84,10 +84,30 @@ const DELETE_ORDER = gql`
   }
 `;
 
+const ORDERS_SUBSCRIPTION = gql`
+	subscription {
+		createdOrder {
+			id
+			status
+			paid
+			price
+			size
+			dough
+			type
+			name
+			phone
+			time
+			city
+			street
+		}
+	}
+`;
+
 export {
 	GET_ORDERS,
 	GET_ORDER_BY_ID,
 	CREATE_ORDER,
 	CHANGE_ORDER_STATUS,
-	DELETE_ORDER
+	DELETE_ORDER,
+	ORDERS_SUBSCRIPTION
 };
