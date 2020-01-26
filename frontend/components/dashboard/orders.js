@@ -30,7 +30,7 @@ const Orders = () => {
 			{data.orders.reverse().map(el => (
 				<Callout
 					style={{marginBottom: '20px'}}
-					title={`Order id. ${el.id.slice(18)}`}
+					title={`Order ${el.id}`}
 					intent={el.status === 'completed' ? 'success' : ('' || el.status === 'cancelled' ? 'warning' : '')}
 					icon={el.status === 'completed' ? 'tick' : ('' || el.status === 'cancelled' ? 'cross' : '')}
 					key={el.id}
