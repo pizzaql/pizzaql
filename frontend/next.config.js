@@ -1,4 +1,3 @@
-const withCSS = require('@zeit/next-css');
 const withFonts = require('next-fonts');
 const withOffline = require('next-offline');
 
@@ -28,4 +27,4 @@ const nextConfig = {
 	}
 };
 
-module.exports = withCSS(withFonts(withOffline(nextConfig)));
+module.exports = withFonts(withOffline(nextConfig));
