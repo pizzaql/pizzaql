@@ -36,7 +36,7 @@ UpdateOrder.propTypes = {
 	icon: PropTypes.string.isRequired,
 	intent: PropTypes.string.isRequired,
 	disabled: PropTypes.bool.isRequired,
-	id: PropTypes.string.isRequired,
+	id: PropTypes.number.isRequired,
 	status: PropTypes.string.isRequired
 };
 

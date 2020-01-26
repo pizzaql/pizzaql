@@ -9,14 +9,14 @@ import showToaster from './show-toaster';
 
 const DeleteOrder = ({orderId}) => {
 	const [isOpen, setIsOpen] = useState(false);
-	const [id, setId] = useState('');
+	const [id, setId] = useState(null);
 	const [deleteOrder, {loading, error}] = useMutation(
 		DELETE_ORDER,
 		{
 			update(cache, {data: {deleteOrder}}) {
 				const {orders} = cache.readQuery({query: GET_ORDERS});
 
-				const result = orders.reverse().filter(el => (!deleteOrder.id.includes(el.id)));
+				const result = orders.reverse().filter(el => (deleteOrder.id !== el.id));
 
 				cache.writeQuery({
 					query: GET_ORDERS,
@@ -54,9 +54,9 @@ const DeleteOrder = ({orderId}) => {
 				}}
 				data-order-id={orderId}
 				onConfirm={async () => {
-					await deleteOrder({variables: {id}});
-					await setIsOpen(false);
-					await setId('');
+					deleteOrder({variables: {id: Number(id)}});
+					setIsOpen(false);
+					setId(null);
 
 					showToaster('Order deleted!', error);
 				}}
@@ -71,7 +71,7 @@ const DeleteOrder = ({orderId}) => {
 };
 
 DeleteOrder.propTypes = {
-	orderId: PropTypes.string.isRequired
+	orderId: PropTypes.number.isRequired
 };
 
 export default DeleteOrder;
