@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://pizzaql:pizzaql@localhost:5432/pizzaql"
+}
+
+model Order {
+  city   String  @default("")
+  dough  String  @default("")
+  id     Int     @id
+  name   String  @default("")
+  paid   Boolean @default(false)
+  phone  String  @default("")
+  price  String  @default("")
+  size   String  @default("")
+  status String  @default("")
+  street String  @default("")
+  time   String  @default("")
+  type   String  @default("")
+}
