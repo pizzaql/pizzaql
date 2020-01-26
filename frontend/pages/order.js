@@ -2,7 +2,7 @@ import React, {useState, useRef} from 'react';
 import {withRouter} from 'next/router';
 import Link from 'next/link';
 import {createGlobalStyle} from 'styled-components';
-import {Button, Classes, Card, Elevation, NonIdealState, InputGroup, Spinner} from '@blueprintjs/core';
+import {Button, Card, Elevation, NonIdealState, InputGroup, Spinner} from '@blueprintjs/core';
 import {useLazyQuery} from '@apollo/react-hooks';
 
 import Container from '../components/form/container';
@@ -54,15 +54,13 @@ const Order = ({router: {query}}) => {
 						<br/>
 						<p>Your order number is:</p>
 						<div style={{width: '12em', margin: 'auto'}}>
-						<InputGroup
-							readOnly
-							inputRef={inputEl}
-							value={query.id}
-							rightElement={
-								<Button minimal intent="primary" icon="clipboard" onClick={copyToClipboard}/>
-							}
-						/>
-						{copySuccess}
+							<InputGroup
+								readOnly
+								inputRef={inputEl}
+								value={query.id}
+								rightElement={<Button minimal intent="primary" icon="clipboard" onClick={copyToClipboard}/>}
+							/>
+							{copySuccess}
 						</div>
 						<h4 style={{fontSize: '1.2rem'}}>You will receive your order {data.order[0].time === 'ASAP' ? 'in about an hour' : `at ${data.order[0].time}`}</h4>
 						<p>If you won&apos;t receive your order after that time or you want to make some changes, please call us: <strong>{config.restaurant.phone}</strong></p>

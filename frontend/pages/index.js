@@ -33,7 +33,7 @@ const Index = () => {
 							It uses technologies such as React, Next.js, GraphQL and Prisma 2.
 						</p>
 						<p>Be sure to check out our <a href="https://github.com/pizzaql/pizzaql">Github repo</a>!</p>
-						<b>Before you continue using this demo, please note that currently there is no database connected to this demo, so you can't make & manage orders etc.</b>
+						<b>Before you continue using this demo, please note that currently there is no database connected to this demo, so you can&apos;t make & manage orders etc.</b>
 						<br/>
 						<br/>
 						<b>We are currently in process of releasing the full demo, so stay tuned :)</b>
